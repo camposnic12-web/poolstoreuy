@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://poolstoreuy.netlify.app/sitemap.xml
+Sitemap: https://poolstore.uy/sitemap.xml
