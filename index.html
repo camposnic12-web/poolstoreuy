@@ -16,6 +16,10 @@
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="VXd3ZK8gIU-W1ls1yrPPJA0101zBtFCoza5DnTpmX_E" />
 <link rel="canonical" href="https://poolstore.uy/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta property="og:title" content="Pool Store UY — Mesas de Pool Profesionales">
 <meta property="og:description" content="Mesas de pool con accesorios incluidos. Envíos a todo Uruguay.">
 <meta property="og:type" content="website">
@@ -456,7 +460,34 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--negro);overflow-
   background:var(--rojo);color:#fff;
   font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
   padding:0.22rem 0.55rem;border-radius:2px;
+  z-index:4;
 }
+/* PRODUCT PHOTO GALLERY (mini carrusel) */
+.prod-gallery{position:relative;width:100%;height:100%;}
+.gallery-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:0.5rem;
+  opacity:0;transition:opacity 0.25s;pointer-events:none;
+}
+.gallery-img.active{opacity:1;pointer-events:auto;}
+.gallery-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(255,255,255,0.9);border:1px solid var(--gris);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1rem;line-height:1;color:var(--negro);
+  z-index:5;padding:0;
+}
+.gallery-arrow:hover{background:#fff;}
+.gallery-prev{left:0.4rem;}
+.gallery-next{right:0.4rem;}
+.gallery-dots{
+  position:absolute;bottom:0.4rem;left:50%;transform:translateX(-50%);
+  display:flex;gap:0.3rem;z-index:5;
+}
+.gallery-dots .dot{
+  width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,0.25);
+}
+.gallery-dots .dot.active{background:var(--rojo);}
 .prod-body{padding:1.1rem;flex:1;display:flex;flex-direction:column;}
 .prod-name{
   font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;
@@ -886,6 +917,25 @@ footer{
   }
 }
 
+/* STOCK BADGES (agotado / próximamente) */
+.stock-badge{
+  position:absolute;top:0.75rem;right:0.75rem;
+  color:#fff;font-family:'Inter',sans-serif;
+  font-size:0.62rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.34rem 0.7rem;border-radius:999px;
+  z-index:6;white-space:nowrap;pointer-events:none;
+}
+.stock-badge.agotado{background:#555;box-shadow:0 4px 14px rgba(0,0,0,0.3);}
+.stock-badge.proximamente{background:var(--rojo);box-shadow:0 4px 14px rgba(204,31,31,0.35);}
+.prod-img-wrap.img-dimmed img{opacity:0.45;}
+.btn-wa-card.disabled{
+  background:#ccc;color:#888;
+  cursor:not-allowed;pointer-events:none;
+}
+@media(max-width:600px){
+  .stock-badge{top:0.5rem;right:0.5rem;font-size:0.52rem;padding:0.26rem 0.52rem;}
+}
+
 </style>
 </head>
 <body>
@@ -994,6 +1044,72 @@ footer{
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Consultar por esta mesa
           </a>
+        </div>
+      </div>
+
+      <!-- MESA 3 EN 1 -->
+      <div class="prod-card" data-cat="mesas">
+        <div class="prod-img-wrap">
+          <span class="prod-cat-tag">Mesa</span>
+          <div class="prod-gallery">
+            <img class="gallery-img active" src="images/pingpool.jpg" alt="Mesa 3 en 1 en modo pool, paño azul" loading="lazy" width="1149" height="1134">
+            <img class="gallery-img" src="images/pingpool1.jpg" alt="Mesa 3 en 1 en modo ping pong" loading="lazy" width="1170" height="1112">
+            <img class="gallery-img" src="images/pingpool2.jpg" alt="Mesa 3 en 1 en modo mesa de comedor" loading="lazy" width="1072" height="1133">
+            <img class="gallery-img" src="images/pingpool3.jpg" alt="Mesa 3 en 1 en modo ping pong, otra vista" loading="lazy" width="1170" height="1130">
+            <button type="button" class="gallery-arrow gallery-prev" onclick="galleryNav(this,-1)" aria-label="Foto anterior">‹</button>
+            <button type="button" class="gallery-arrow gallery-next" onclick="galleryNav(this,1)" aria-label="Foto siguiente">›</button>
+            <div class="gallery-dots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Mesa 3 en 1 — Pool + Ping Pong + Comedor</div>
+          <div class="prod-desc">Pool, ping pong y mesa de comedor en un solo mueble. Medidas reglamentarias, paño azul, con accesorios de pool y ping pong incluidos.</div>
+          <div class="prod-price">$27.000</div>
+          <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20la%20mesa%203%20en%201%20(pool%2C%20ping%20pong%20y%20comedor)%20de%20%2427.000." target="_blank" class="btn-wa-card">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Consultar por esta mesa
+          </a>
+        </div>
+      </div>
+
+      <!-- MESA PAÑO ROJO - PROXIMAMENTE -->
+      <div class="prod-card" data-cat="mesas">
+        <div class="prod-img-wrap img-dimmed">
+          <span class="prod-cat-tag">Mesa</span>
+          <span class="stock-badge proximamente">Próximamente</span>
+          <img src="images/nuevoingreso.jpg" alt="Mesa de Pool Paño Rojo - Nuevo Ingreso" loading="lazy" width="1200" height="543">
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Mesa de Pool — Paño Rojo</div>
+          <div class="prod-desc">Mesa de pool estándar con paño rojo. Nuevo ingreso, próximamente disponible.</div>
+          <div class="prod-price">Consultar</div>
+          <span class="btn-wa-card disabled" aria-disabled="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Próximamente
+          </span>
+        </div>
+      </div>
+
+      <!-- MESA PROFESIONAL CON TAPA - AGOTADA -->
+      <div class="prod-card" data-cat="mesas">
+        <div class="prod-img-wrap img-dimmed">
+          <span class="prod-cat-tag">Mesa</span>
+          <span class="stock-badge agotado">Agotado</span>
+          <img src="images/tapapool.jpg" alt="Mesa de Pool Profesional con Tapa" loading="lazy" width="675" height="1200">
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Mesa de Pool Profesional con Tapa</div>
+          <div class="prod-desc">Incluye los mismos accesorios que las demás mesas: tacos, bolas, triángulo, tizas y cepillo.</div>
+          <div class="prod-price">$26.000</div>
+          <span class="btn-wa-card disabled" aria-disabled="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Agotado
+          </span>
         </div>
       </div>
 
@@ -1410,6 +1526,17 @@ function toggleFaq(btn){
   const open=item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
   if(!open)item.classList.add('open');
+}
+function galleryNav(btn,dir){
+  const wrap=btn.closest('.prod-gallery');
+  const imgs=[...wrap.querySelectorAll('.gallery-img')];
+  const dots=[...wrap.querySelectorAll('.dot')];
+  let idx=imgs.findIndex(i=>i.classList.contains('active'));
+  imgs[idx].classList.remove('active');
+  dots[idx].classList.remove('active');
+  idx=(idx+dir+imgs.length)%imgs.length;
+  imgs[idx].classList.add('active');
+  dots[idx].classList.add('active');
 }
 </script>
 
