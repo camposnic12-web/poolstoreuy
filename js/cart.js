@@ -10,6 +10,8 @@
   var BUYER_KEY = 'ps_buyer';
   var MAX_QTY = 10;
   var WA_NUMBER = '59897197654';
+  // Texto del aviso de envío (se muestra en el carrito y en el checkout). Editar acá.
+  var SHIPPING_NOTICE = 'Envío a Montevideo/armado incluido; al interior el flete se coordina y abona aparte.';
   var DEPARTAMENTOS = [
     'Artigas','Canelones','Cerro Largo','Colonia','Durazno','Flores','Florida',
     'Lavalleja','Maldonado','Montevideo','Paysandú','Río Negro','Rivera','Rocha',
@@ -223,7 +225,7 @@
 
     els.foot.innerHTML =
       '<div class="cart-total"><span>Total</span><strong>' + fmt(total()) + '</strong></div>' +
-      '<p class="cart-shipping-note">🚚 El envío se coordina aparte por WhatsApp según tu zona. Retiro en el local sin costo.</p>' +
+      '<p class="cart-shipping-note">🚚 ' + esc(SHIPPING_NOTICE) + '</p>' +
       '<button type="button" class="btn-cart-primary" data-action="checkout">Continuar compra</button>' +
       '<a class="cart-wa-link" target="_blank" rel="noopener" href="' + esc(waLink(cartWaText())) + '">¿Preferís comprar por WhatsApp? Escribinos</a>';
   }
@@ -264,6 +266,7 @@
         field('cedula', 'Cédula', '<input id="co_cedula" name="cedula" inputmode="numeric" maxlength="12" placeholder="1.234.567-8" value="' + v('cedula') + '">', true) +
 
         '<div class="co-section-title">Entrega</div>' +
+        '<div class="co-shipping-notice">🚚 ' + esc(SHIPPING_NOTICE) + '</div>' +
         '<div class="co-delivery" role="radiogroup" aria-label="Método de entrega">' +
           '<label><input type="radio" name="entrega" value="envio"' + (entrega === 'envio' ? ' checked' : '') + '> 🚚 Envío a domicilio</label>' +
           '<label><input type="radio" name="entrega" value="retiro"' + (entrega === 'retiro' ? ' checked' : '') + '> 🏬 Retiro en el local</label>' +
@@ -280,7 +283,7 @@
 
     els.foot.innerHTML =
       '<div class="cart-total"><span>Total a pagar</span><strong>' + fmt(total()) + '</strong></div>' +
-      '<p class="cart-shipping-note">El envío se coordina aparte. Vas a pagar de forma segura en Mercado Pago (tarjetas, Abitab, RedPagos y más).</p>' +
+      '<p class="cart-shipping-note">Vas a pagar de forma segura en Mercado Pago (tarjetas, Abitab, RedPagos y más).</p>' +
       '<button type="submit" form="coForm" class="btn-mp" id="coPay">Pagar con Mercado Pago</button>';
 
     var form = els.body.querySelector('#coForm');
@@ -390,6 +393,7 @@
       track('add_payment_info', {currency:'UYU', value:total(), payment_type:'mercadopago'});
       // Para registrar la compra en GA desde /pago/exito.html (solo analítica)
       store('ps_last_order', {
+        pedido: r.data.pedido || null,
         total: total(),
         items: cart.map(function(i){ return {item_id:i.id, item_name:products[i.id].nombre, price:products[i.id].precio, quantity:i.qty}; })
       });
@@ -414,13 +418,17 @@
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'btn-cart-card';
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Agregar al carrito';
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="btn-cart-text">Agregar<span class="btn-cart-long"> al carrito</span></span>';
       btn.setAttribute('aria-label', 'Agregar ' + products[id].nombre + ' al carrito');
+      var label = btn.querySelector('.btn-cart-text');
+      var original = label.innerHTML;
+      var resetTimer;
       btn.addEventListener('click', function(){
         add(id);
         btn.classList.add('added');
-        btn.lastChild.textContent = ' ¡Agregado!';
-        setTimeout(function(){ btn.classList.remove('added'); btn.lastChild.textContent = ' Agregar al carrito'; }, 1400);
+        label.textContent = '¡Agregado!';
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function(){ btn.classList.remove('added'); label.innerHTML = original; }, 1400);
         open();
       });
       wa.parentNode.insertBefore(btn, wa);

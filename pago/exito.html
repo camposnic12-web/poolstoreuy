@@ -55,10 +55,15 @@ body{font-family:'Inter',sans-serif;color:var(--negro);}
   var status = q.get('status') || q.get('collection_status');
   if(!status || status === 'approved'){
     try{
+      // Evento "purchase" de GA: una sola vez por número de pedido,
+      // aunque se recargue la página o se abra en otra pestaña.
+      var SENT_KEY = 'ps_ga_purchases';
+      var sent = JSON.parse(localStorage.getItem(SENT_KEY) || '[]');
       var last = JSON.parse(localStorage.getItem('ps_last_order') || 'null');
-      if(last && typeof gtag === 'function' && !sessionStorage.getItem('ps_purchase_sent_' + pedido)){
-        gtag('event', 'purchase', {transaction_id: pedido || pago || undefined, currency: 'UYU', value: last.total, items: last.items});
-        sessionStorage.setItem('ps_purchase_sent_' + pedido, '1');
+      if(pedido && sent.indexOf(pedido) === -1 && last && (!last.pedido || last.pedido === pedido) && typeof gtag === 'function'){
+        gtag('event', 'purchase', {transaction_id: pedido, currency: 'UYU', value: last.total, items: last.items});
+        sent.push(pedido);
+        localStorage.setItem(SENT_KEY, JSON.stringify(sent.slice(-30)));
       }
       localStorage.removeItem('ps_cart');
       localStorage.removeItem('ps_last_order');
