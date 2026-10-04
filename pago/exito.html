@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>¡Pago aprobado! — Pool Store UY</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MVP1MXJ89Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MVP1MXJ89Z');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--rojo:#cc1f1f;--rojo-oscuro:#a01515;--rojo-vivo:#e52222;--negro:#0e0e0e;--blanco:#fff;--gris-claro:#f5f5f5;--gris:#e5e5e5;--gris-texto:#666;--amarillo:#fddc04;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;color:var(--negro);}
+</style>
+<link rel="stylesheet" href="/css/cart.css">
+</head>
+<body class="pago-page">
+<header class="pago-header">
+  <a href="/"><img src="/images/logo.png" alt="Pool Store Logo" width="160" height="134"><span><span style="color:var(--rojo-vivo)">Pool</span>Store</span></a>
+</header>
+<main class="pago-main">
+  <div class="pago-box ok">
+    <div class="pago-icon" aria-hidden="true">🎱</div>
+    <h1>¡Gracias por tu compra!</h1>
+    <p>Tu pago fue <strong>aprobado</strong>. Te enviamos un email con el resumen del pedido.</p>
+    <p>En breve te vamos a contactar para coordinar la entrega y el armado.</p>
+    <div class="pago-ref" id="pagoRef" hidden></div>
+    <div class="pago-actions">
+      <a class="pago-btn red" href="/">Volver a la tienda</a>
+      <a class="pago-btn wa" id="pagoWa" target="_blank" rel="noopener" href="https://wa.me/59897197654?text=Hola%2C%20acabo%20de%20comprar%20en%20la%20web%20y%20quiero%20coordinar%20la%20entrega."><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Escribinos por WhatsApp</a>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  var pedido = q.get('external_reference');
+  var pago = q.get('payment_id') || q.get('collection_id');
+  var ref = document.getElementById('pagoRef');
+  if(pedido || (pago && pago !== 'null')){
+    ref.textContent = [pedido ? 'Pedido #' + pedido : '', pago && pago !== 'null' ? 'Pago Mercado Pago: ' + pago : ''].filter(Boolean).join(' · ');
+    ref.hidden = false;
+    var wa = document.getElementById('pagoWa');
+    wa.href += encodeURIComponent(' (' + ref.textContent + ')');
+  }
+  var status = q.get('status') || q.get('collection_status');
+  if(!status || status === 'approved'){
+    try{
+      // Evento "purchase" de GA: una sola vez por número de pedido,
+      // aunque se recargue la página o se abra en otra pestaña.
+      var SENT_KEY = 'ps_ga_purchases';
+      var sent = JSON.parse(localStorage.getItem(SENT_KEY) || '[]');
+      var last = JSON.parse(localStorage.getItem('ps_last_order') || 'null');
+      if(pedido && sent.indexOf(pedido) === -1 && last && (!last.pedido || last.pedido === pedido) && typeof gtag === 'function'){
+        gtag('event', 'purchase', {transaction_id: pedido, currency: 'UYU', value: last.total, items: last.items});
+        sent.push(pedido);
+        localStorage.setItem(SENT_KEY, JSON.stringify(sent.slice(-30)));
+      }
+      localStorage.removeItem('ps_cart');
+      localStorage.removeItem('ps_last_order');
+    }catch(e){}
+  }
+})();
+</script>
+</body>
+</html>

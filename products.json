@@ -1,0 +1,125 @@
+{
+  "currency": "UYU",
+  "products": [
+    {
+      "id": "mesa-pool-verde",
+      "nombre": "Mesa Pool Profesional — Paño Verde",
+      "precio": 22000,
+      "imagen": "images/mesa-pool-profesional-pano-verde.jpg",
+      "categoria": "mesas",
+      "estado": "disponible"
+    },
+    {
+      "id": "mesa-pool-azul",
+      "nombre": "Mesa Pool Profesional — Paño Azul",
+      "precio": 22000,
+      "imagen": "images/mesa-pool-profesional-pano-azul.jpg",
+      "categoria": "mesas",
+      "estado": "disponible"
+    },
+    {
+      "id": "mesa-plegable-ping-pong",
+      "nombre": "Mesa Pool Plegable + Ping Pong",
+      "precio": 20000,
+      "imagen": "images/mesa-pool-plegable-ping-pong.jpg",
+      "categoria": "mesas",
+      "estado": "disponible"
+    },
+    {
+      "id": "mesa-3-en-1",
+      "nombre": "Mesa 3 en 1 — Pool + Ping Pong + Comedor",
+      "precio": 27000,
+      "imagen": "images/pingpool.jpg",
+      "categoria": "mesas",
+      "estado": "disponible"
+    },
+    {
+      "id": "mesa-pool-rojo",
+      "nombre": "Mesa de Pool — Paño Rojo",
+      "precio": null,
+      "imagen": "images/nuevoingreso.jpg",
+      "categoria": "mesas",
+      "estado": "proximamente"
+    },
+    {
+      "id": "mesa-pool-con-tapa",
+      "nombre": "Mesa de Pool Profesional con Tapa",
+      "precio": 26000,
+      "imagen": "images/tapapool.jpg",
+      "categoria": "mesas",
+      "estado": "agotado"
+    },
+    {
+      "id": "futbolito",
+      "nombre": "Futbolito",
+      "precio": 7500,
+      "imagen": "images/futbolito.jpg",
+      "categoria": "mesas",
+      "estado": "disponible"
+    },
+    {
+      "id": "promo-mesa-futbolito",
+      "nombre": "Mesa de Pool + Futbolito",
+      "precio": 28500,
+      "imagen": "images/nuevapromo.jpg",
+      "categoria": "mesas",
+      "estado": "disponible"
+    },
+    {
+      "id": "tejo-electronico",
+      "nombre": "Tejo Electrónico",
+      "precio": 22000,
+      "imagen": "images/tejo.jpg",
+      "categoria": "mesas",
+      "estado": "disponible"
+    },
+    {
+      "id": "tacos-basicos",
+      "nombre": "Par de Tacos — Modelo Básico",
+      "precio": 2500,
+      "imagen": "images/par-de-tacos-basicos.jpg",
+      "categoria": "tacos",
+      "estado": "disponible"
+    },
+    {
+      "id": "tacos-premium",
+      "nombre": "Par de Tacos — Modelo Premium",
+      "precio": 2500,
+      "imagen": "images/par-de-tacos-premium.jpg",
+      "categoria": "tacos",
+      "estado": "disponible"
+    },
+    {
+      "id": "lampara-3-pantallas",
+      "nombre": "Lámpara Pool — 3 Pantallas",
+      "precio": 6500,
+      "imagen": "images/lampara-pool-3-pantallas.jpg",
+      "categoria": "lamparas",
+      "estado": "disponible"
+    },
+    {
+      "id": "lampara-2-pantallas",
+      "nombre": "Lámpara Pool — 2 Pantallas",
+      "precio": 4500,
+      "imagen": "images/lampara-pool-2-pantallas.jpg",
+      "categoria": "lamparas",
+      "estado": "disponible"
+    },
+    {
+      "id": "taquera-pared",
+      "nombre": "Taquera de Pared",
+      "precio": 700,
+      "imagen": "images/taquera-de-pared.jpg",
+      "categoria": "accesorios",
+      "estado": "disponible"
+    },
+    {
+      "id": "funda-cobertor",
+      "nombre": "Funda Cobertor para Mesa de Pool",
+      "precio": 999,
+      "imagen": "images/funda-cobertor-mesa-de-pool.jpg",
+      "categoria": "accesorios",
+      "estado": "disponible"
+    }
+  ]
+}
