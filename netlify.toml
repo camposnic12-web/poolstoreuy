@@ -20,6 +20,12 @@
   force = true
 
 [[redirects]]
+  from = "/tests/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/package.json"
   to = "/404"
   status = 404
