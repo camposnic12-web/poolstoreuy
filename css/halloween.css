@@ -56,6 +56,25 @@ body.halloween .promo-strip{
 
 /* HERO */
 body.halloween .hero{background:#000;box-shadow:0 6px 30px rgba(225,6,0,0.25);}
+/* Botón de WhatsApp debajo del banner, solo en celular */
+@media(max-width:600px){
+  body.halloween .hero-wa-mobile{
+    display:flex;align-items:center;justify-content:center;gap:0.6rem;
+    margin:0.9rem 1rem 1.1rem;padding:1rem 1.2rem;min-height:56px;
+    background:linear-gradient(180deg,#e81000,var(--hw-rojo) 55%,#b80500); /* blanco sobre estos rojos: ≥4.8:1 */
+    color:#fff;text-decoration:none;border-radius:999px;
+    font-family:'Inter',sans-serif;font-size:1.02rem;font-weight:800;
+    letter-spacing:0.04em;text-transform:uppercase;
+    border:1px solid rgba(255,120,110,0.6);
+    box-shadow:0 0 18px rgba(225,6,0,0.75),0 0 42px rgba(225,6,0,0.35);
+    animation:hwGlowBtn 2.4s ease-in-out infinite;
+  }
+  body.halloween .hero-wa-mobile:active{transform:scale(0.98);}
+}
+@keyframes hwGlowBtn{
+  0%,100%{box-shadow:0 0 18px rgba(225,6,0,0.75),0 0 42px rgba(225,6,0,0.35);}
+  50%{box-shadow:0 0 26px rgba(255,40,30,0.95),0 0 60px rgba(225,6,0,0.5);}
+}
 
 /* SECCIONES: fondo transparente para que se vea la niebla */
 body.halloween .catalogo-sec,
@@ -191,6 +210,7 @@ body.halloween .faq-inner{position:relative;z-index:2;}
   body.halloween::before,
   body.halloween::after,
   .hw-ghost,.hw-bat,.hw-bat svg,
+  body.halloween .hero-wa-mobile,
   body.halloween .best-seller-badge,
   body.halloween .wa-float{animation:none;}
   body.halloween .prod-card,

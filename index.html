@@ -5,7 +5,7 @@
     1. Quitar class="halloween" del body.
     2. Borrar css/halloween.css y js/halloween.js, y sus 2 líneas en este archivo
        (el link a css/halloween.css en el head y el script js/halloween.js al final).
-    3. HERO: reemplazar el bloque "HERO HALLOWEEN" (el <a> con el <picture>) por el
+    3. HERO: reemplazar el bloque "HERO HALLOWEEN" (el <a> con el <picture> y el botón hero-wa-mobile) por el
        bloque "HERO ORIGINAL" que está comentado justo debajo (images/hero.jpg).
     4. En og:image y twitter:image volver a https://poolstore.uy/images/hero.jpg
        (y borrar las 2 líneas og:image:width / og:image:height).
@@ -384,6 +384,7 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--negro);overflow-
 }
 .hero-banner-link{display:block;line-height:0;}
 .hero-banner-img{width:100%;height:auto;display:block;}
+.hero-wa-mobile{display:none;} /* lo muestra css/halloween.css en celular */
 .sr-only{
   position:absolute;width:1px;height:1px;
   padding:0;margin:-1px;overflow:hidden;
@@ -1050,6 +1051,11 @@ footer{
       <img class="hero-banner-img" src="images/mesa-pool-roja-promo-halloween.jpg" alt="Mesa de pool con paño rojo, lista para jugar, a $23.000. Stock limitado, todos los accesorios incluidos y medidas profesionales. Consultá por WhatsApp." width="2146" height="733" loading="eager" fetchpriority="high">
     </picture>
   </a>
+  <!-- Botón de WhatsApp debajo del banner: solo en celular (el recorte 4:5 no muestra el botón del banner) -->
+  <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20la%20mesa%20de%20pool%20pa%C3%B1o%20rojo%20de%20%2423.000." target="_blank" class="hero-wa-mobile">
+    <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Consultá por WhatsApp
+  </a>
   <!-- HERO ORIGINAL (restaurar después de Halloween):
   <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="hero-banner-link" aria-label="Consultar por WhatsApp - Mesas de pool desde $22.000">
     <img class="hero-banner-img" src="images/hero.jpg" alt="Mesas de pool profesionales desde $22.000, con accesorios incluidos. Envíos a todo Uruguay o retiro disponible." width="2172" height="724">
@@ -1616,7 +1622,7 @@ footer{
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     @poolstoreuy
   </a>
-  <span class="footer-copy">© 2025 Pool Store Uruguay</span>
+  <span class="footer-copy">© <span id="footerYear">2026</span> Pool Store Uruguay</span>
 </footer>
 
 <!-- WA FLOTANTE -->
@@ -1638,6 +1644,7 @@ function toggleFaq(btn){
   document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
   if(!open)item.classList.add('open');
 }
+document.getElementById('footerYear').textContent=new Date().getFullYear();
 function galleryNav(btn,dir){
   const wrap=btn.closest('.prod-gallery');
   const imgs=[...wrap.querySelectorAll('.gallery-img')];
