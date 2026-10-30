@@ -59,3 +59,13 @@ Las `caracteristicas` con `"valor": ""` no se muestran. Sirven como recordatorio
 ## Tema de temporada (Halloween)
 
 En las páginas de producto depende solo de `templates/producto.html`: son 3 líneas marcadas `HALLOWEEN`. Para quitarlo, borrá esas líneas y regenerá. Los pasos de la home están en el comentario al principio de `index.html`.
+
+## Pruebas
+
+`tests/paginas-producto.test.mjs` revisa con Chrome headless, a 1440 y 390 px:
+- errores de JS, links internos, canonical, H1 y sitemap;
+- JSON-LD;
+- zoom con mouse y con touch;
+- agotados.
+
+Además saca capturas. La forma de correrlo está al principio del archivo.
