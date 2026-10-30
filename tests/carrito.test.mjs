@@ -41,11 +41,13 @@ async function nuevaPagina(vp, { halloween }) {
   const errores = [];
   const pedidos = [];
   page.on('pageerror', e => errores.push('JS: ' + e.message));
-  page.on('console', m => { if (m.type() === 'error' && !/googletagmanager|google-analytics|facebook/.test(m.location()?.url || '')) errores.push('consola: ' + m.text()); });
+  page.on('console', m => { if (m.type() === 'error' && !/googletagmanager|google-analytics|facebook|\/\.netlify\/scripts\//.test(m.location()?.url || '')) errores.push('consola: ' + m.text()); });
   page.on('response', r => { if (r.url().startsWith(BASE) && r.status() >= 400) errores.push(`HTTP ${r.status()} ${r.url()}`); });
   await page.setRequestInterception(true);
   page.on('request', r => {
     if (/googletagmanager|google-analytics|facebook/.test(r.url())) return r.abort();
+    // Barra "Collaborate" de las Deploy Previews: en celular tapa el botón de pagar (en producción no existe)
+    if (r.url().startsWith(BASE + '/.netlify/scripts/')) return r.abort();
     if (r.url() === BASE + '/api/create-preference') {
       pedidos.push(JSON.parse(r.postData()));
       return r.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({ init_point: BASE + '/pago/exito.html?simulado=1', pedido: 'PS-261030-TEST' }) });
