@@ -30,6 +30,8 @@ Cambiá `"estado"` a `"agotado"`, `"disponible"` o `"proximamente"`. Regenerá.
 
 Si está agotado, la tarjeta y la página muestran el badge "Agotado", el precio normal y el botón "Avisame cuando vuelva", con un mensaje de WhatsApp ya armado. La página sigue en Google, marcada como `OutOfStock`.
 
+Solo los productos `"disponible"` con precio tienen botón de compra online ("Agregar al carrito" en las tarjetas, "Comprar" en la ficha). Los agotados y los "próximamente" no lo tienen, y el servidor de pagos también los rechaza si alguien intenta comprarlos igual.
+
 ## Agregar fotos a un producto
 
 1. Copiá la foto a `images/` (JPG, idealmente de **1200 px o más** de ancho, para que el zoom tenga detalle). Usá un nombre sin espacios ni tildes, por ejemplo `mesa-pool-pano-rojo-detalle.jpg`.
@@ -93,3 +95,17 @@ En las páginas de producto depende solo de `templates/producto.html`: son 3 lí
 - agotados.
 
 Además saca capturas. La forma de correrlo está al principio del archivo.
+
+## Carrito y pagos online (Mercado Pago)
+
+- Los botones de compra los genera el script (atributo `data-add-to-cart` con el `id`): **no se escriben a mano**. Los maneja `js/cart.js`, que la home y las fichas cargan junto con `css/cart.css`.
+- Los precios del carrito y del cobro salen del mismo `data/products.json`. El servidor (`netlify/functions/lib/catalogo.mjs`) nunca usa el precio que manda el navegador. Si cambiás un precio, regenerá, commiteá y esperá el deploy: la función de pago toma el JSON en cada deploy.
+- No cambies el `id` de un producto que ya se vendió: lo usan el carrito guardado en el navegador de los clientes y los pedidos.
+
+### Aviso de envío del carrito
+
+El texto que aparece en el carrito y en el checkout ("Envío a Montevideo/armado incluido…") está en **`data/checkout.json`**, campo `"avisoEnvio"`. Para cambiarlo, editá ese texto y commiteá (no hace falta regenerar). Si lo dejás vacío (`""`), no se muestra ningún aviso.
+
+Ojo: ese aviso es distinto del texto de envío de las fichas (`"envio"` en `data/products.json`). Si cambia la política de envíos, revisá los dos.
+
+Cobrar el envío por zona todavía **no está implementado**. Está preparado: ver los pasos en `netlify/functions/lib/envio.mjs`.
