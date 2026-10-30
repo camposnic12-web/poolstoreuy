@@ -305,14 +305,13 @@ function home() {
       const url = SITE + urlProducto(p);
       const item = {
         '@type': 'Product',
-        position: i + 1,
         name: p.nombre,
         description: p.descripcionCorta,
         image: SITE + p.fotos[0].src,
         url,
       };
       if (p.precio !== null) item.offers = { '@type': 'Offer', price: String(p.precio), priceCurrency: data.currency, availability: AVAILABILITY[p.estado], url };
-      return item;
+      return { '@type': 'ListItem', position: i + 1, item };
     }),
   };
   const ld = `<!-- ${GENERADO}. Datos: data/products.json -->\n<script type="application/ld+json">\n${jsonld(lista)}\n</script>`;
