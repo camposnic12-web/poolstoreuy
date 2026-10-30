@@ -14,7 +14,7 @@
   },
   "TODO": [
     "Confirmar con el cliente el costo del envío y si el armado incluido aplica en todo el país.",
-    "Confirmar que las fotos de clientes (mesa instalada) de las mesas verde y azul son del mismo modelo."
+    "Confirmar que las fotos de clientes (mesa instalada) son del mismo modelo que las mesas verde y azul. Mientras tanto están fuera de la galería: ver docs/PRODUCTOS.md, \"Fotos de clientes pendientes\"."
   ],
   "products": [
     {
@@ -31,10 +31,7 @@
       "badge": "🔥 Más vendido",
       "imagen": "images/mesa-pool-profesional-pano-verde.jpg",
       "fotos": [
-        { "src": "/images/mesa-pool-profesional-pano-verde.jpg", "w": 446, "h": 596, "alt": "Mesa Pool Profesional Paño Verde" },
-        { "src": "/images/mesa-instalada-en-quincho-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un quincho", "pie": "Instalada por Pool Store en un quincho" },
-        { "src": "/images/mesa-instalada-en-local-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un local", "pie": "Instalada por Pool Store en un local" },
-        { "src": "/images/mesa-instalada-con-bar-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store junto a un bar", "pie": "Instalada por Pool Store junto a un bar" }
+        { "src": "/images/mesa-pool-profesional-pano-verde.jpg", "w": 446, "h": 596, "alt": "Mesa Pool Profesional Paño Verde" }
       ],
       "descripcionCorta": "Mide 2,15 x 1,20 mt. Medidas reglamentarias. Accesorios incluidos. Te la armamos en casa.",
       "descripcion": "Mesa de pool profesional con paño verde, de 2,15 x 1,20 m y medidas reglamentarias, iguales a las que se usan en clubes, bares y torneos. Viene con todos los accesorios para empezar a jugar y te la armamos en tu casa.",
@@ -46,7 +43,7 @@
       "incluye": ["Tacos", "Juego de bolas completo", "Triángulo", "Tizas"],
       "whatsappMensaje": "Hola, quiero consultar por la mesa de pool profesional con paño verde de $22.000.",
       "botonTexto": "Consultar por esta mesa",
-      "TODO": ["Completar materiales, altura y peso", "Confirmar la lista de accesorios incluidos", "Confirmar que las fotos de clientes son de este modelo"]
+      "TODO": ["Completar materiales, altura y peso", "Confirmar la lista de accesorios incluidos", "Fotos de clientes fuera de la galería hasta que el cliente confirme el modelo (ver docs/PRODUCTOS.md)"]
     },
     {
       "id": "mesa-pool-azul",
@@ -62,10 +59,7 @@
       "badge": "🔥 Más vendido",
       "imagen": "images/mesa-pool-profesional-pano-azul.jpg",
       "fotos": [
-        { "src": "/images/mesa-pool-profesional-pano-azul.jpg", "w": 444, "h": 601, "alt": "Mesa Pool Profesional Paño Azul" },
-        { "src": "/images/mesa-instalada-en-hogar-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un hogar", "pie": "Instalada por Pool Store en un hogar" },
-        { "src": "/images/mesa-instalada-en-barberia-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en una barbería", "pie": "Instalada por Pool Store en una barbería" },
-        { "src": "/images/mesa-instalada-en-restaurant-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un restaurant", "pie": "Instalada por Pool Store en un restaurant" }
+        { "src": "/images/mesa-pool-profesional-pano-azul.jpg", "w": 444, "h": 601, "alt": "Mesa Pool Profesional Paño Azul" }
       ],
       "descripcionCorta": "Mide 2,15 x 1,20 mt. Medidas reglamentarias. Accesorios incluidos. Envíos a todo Uruguay.",
       "descripcion": "Mesa de pool profesional con paño azul, de 2,15 x 1,20 m y medidas reglamentarias, iguales a las que se usan en clubes, bares y torneos. Viene con todos los accesorios para empezar a jugar y la enviamos a todo Uruguay.",
@@ -77,7 +71,7 @@
       "incluye": ["Tacos", "Juego de bolas completo", "Triángulo", "Tizas"],
       "whatsappMensaje": "Hola, quiero consultar por la mesa de pool profesional con paño azul de $22.000.",
       "botonTexto": "Consultar por esta mesa",
-      "TODO": ["Completar materiales, altura y peso", "Confirmar la lista de accesorios incluidos", "Confirmar que las fotos de clientes son de este modelo"]
+      "TODO": ["Completar materiales, altura y peso", "Confirmar la lista de accesorios incluidos", "Fotos de clientes fuera de la galería hasta que el cliente confirme el modelo (ver docs/PRODUCTOS.md)"]
     },
     {
       "id": "mesa-plegable-ping-pong",

@@ -54,6 +54,27 @@ for (const vp of Object.keys(VIEWPORTS)) {
       hrefs: [...document.querySelectorAll('a[href], link[href], img[src], source[srcset], script[src]')].flatMap(e =>
         e.tagName === 'SOURCE' ? e.getAttribute('srcset').split(',').map(s => s.trim().split(' ')[0]) : [e.getAttribute('href') || e.getAttribute('src')]),
       ld: [...document.querySelectorAll('script[type="application/ld+json"]')].map(s => s.textContent),
+      contenido: (() => {
+        const p = [];
+        const visible = e => e.getClientRects().length > 0;
+        // Texto real de los nodos visibles (no innerText: aplica text-transform y "todo" pasa a "TODO")
+        const nodos = []; const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement.closest('script,style,noscript') || !visible(n.parentElement) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+        while (tw.nextNode()) nodos.push(tw.currentNode.nodeValue);
+        const texto = nodos.join(' ') + ' ' + document.title + ' ' + (document.querySelector('meta[name=description]')?.content || '');
+        for (const w of ['TODO', 'undefined', 'null', 'NaN', '{{']) if (new RegExp('(^|\\W)' + w.replace('{', '\\{') + '(\\W|$)').test(texto)) p.push('muestra "' + w + '"');
+        document.querySelectorAll('.ficha-bloque').forEach(s => {
+          const h = s.querySelector('h2')?.textContent.trim();
+          const resto = [...s.children].filter(c => c.tagName !== 'H2').map(c => c.innerText.trim()).join('');
+          if (!h || !resto) p.push('sección vacía: ' + (h || '(sin título)'));
+        });
+        document.querySelectorAll('.ficha-tabla th, .ficha-tabla td, .feat-list li, .migas li, .prod-name, .prod-desc, .prod-price, .btn-wa-card, .ficha-titulo, .ficha-resumen, .price-num, .ficha-cat, .ficha-estado, .btn-wa-grande')
+          .forEach(e => { if (visible(e) && !e.innerText.trim()) p.push('elemento vacío: .' + e.className.split(' ')[0] + ' ' + e.tagName); });
+        document.querySelectorAll('.galeria-pie').forEach(e => { if (visible(e) && !e.textContent.trim()) p.push('pie de foto vacío visible'); });
+        document.querySelectorAll('.galeria-miniaturas').forEach(e => { if (e.children.length < 2) p.push('miniaturas con menos de 2 fotos'); });
+        document.querySelectorAll('.productos-grid').forEach(g => { if (!g.querySelector('.prod-card')) p.push('grilla de productos vacía'); });
+        if (document.querySelector('.galeria img[src*="mesa-instalada"], .galeria [data-jpg*="mesa-instalada"], .prod-card img[src*="mesa-instalada"]')) p.push('galería o tarjeta con foto de cliente (sin confirmar)');
+        return p;
+      })(),
       rotas: [...document.images].filter(i => i.complete && i.naturalWidth === 0 && !i.src.startsWith('data:')).map(i => i.src),
       scrollX: document.documentElement.scrollWidth > window.innerWidth,
       eager: [...document.querySelectorAll('img[loading=eager]')].map(i => i.getAttribute('src')),
@@ -67,12 +88,13 @@ for (const vp of Object.keys(VIEWPORTS)) {
     const agrandada = await page.$eval('.galeria-principal img', i => { const r = i.getBoundingClientRect(); const k = Math.min(1, r.width / i.naturalWidth, r.height / i.naturalHeight); return { mostrada: Math.round(i.naturalWidth * k), real: +i.getAttribute('width'), natural: i.naturalWidth }; }).catch(() => null);
     if (agrandada && agrandada.mostrada > agrandada.real + 1) mal(`${vp} ${url}: foto principal mostrada a ${agrandada.mostrada}px, mide ${agrandada.real}px (se pixela)`);
     errores.forEach(e => mal(`${vp} ${url}: ${e}`));
+    info.contenido.forEach(e => mal(`${vp} ${url}: ${e}`));
     for (const h of info.hrefs) if (h && !/^(https?:|data:|#|mailto:)/.test(h)) links.add(h);
     for (const h of info.hrefs) if (h?.startsWith(SITE)) links.add(h.slice(SITE.length));
     if (vp === 'escritorio') jsonlds[url] = info.ld;
     await page.close();
   }
-  ok(`${vp}: ${paginas.length} páginas revisadas`);
+  ok(`${vp}: ${paginas.length} páginas revisadas (sin TODO, undefined/null ni secciones o elementos vacíos, sin fotos de clientes en galerías)`);
 }
 
 // Links internos: rutas desde la raíz, barra final en /productos/, sin 404
@@ -208,12 +230,8 @@ async function toques(cdp, type, pts) {
   await page.close();
 }
 {
-  // Foto chica en celular: no amplía más que su tamaño real; el pie lo avisa. Y swipe cambia de foto (verde con fotos instaladas)
-  const { page } = await abrir('/productos/mesa-pool-pano-verde/', 'celular');
-  await page.tap('.galeria-miniaturas li:nth-child(2) button');
-  const pie = await page.$eval('.galeria-pie', e => e.textContent);
-  pie === 'Instalada por Pool Store en un quincho' ? ok('miniatura 2 → pie "' + pie + '"') : mal('pie galería: ' + pie);
-  await page.screenshot({ path: path.join(CAPS, 'celular-mesa-verde-foto-instalada.png') });
+  // Foto chica en celular (lámpara de 300 px): el pinch no la agranda más que su tamaño real y el pie lo avisa
+  const { page } = await abrir('/productos/lampara-pool-3-pantallas/', 'celular');
   await page.tap('.galeria-principal');
   await page.waitForSelector('.lightbox:not([hidden])');
   await page.waitForFunction(() => document.querySelector('.lightbox-img').complete);
@@ -222,16 +240,24 @@ async function toques(cdp, type, pts) {
   for (let d = 30; d <= 160; d += 10) await toques(cdp, 'touchMove', [[195 - d, 422], [195 + d, 422]]);
   await toques(cdp, 'touchEnd', []);
   const s = await escalaDe(page, '.lightbox-img');
-  const tope = await page.$eval('.lightbox-img', i => i.naturalWidth / i.offsetWidth);
   const lbPie = await page.$eval('.lightbox-pie', e => e.textContent);
-  s <= tope + 0.01 ? ok(`foto instalada 400px: pinch topea en ${s.toFixed(2)}x (tamaño real ${tope.toFixed(2)}x) · pie "${lbPie}"`) : mal(`foto chica agrandada ${s} > ${tope}`);
-  // swipe
-  await toques(cdp, 'touchStart', [[300, 422]]);
-  for (let x = 300; x >= 120; x -= 20) await toques(cdp, 'touchMove', [[x, 422]]);
-  await toques(cdp, 'touchEnd', []);
-  await new Promise(r => setTimeout(r, 100));
-  const src = await page.$eval('.lightbox-img', i => i.getAttribute('src'));
-  src.includes('local-pano-verde') ? ok('swipe a la izquierda → foto siguiente') : (s > 1.01 ? ok('swipe omitido (foto con zoom)') : mal('swipe no cambió: ' + src));
+  s === 1 && lbPie.includes('tamaño real') ? ok(`lámpara 300px: pinch no agranda (${s}x) · pie "${lbPie}"`) : mal(`foto chica agrandada ${s}x · ${lbPie}`);
+  await page.close();
+}
+{
+  // Swipe en el lightbox (mesa 3 en 1, 4 fotos): izquierda → siguiente, derecha → anterior; al cerrar vuelve el foco
+  const { page } = await abrir('/productos/mesa-3-en-1-pool-ping-pong-comedor/', 'celular');
+  await page.tap('.galeria-principal');
+  await page.waitForSelector('.lightbox:not([hidden])');
+  const cdp = await page.createCDPSession();
+  const src = () => page.$eval('.lightbox-img', i => i.getAttribute('src'));
+  const deslizar = async (x0, x1) => { await toques(cdp, 'touchStart', [[x0, 422]]); for (let k = 1; k <= 10; k++) await toques(cdp, 'touchMove', [[x0 + (x1 - x0) * k / 10, 422]]); await toques(cdp, 'touchEnd', []); };
+  await deslizar(320, 100); const s1 = await src();
+  await deslizar(100, 320); const s2 = await src();
+  s1.includes('pingpool1') && s2.endsWith('pingpool.jpg') ? ok('swipe izquierda → foto 2, derecha → foto 1') : mal(`swipe: ${s1} / ${s2}`);
+  await page.tap('.lightbox-cerrar');
+  const foco = await page.evaluate(() => document.activeElement.className);
+  foco === 'galeria-principal' ? ok('cerrar devuelve el foco a la foto') : mal('foco al cerrar: ' + foco);
   await page.close();
 }
 

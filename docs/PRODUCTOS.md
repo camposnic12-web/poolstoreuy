@@ -45,6 +45,28 @@ Si está agotado, la tarjeta y la página muestran el badge "Agotado", el precio
 
 El zoom nunca agranda una foto más allá de su tamaño real, para que no se vea pixelada. Por eso las fotos chicas casi no tienen zoom.
 
+## Fotos de clientes pendientes (mesas verde y azul)
+
+Hay 6 fotos de mesas instaladas en casas y locales de clientes que **están fuera de la galería** hasta que el cliente confirme que son del mismo modelo que la mesa de cada página. Los archivos siguen en `images/` y sus WebP en `images/productos/`, así que no hay que volver a generarlas.
+
+Para volver a ponerlas, una vez confirmadas:
+
+1. En `data/products.json`, en la mesa `"slug": "mesa-pool-pano-verde"`, agregá una coma al final de la foto que ya está en `"fotos"` y pegá debajo:
+   ```json
+   { "src": "/images/mesa-instalada-en-quincho-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un quincho", "pie": "Instalada por Pool Store en un quincho" },
+   { "src": "/images/mesa-instalada-en-local-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un local", "pie": "Instalada por Pool Store en un local" },
+   { "src": "/images/mesa-instalada-con-bar-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store junto a un bar", "pie": "Instalada por Pool Store junto a un bar" }
+   ```
+2. En la mesa `"slug": "mesa-pool-pano-azul"`, lo mismo con:
+   ```json
+   { "src": "/images/mesa-instalada-en-hogar-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un hogar", "pie": "Instalada por Pool Store en un hogar" },
+   { "src": "/images/mesa-instalada-en-barberia-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en una barbería", "pie": "Instalada por Pool Store en una barbería" },
+   { "src": "/images/mesa-instalada-en-restaurant-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un restaurant", "pie": "Instalada por Pool Store en un restaurant" }
+   ```
+   Tienen que ir **después** de la foto del producto: la primera de la lista es la principal, y el script no deja que una foto de cliente sea la principal.
+3. Si el cliente confirma solo algunas, pegá solo esas. Si alguna resulta ser de otro modelo, no la uses en ninguna de las dos mesas.
+4. Borrá de la lista `"TODO"` (la general y la de cada mesa) el aviso de fotos de clientes, regenerá con `node scripts/build-productos.mjs` y commiteá.
+
 ## Agregar un producto nuevo
 
 Copiá un producto parecido dentro de `"products"` y cambiá:
@@ -55,6 +77,8 @@ Copiá un producto parecido dentro de `"products"` y cambiá:
 Regenerá. La página, la tarjeta, los productos relacionados y el sitemap se actualizan solos.
 
 Las `caracteristicas` con `"valor": ""` no se muestran. Sirven como recordatorio de datos que faltan, junto con la lista `"TODO"` de cada producto.
+
+Los pendientes van **solo** en la lista `"TODO"`, que nunca se publica. Si un texto que se muestra (nombre, descripción, característica, alt, etc.) contiene "TODO", el script avisa y no genera nada.
 
 ## Tema de temporada (Halloween)
 

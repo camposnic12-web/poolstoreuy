@@ -51,6 +51,10 @@ for (const p of productos) {
     if (!f.alt) errores.push(`${q}: falta el alt de ${f.src}`);
     if (!f.w || !f.h) errores.push(`${q}: faltan w/h de ${f.src}`);
   }
+  // Los TODO van solo en la lista "TODO" del producto: nunca en un texto que se publica
+  const visibles = [p.nombre, p.nombrePagina, p.descripcionCorta, p.descripcion, p.badge, p.envio, p.whatsappMensaje, p.botonTexto,
+    ...(p.caracteristicas || []).flatMap(c => [c.nombre, c.valor]), ...(p.incluye || []), ...(p.fotos || []).flatMap(f => [f.alt, f.pie])];
+  if (visibles.some(x => /\bTODO\b/.test(x || ''))) errores.push(`${q}: hay un "TODO" en un texto que se publica (pasalo a la lista "TODO")`);
   if (p.fotos?.[0] && (p.fotos[0].pie || /mesa-instalada/.test(p.fotos[0].src))) errores.push(`${q}: la foto principal tiene que ser la del producto, no una foto de cliente/instalada`);
 }
 if (errores.length) {
@@ -229,13 +233,13 @@ function pagina(p) {
   i.push(`      <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">${WA_PATH}</svg>`);
   i.push(`      ${texto}`);
   i.push(`    </a>`);
-  if (p.descripcion) {
+  if (p.descripcion?.trim()) {
     i.push(`    <section class="ficha-bloque">`);
     i.push(`      <h2>Descripción</h2>`);
     i.push(`      <p>${esc(p.descripcion)}</p>`);
     i.push(`    </section>`);
   }
-  const caracteristicas = (p.caracteristicas || []).filter(c => c.nombre && c.valor);
+  const caracteristicas = (p.caracteristicas || []).filter(c => c.nombre?.trim() && c.valor?.trim());
   if (caracteristicas.length) {
     i.push(`    <section class="ficha-bloque">`);
     i.push(`      <h2>Características</h2>`);
@@ -244,15 +248,16 @@ function pagina(p) {
     i.push(`      </tbody></table>`);
     i.push(`    </section>`);
   }
-  if (p.incluye?.length) {
+  const incluye = (p.incluye || []).filter(x => x.trim());
+  if (incluye.length) {
     i.push(`    <section class="ficha-bloque">`);
     i.push(`      <h2>Qué incluye</h2>`);
     i.push(`      <ul class="feat-list">`);
-    for (const x of p.incluye) i.push(`        <li>${esc(x)}</li>`);
+    for (const x of incluye) i.push(`        <li>${esc(x)}</li>`);
     i.push(`      </ul>`);
     i.push(`    </section>`);
   }
-  const envio = p.envio || data.envio[p.categoria] || data.envio.default;
+  const envio = p.envio?.trim() || data.envio[p.categoria] || data.envio.default;
   i.push(`    <section class="ficha-bloque ficha-envio">`);
   i.push(`      <h2>${/armado/i.test(envio) ? 'Envío y armado' : 'Envío y retiro'}</h2>`);
   i.push(`      <p>${esc(envio)}</p>`);
