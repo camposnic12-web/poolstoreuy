@@ -102,6 +102,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="stylesheet" href="/css/producto.css">
+<link rel="stylesheet" href="/css/cart.css">
 <link rel="stylesheet" href="/css/halloween.css"><!-- HALLOWEEN -->
 </head>
 <body class="halloween"><!-- HALLOWEEN -->
@@ -117,10 +118,16 @@
       <li><a href="/#catalogo">Catálogo</a></li>
       <li><a href="/#faq">Preguntas</a></li>
     </ul>
-    <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="navbar-cta">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-      WhatsApp
-    </a>
+    <div class="navbar-actions">
+      <button type="button" class="navbar-cart" id="cartToggle" aria-label="Abrir carrito" aria-controls="cartDrawer" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="navbar-cart-count" id="cartCount" hidden>0</span>
+      </button>
+      <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="navbar-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+    </div>
   </div>
 </nav>
 
@@ -162,10 +169,16 @@
       <span class="price-note">Pesos uruguayos<br>Envíos a todo Uruguay</span>
     </div>
     <p class="ficha-resumen">Metegol de madera, con patas robustas. Ideal para casa, local o quincho.</p>
-    <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20el%20futbolito%20de%20%247.500." target="_blank" class="btn-wa-grande">
-      <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-      Consultar por WhatsApp
-    </a>
+    <div class="ficha-acciones">
+      <button type="button" class="btn-comprar-grande" data-add-to-cart="futbolito" aria-label="Comprar Futbolito de Madera: agregar al carrito">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Comprar
+      </button>
+      <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20el%20futbolito%20de%20%247.500." target="_blank" class="btn-wa-grande">
+        <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Consultar por WhatsApp
+      </a>
+    </div>
     <section class="ficha-bloque">
       <h2>Descripción</h2>
       <p>Futbolito (metegol) de madera con patas robustas. Ideal para casa, local o quincho.</p>
@@ -193,7 +206,7 @@
     </div>
     <div class="productos-grid">
       <!-- Mesa Pool Profesional — Paño Verde -->
-      <div class="prod-card" data-cat="mesas">
+      <div class="prod-card" data-cat="mesas" data-product-id="mesa-pool-verde">
         <div class="prod-img-wrap">
           <span class="prod-cat-tag">Mesa</span>
           <span class="best-seller-badge">🔥 Más vendido</span>
@@ -204,6 +217,9 @@
           <div class="prod-name"><a href="/productos/mesa-pool-pano-verde/">Mesa Pool Profesional — Paño Verde</a></div>
           <div class="prod-desc">Mide 2,15 x 1,20 mt. Medidas reglamentarias. Accesorios incluidos. Te la armamos en casa.</div>
           <div class="prod-price">$22.000</div>
+          <button type="button" class="btn-cart-card" data-add-to-cart="mesa-pool-verde" aria-label="Agregar Mesa Pool Profesional — Paño Verde al carrito">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="btn-cart-text">Agregar<span class="btn-cart-long"> al carrito</span></span>
+          </button>
           <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20la%20mesa%20de%20pool%20profesional%20con%20pa%C3%B1o%20verde%20de%20%2422.000." target="_blank" class="btn-wa-card">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Consultar por esta mesa
@@ -212,7 +228,7 @@
       </div>
 
       <!-- Mesa Pool Profesional — Paño Azul -->
-      <div class="prod-card" data-cat="mesas">
+      <div class="prod-card" data-cat="mesas" data-product-id="mesa-pool-azul">
         <div class="prod-img-wrap">
           <span class="prod-cat-tag">Mesa</span>
           <span class="best-seller-badge">🔥 Más vendido</span>
@@ -223,6 +239,9 @@
           <div class="prod-name"><a href="/productos/mesa-pool-pano-azul/">Mesa Pool Profesional — Paño Azul</a></div>
           <div class="prod-desc">Mide 2,15 x 1,20 mt. Medidas reglamentarias. Accesorios incluidos. Envíos a todo Uruguay.</div>
           <div class="prod-price">$22.000</div>
+          <button type="button" class="btn-cart-card" data-add-to-cart="mesa-pool-azul" aria-label="Agregar Mesa Pool Profesional — Paño Azul al carrito">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="btn-cart-text">Agregar<span class="btn-cart-long"> al carrito</span></span>
+          </button>
           <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20la%20mesa%20de%20pool%20profesional%20con%20pa%C3%B1o%20azul%20de%20%2422.000." target="_blank" class="btn-wa-card">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Consultar por esta mesa
@@ -231,7 +250,7 @@
       </div>
 
       <!-- Mesa Pool Plegable + Ping Pong -->
-      <div class="prod-card" data-cat="mesas">
+      <div class="prod-card" data-cat="mesas" data-product-id="mesa-plegable-ping-pong">
         <div class="prod-img-wrap">
           <span class="prod-cat-tag">Mesa</span>
           <picture><source type="image/webp" srcset="/images/productos/mesa-pool-plegable-ping-pong.webp 600w" sizes="(max-width:600px) 50vw, 280px"><img src="/images/mesa-pool-plegable-ping-pong.jpg" alt="Mesa Pool Plegable Ping Pong" loading="lazy" width="600" height="514"></picture>
@@ -241,6 +260,9 @@
           <div class="prod-name"><a href="/productos/mesa-pool-plegable-ping-pong/">Mesa Pool Plegable + Ping Pong</a></div>
           <div class="prod-desc">Plegable con ruedas. Incluye accesorios pool y ping pong. 182 × 99 × 79 cm.</div>
           <div class="prod-price">$20.000</div>
+          <button type="button" class="btn-cart-card" data-add-to-cart="mesa-plegable-ping-pong" aria-label="Agregar Mesa Pool Plegable + Ping Pong al carrito">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="btn-cart-text">Agregar<span class="btn-cart-long"> al carrito</span></span>
+          </button>
           <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20la%20mesa%20plegable%20pool%20%2B%20ping%20pong%20de%20%2420.000." target="_blank" class="btn-wa-card">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Consultar por esta mesa
@@ -249,7 +271,7 @@
       </div>
 
       <!-- Mesa 3 en 1 — Pool + Ping Pong + Comedor -->
-      <div class="prod-card" data-cat="mesas">
+      <div class="prod-card" data-cat="mesas" data-product-id="mesa-3-en-1">
         <div class="prod-img-wrap">
           <span class="prod-cat-tag">Mesa</span>
           <div class="prod-gallery">
@@ -272,6 +294,9 @@
           <div class="prod-name"><a href="/productos/mesa-3-en-1-pool-ping-pong-comedor/">Mesa 3 en 1 — Pool + Ping Pong + Comedor</a></div>
           <div class="prod-desc">Pool, ping pong y mesa de comedor en un solo mueble. Medidas reglamentarias, paño azul, con accesorios de pool y ping pong incluidos.</div>
           <div class="prod-price">$27.000</div>
+          <button type="button" class="btn-cart-card" data-add-to-cart="mesa-3-en-1" aria-label="Agregar Mesa 3 en 1 — Pool + Ping Pong + Comedor al carrito">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="btn-cart-text">Agregar<span class="btn-cart-long"> al carrito</span></span>
+          </button>
           <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20la%20mesa%203%20en%201%20(pool%2C%20ping%20pong%20y%20comedor)%20de%20%2427.000." target="_blank" class="btn-wa-card">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Consultar por esta mesa
@@ -312,6 +337,7 @@
 
 <script>document.getElementById('footerYear').textContent=new Date().getFullYear();</script>
 <script src="/js/galeria.js" defer></script>
+<script src="/js/cart.js" defer></script>
 <script src="/js/halloween.js" defer></script><!-- HALLOWEEN -->
 
 </body>

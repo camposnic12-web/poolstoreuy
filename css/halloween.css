@@ -48,6 +48,10 @@ body.halloween .navbar-logo span,
 body.halloween .navbar-links a{color:var(--hw-texto);}
 body.halloween .navbar-links a:hover{color:var(--hw-rojo-texto);}
 body.halloween .navbar-logo img{box-shadow:0 0 10px rgba(225,6,0,0.5);}
+/* Carrito (css/cart.css): botón de la barra en oscuro. El drawer queda blanco. */
+body.halloween .navbar-cart{background:var(--hw-card);border-color:var(--hw-borde);color:var(--hw-texto);}
+body.halloween .navbar-cart:hover{border-color:var(--hw-rojo);color:var(--hw-rojo-texto);}
+body.halloween .btn-cart-card.added{background:#000;}
 
 /* FRANJA PROMO */
 body.halloween .promo-strip{
