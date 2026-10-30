@@ -6,6 +6,11 @@
 # Las rutas /api/create-preference y /api/webhook se declaran en cada función
 # (export const config = { path: ... }), no hace falta redirect.
 
+# El catálogo (precios) entra en el bundle de las funciones: lib/catalogo.mjs lo importa y,
+# por las dudas, también se declara acá. Si cambia un precio, el próximo deploy lo toma.
+[functions]
+  included_files = ["data/products.json"]
+
 # El sitio se publica desde la raíz del repo: estos archivos no deben ser públicos.
 [[redirects]]
   from = "/netlify/*"
@@ -15,6 +20,24 @@
 
 [[redirects]]
   from = "/node_modules/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/scripts/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/docs/*"
   to = "/404"
   status = 404
   force = true

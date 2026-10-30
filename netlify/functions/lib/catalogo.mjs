@@ -1,6 +1,8 @@
 // Catálogo y validaciones del lado del servidor.
-// Los precios salen SIEMPRE de products.json; nunca de lo que manda el navegador.
-import data from '../../../products.json' with { type: 'json' };
+// Los precios salen SIEMPRE de data/products.json (la misma fuente que genera la home y
+// las fichas); nunca de lo que manda el navegador. El import hace que Netlify empaquete
+// el JSON dentro de la función (y netlify.toml lo suma también con included_files).
+import data from '../../../data/products.json' with { type: 'json' };
 
 export const MONEDA = 'UYU';
 export const MAX_CANTIDAD = 10;
@@ -14,12 +16,14 @@ export const DEPARTAMENTOS = [
 
 const PRODUCTOS = new Map(data.products.map((p) => [p.id, p]));
 
+// Misma regla que usa scripts/build-productos.mjs para mostrar el botón de compra:
+// solo "disponible" con precio. Agotados y "próximamente" se rechazan.
 export function productoComprable(p) {
   return Boolean(p) && p.estado === 'disponible' && Number.isInteger(p.precio) && p.precio > 0;
 }
 
 /**
- * Valida el carrito contra products.json y calcula el total en el servidor.
+ * Valida el carrito contra data/products.json y calcula el total en el servidor.
  * @returns {{ lineas: Array, total: number, error?: string }}
  */
 export function validarItems(items) {

@@ -1,7 +1,13 @@
 .netlify
 .DS_Store
-node_modules
+
+# Dependencias de npm
+node_modules/
+
+# Variables de entorno locales (nunca se commitean)
 .env
 .env.*
 !.env.example
+
+# Generado por netlify dev
 deno.lock

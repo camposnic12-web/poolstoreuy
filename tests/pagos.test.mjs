@@ -4,7 +4,7 @@
 // el servidor local del paquete. No usa credenciales reales ni manda emails.
 import { createHmac } from 'node:crypto';
 import http from 'node:http';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, rmSync, readFileSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -84,8 +84,11 @@ r = await crear(post('https://poolstore.uy/api/create-preference', '{malo'));
 check(r.status === 400, 'JSON roto → 400');
 r = await crear(post('https://poolstore.uy/api/create-preference', { items: [{ id: 'mesa-pool-con-tapa', cantidad: 1 }], comprador }));
 check(r.status === 400 && (await r.json()).error.includes('ya no está disponible'), 'producto agotado → 400');
-r = await crear(post('https://poolstore.uy/api/create-preference', { items: [{ id: 'mesa-pool-rojo', cantidad: 1 }], comprador }));
-check(r.status === 400, 'producto próximamente → 400');
+// Hoy ningún producto está "próximamente": la regla se prueba directo sobre productoComprable.
+const { productoComprable } = await import(REPO + 'netlify/functions/lib/catalogo.mjs');
+check(!productoComprable({ id: 'x', estado: 'proximamente', precio: 23000 }) && !productoComprable({ id: 'x', estado: 'disponible', precio: null })
+  && !productoComprable({ id: 'x', estado: 'agotado', precio: 26000 }) && productoComprable({ id: 'x', estado: 'disponible', precio: 700 }),
+  'productoComprable: solo disponible con precio (próximamente, sin precio y agotado → no)');
 r = await crear(post('https://poolstore.uy/api/create-preference', { items: [{ id: 'no-existe', cantidad: 1 }], comprador }));
 check(r.status === 400, 'producto inexistente → 400');
 r = await crear(post('https://poolstore.uy/api/create-preference', { items: [{ id: 'futbolito', cantidad: 11 }], comprador }));
@@ -104,7 +107,8 @@ r = await crear(post('https://poolstore.uy/api/create-preference', {
 j = await r.json();
 const pref = mp.prefs.at(-1);
 check(r.status === 200 && j.init_point && /^PS-\d{6}-[A-Z2-9]{4}$/.test(j.pedido), `200 con init_point y pedido (${j.pedido})`);
-check(pref.items.find(i => i.id === 'mesa-pool-verde').unit_price === 22000, 'precio de la mesa sale de products.json (ignora precio:1)');
+check(pref.items.find(i => i.id === 'mesa-pool-verde').unit_price === 22000, 'precio de la mesa sale de data/products.json (ignora precio:1)');
+check(!pref.items.some(i => i.id === 'envio') && pref.metadata.envio === 0, 'envío 0 (se coordina aparte): sin línea "Envío" y metadata.envio = 0');
 check(pref.items.find(i => i.id === 'taquera-pared').quantity === 3, 'ids repetidos se unifican (taquera x3)');
 check(pref.metadata.total === 24100 && pref.metadata.moneda === 'UYU', 'total calculado en servidor: 24100 UYU');
 check(pref.items.every(i => i.currency_id === 'UYU'), 'currency_id UYU en todos los items');
@@ -130,6 +134,35 @@ check(r.status === 502 && logs.some(l => l.includes('mp_error_creando_preferenci
 mp.failPref = false;
 
 // ---- webhook ----
+// ---- catálogo: una sola fuente y botones de compra coherentes con el servidor ----
+console.info('\n== catálogo y botones ==');
+const catalogo = JSON.parse(readFileSync(REPO + 'data/products.json', 'utf8')).products;
+check(!readdirSync(REPO).includes('products.json'), 'no hay products.json en la raíz (fuente única: data/products.json)');
+for (const p of catalogo) {
+  r = await crear(post('https://poolstore.uy/api/create-preference', { items: [{ id: p.id, cantidad: 1 }], comprador }));
+  if ((r.status === 200) !== productoComprable(p)) check(false, `${p.id}: el servidor ${r.status === 200 ? 'acepta' : 'rechaza'} pero productoComprable dice ${productoComprable(p)}`);
+}
+check(true, `servidor acepta exactamente los ${catalogo.filter(productoComprable).length} productos comprables y rechaza los ${catalogo.filter(p => !productoComprable(p)).length} demás`);
+const home = readFileSync(REPO + 'index.html', 'utf8');
+const enHome = new Set([...home.matchAll(/data-add-to-cart="([^"]+)"/g)].map(m => m[1]));
+check(catalogo.every(p => enHome.has(p.id) === productoComprable(p)), `home: botón "Agregar al carrito" solo en los comprables (${enHome.size})`);
+const fichasMal = catalogo.filter(p => {
+  const html = readFileSync(REPO + `productos/${p.slug}/index.html`, 'utf8');
+  return html.includes(`class="btn-comprar-grande" data-add-to-cart="${p.id}"`) !== productoComprable(p);
+});
+check(fichasMal.length === 0, 'fichas: botón "Comprar" solo en los comprables' + (fichasMal.length ? ' — mal: ' + fichasMal.map(p => p.id) : ''));
+const agotados = catalogo.filter(p => p.estado === 'agotado');
+check(agotados.length > 0 && agotados.every(p => readFileSync(REPO + `productos/${p.slug}/index.html`, 'utf8').includes('Avisame cuando vuelva')), 'agotados: queda "Avisame cuando vuelva"');
+for (const f of ['index.html', 'templates/producto.html']) {
+  const h = readFileSync(REPO + f, 'utf8');
+  check(h.includes('href="/css/cart.css"') && h.includes('src="/js/cart.js"') && h.includes('id="cartToggle"'), `${f}: carga cart.css, cart.js y tiene el botón del carrito`);
+}
+const checkoutCfg = JSON.parse(readFileSync(REPO + 'data/checkout.json', 'utf8'));
+const cartJs = readFileSync(REPO + 'js/cart.js', 'utf8');
+check(typeof checkoutCfg.avisoEnvio === 'string' && checkoutCfg.avisoEnvio.length > 0 && !cartJs.includes(checkoutCfg.avisoEnvio) && cartJs.includes("'/data/checkout.json'"),
+  'aviso de envío en data/checkout.json (no escrito en cart.js)');
+check(!/promoModal|promo-modal/.test(home + readFileSync(REPO + 'css/site.css', 'utf8') + cartJs), 'no volvió el popup de promo (promoModal)');
+
 console.info('\n== webhook ==');
 const secret = process.env.MP_WEBHOOK_SECRET;
 function firmado(id, { type = 'payment', secreto = secret, reqId = 'req-' + Math.random().toString(36).slice(2), sinFirma = false } = {}) {

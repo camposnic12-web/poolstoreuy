@@ -1,7 +1,9 @@
 /* =========================================================
    CARRITO + CHECKOUT — Pool Store UY
-   JS vanilla. Los precios que se muestran salen de /products.json,
+   JS vanilla. Los precios que se muestran salen de /data/products.json,
    pero el servidor vuelve a calcular todo: acá nada es "de confianza".
+   Los botones [data-add-to-cart] de las tarjetas y las fichas los genera
+   scripts/build-productos.mjs (solo para productos disponibles con precio).
    ========================================================= */
 (function(){
   'use strict';
@@ -10,15 +12,17 @@
   var BUYER_KEY = 'ps_buyer';
   var MAX_QTY = 10;
   var WA_NUMBER = '59897197654';
-  // Texto del aviso de envío (se muestra en el carrito y en el checkout). Editar acá.
-  var SHIPPING_NOTICE = 'Envío a Montevideo/armado incluido; al interior el flete se coordina y abona aparte.';
+  // Aviso de envío del carrito y el checkout: se edita en data/checkout.json ("avisoEnvio").
+  var shippingNotice = '';
   var DEPARTAMENTOS = [
     'Artigas','Canelones','Cerro Largo','Colonia','Durazno','Flores','Florida',
     'Lavalleja','Maldonado','Montevideo','Paysandú','Río Negro','Rivera','Rocha',
     'Salto','San José','Soriano','Tacuarembó','Treinta y Tres'
   ];
 
-  var products = {};   // id -> producto (de products.json)
+  var products = {};   // id -> producto (de data/products.json)
+  var ready = false;   // true cuando cargó el catálogo
+  var pending = [];    // clicks en "Agregar" antes de que cargue el catálogo
   var cart = [];       // [{id, qty}]
   var view = 'cart';   // 'cart' | 'checkout'
   var notice = '';
@@ -225,7 +229,7 @@
 
     els.foot.innerHTML =
       '<div class="cart-total"><span>Total</span><strong>' + fmt(total()) + '</strong></div>' +
-      '<p class="cart-shipping-note">🚚 ' + esc(SHIPPING_NOTICE) + '</p>' +
+      (shippingNotice ? '<p class="cart-shipping-note">🚚 ' + esc(shippingNotice) + '</p>' : '') +
       '<button type="button" class="btn-cart-primary" data-action="checkout">Continuar compra</button>' +
       '<a class="cart-wa-link" target="_blank" rel="noopener" href="' + esc(waLink(cartWaText())) + '">¿Preferís comprar por WhatsApp? Escribinos</a>';
   }
@@ -266,7 +270,7 @@
         field('cedula', 'Cédula', '<input id="co_cedula" name="cedula" inputmode="numeric" maxlength="12" placeholder="1.234.567-8" value="' + v('cedula') + '">', true) +
 
         '<div class="co-section-title">Entrega</div>' +
-        '<div class="co-shipping-notice">🚚 ' + esc(SHIPPING_NOTICE) + '</div>' +
+        (shippingNotice ? '<div class="co-shipping-notice">🚚 ' + esc(shippingNotice) + '</div>' : '') +
         '<div class="co-delivery" role="radiogroup" aria-label="Método de entrega">' +
           '<label><input type="radio" name="entrega" value="envio"' + (entrega === 'envio' ? ' checked' : '') + '> 🚚 Envío a domicilio</label>' +
           '<label><input type="radio" name="entrega" value="retiro"' + (entrega === 'retiro' ? ' checked' : '') + '> 🏬 Retiro en el local</label>' +
@@ -408,31 +412,28 @@
     });
   }
 
-  /* ---------- botones en las tarjetas ---------- */
-  function decorateCards(){
-    document.querySelectorAll('.prod-card[data-product-id]').forEach(function(card){
-      var id = card.getAttribute('data-product-id');
-      if(!isBuyable(products[id]) || card.querySelector('.btn-cart-card')) return;
-      var wa = card.querySelector('.btn-wa-card');
-      if(!wa) return;
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn-cart-card';
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="btn-cart-text">Agregar<span class="btn-cart-long"> al carrito</span></span>';
-      btn.setAttribute('aria-label', 'Agregar ' + products[id].nombre + ' al carrito');
-      var label = btn.querySelector('.btn-cart-text');
-      var original = label.innerHTML;
-      var resetTimer;
-      btn.addEventListener('click', function(){
-        add(id);
-        btn.classList.add('added');
-        label.textContent = '¡Agregado!';
-        clearTimeout(resetTimer);
-        resetTimer = setTimeout(function(){ btn.classList.remove('added'); label.innerHTML = original; }, 1400);
-        open();
-      });
-      wa.parentNode.insertBefore(btn, wa);
-    });
+  /* ---------- botones "Agregar al carrito" / "Comprar" (generados) ---------- */
+  function addButtons(){ return document.querySelectorAll('[data-add-to-cart]'); }
+
+  // Por si el HTML quedó desactualizado respecto del JSON: nunca ofrecer algo que no se puede comprar.
+  function syncButtons(){
+    addButtons().forEach(function(btn){ btn.hidden = !isBuyable(products[btn.getAttribute('data-add-to-cart')]); });
+  }
+
+  function onAddClick(btn){
+    var id = btn.getAttribute('data-add-to-cart');
+    if(!ready){ if(pending.indexOf(id) === -1) pending.push(id); return; }
+    if(!isBuyable(products[id])){ btn.hidden = true; return; }
+    add(id);
+    var label = btn.querySelector('.btn-cart-text');
+    if(label){
+      if(!btn._original) btn._original = label.innerHTML;
+      btn.classList.add('added');
+      label.textContent = '¡Agregado!';
+      clearTimeout(btn._reset);
+      btn._reset = setTimeout(function(){ btn.classList.remove('added'); label.innerHTML = btn._original; }, 1400);
+    }
+    open();
   }
 
   /* ---------- init ---------- */
@@ -442,20 +443,34 @@
     loadCart();
     buildDrawer();
     if(els.toggle) els.toggle.addEventListener('click', open);
+    document.addEventListener('click', function(e){
+      var btn = e.target.closest('[data-add-to-cart]');
+      if(btn) onAddClick(btn);
+    });
 
-    fetch('/products.json', {cache:'no-cache'})
-      .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function(data){
-        (data.products || []).forEach(function(p){ products[p.id] = p; });
+    function getJSON(url){
+      return fetch(url, {cache:'no-cache'}).then(function(r){ if(!r.ok) throw new Error(url + ' HTTP ' + r.status); return r.json(); });
+    }
+    // El aviso de envío es opcional: si no carga, el carrito funciona igual sin el aviso.
+    var checkoutConfig = getJSON('/data/checkout.json').catch(function(e){ console.warn('[carrito]', e.message); return {}; });
+
+    Promise.all([getJSON('/data/products.json'), checkoutConfig])
+      .then(function(res){
+        (res[0].products || []).forEach(function(p){ products[p.id] = p; });
+        shippingNotice = typeof res[1].avisoEnvio === 'string' ? res[1].avisoEnvio.trim() : '';
+        ready = true;
         sanitizeCart();
-        decorateCards();
+        syncButtons();
+        var queued = pending; pending = [];
+        queued.forEach(function(id){ if(isBuyable(products[id])) add(id); });
         render();
-        if(location.hash === '#carrito') open();
+        if(queued.length || location.hash === '#carrito') open();
       })
       .catch(function(e){
         // Si falla, la web sigue funcionando con WhatsApp; solo no mostramos el carrito.
-        console.error('[carrito] No se pudo cargar products.json:', e);
+        console.error('[carrito] No se pudo cargar el catálogo:', e);
         if(els.toggle) els.toggle.hidden = true;
+        addButtons().forEach(function(btn){ btn.hidden = true; });
       });
   }
 

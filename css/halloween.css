@@ -1,0 +1,250 @@
+/*
+  TEMA HALLOWEEN 2026 — temporal.
+  Todo está bajo body.halloween: quitando esa clase (o este archivo) vuelve el diseño normal.
+  Ver el comentario al principio de index.html.
+*/
+body.halloween{
+  --hw-negro:#070707;
+  --hw-card:#141414;
+  --hw-borde:#2b2b2b;
+  --hw-rojo:#e10600;           /* rojo del banner y el logo (fondos, bordes, brillos) */
+  --hw-rojo-oscuro:#8f0400;
+  --hw-rojo-texto:#ff4d42;     /* rojo para texto sobre negro: contraste AA (≈5.9:1) */
+  --hw-texto:#f2f2f2;
+  --hw-texto-2:#c4c4c4;        /* texto secundario sobre #141414: ≈10:1 */
+  --hw-glow:0 0 14px rgba(225,6,0,0.55),0 0 2px rgba(225,6,0,0.8);
+  background:var(--hw-negro);
+  color:var(--hw-texto);
+}
+
+/* NIEBLA ROJA (capa fija detrás de todo, no captura clicks) */
+body.halloween::before,
+body.halloween::after{
+  content:'';position:fixed;inset:-25%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(40% 30% at 15% 85%,rgba(225,6,0,0.16),transparent 70%),
+    radial-gradient(35% 25% at 85% 70%,rgba(225,6,0,0.12),transparent 70%),
+    radial-gradient(45% 30% at 50% 110%,rgba(160,4,0,0.22),transparent 70%);
+  animation:hwNiebla 26s ease-in-out infinite alternate;
+}
+body.halloween::after{
+  background:
+    radial-gradient(30% 22% at 70% 20%,rgba(225,6,0,0.08),transparent 70%),
+    radial-gradient(38% 28% at 25% 40%,rgba(225,6,0,0.07),transparent 70%);
+  animation-duration:34s;animation-direction:alternate-reverse;
+}
+@keyframes hwNiebla{
+  from{transform:translate3d(-3%,0,0) scale(1);}
+  to{transform:translate3d(3%,-2%,0) scale(1.08);}
+}
+
+/* NAVBAR */
+body.halloween .navbar{
+  background:rgba(7,7,7,0.92);
+  border-bottom:1px solid rgba(225,6,0,0.45);
+  box-shadow:0 2px 18px rgba(225,6,0,0.18);
+}
+body.halloween .navbar-logo span,
+body.halloween .navbar-links a{color:var(--hw-texto);}
+body.halloween .navbar-links a:hover{color:var(--hw-rojo-texto);}
+body.halloween .navbar-logo img{box-shadow:0 0 10px rgba(225,6,0,0.5);}
+/* Carrito (css/cart.css): botón de la barra en oscuro. El drawer queda blanco. */
+body.halloween .navbar-cart{background:var(--hw-card);border-color:var(--hw-borde);color:var(--hw-texto);}
+body.halloween .navbar-cart:hover{border-color:var(--hw-rojo);color:var(--hw-rojo-texto);}
+body.halloween .btn-cart-card.added{background:#000;}
+
+/* FRANJA PROMO */
+body.halloween .promo-strip{
+  background:linear-gradient(90deg,var(--hw-rojo-oscuro),var(--hw-rojo) 50%,var(--hw-rojo-oscuro));
+}
+
+/* HERO */
+body.halloween .hero{background:#000;box-shadow:0 6px 30px rgba(225,6,0,0.25);}
+/* Botón de WhatsApp debajo del banner, solo en celular */
+@media(max-width:600px){
+  body.halloween .hero-wa-mobile{
+    display:flex;align-items:center;justify-content:center;gap:0.6rem;
+    margin:0.9rem 1rem 1.1rem;padding:1rem 1.2rem;min-height:56px;
+    background:linear-gradient(180deg,#e81000,var(--hw-rojo) 55%,#b80500); /* blanco sobre estos rojos: ≥4.8:1 */
+    color:#fff;text-decoration:none;border-radius:999px;
+    font-family:'Inter',sans-serif;font-size:1.02rem;font-weight:800;
+    letter-spacing:0.04em;text-transform:uppercase;
+    border:1px solid rgba(255,120,110,0.6);
+    box-shadow:0 0 18px rgba(225,6,0,0.75),0 0 42px rgba(225,6,0,0.35);
+    animation:hwGlowBtn 2.4s ease-in-out infinite;
+  }
+  body.halloween .hero-wa-mobile:active{transform:scale(0.98);}
+}
+@keyframes hwGlowBtn{
+  0%,100%{box-shadow:0 0 18px rgba(225,6,0,0.75),0 0 42px rgba(225,6,0,0.35);}
+  50%{box-shadow:0 0 26px rgba(255,40,30,0.95),0 0 60px rgba(225,6,0,0.5);}
+}
+
+/* SECCIONES: fondo transparente para que se vea la niebla */
+body.halloween .catalogo-sec,
+body.halloween .pasos-sec,
+body.halloween .faq-sec{background:transparent;}
+body.halloween .catalogo-sec,
+body.halloween .pasos-sec,
+body.halloween .faq-sec,
+body.halloween .clientes-sec,
+body.halloween .resenas-sec{position:relative;}
+body.halloween .catalogo-sec{
+  background:linear-gradient(180deg,rgba(225,6,0,0.10),transparent 220px);
+}
+body.halloween .clientes-sec,
+body.halloween .resenas-sec{background:rgba(16,16,16,0.85);}
+
+/* TÍTULOS */
+body.halloween .sec-label{color:var(--hw-rojo-texto);}
+body.halloween .sec-title,
+body.halloween .clientes-title,
+body.halloween .cta-sec h2,
+body.halloween .alquiler-title{color:#fff;text-shadow:var(--hw-glow);}
+body.halloween .sec-title .red,
+body.halloween .clientes-title span{color:var(--hw-rojo-texto);}
+body.halloween .sec-desc{color:var(--hw-texto-2);}
+
+/* FILTROS */
+body.halloween .tab-btn{
+  background:var(--hw-card);border-color:var(--hw-borde);color:var(--hw-texto-2);
+}
+body.halloween .tab-btn:hover,
+body.halloween .tab-btn.active{
+  background:var(--hw-rojo);border-color:var(--hw-rojo);color:#fff;
+  box-shadow:0 0 12px rgba(225,6,0,0.45);
+}
+
+/* TARJETAS */
+body.halloween .prod-card{
+  background:var(--hw-card);border-color:var(--hw-borde);
+  transition:box-shadow 0.2s,transform 0.2s,border-color 0.2s;
+}
+body.halloween .prod-card:hover{
+  border-color:var(--hw-rojo);
+  box-shadow:0 0 0 1px var(--hw-rojo),0 10px 34px rgba(225,6,0,0.28);
+}
+/* Fondo claro detrás de las fotos (casi todas tienen fondo blanco) */
+body.halloween .prod-img-wrap{background:#f4f4f4;}
+body.halloween .prod-img-wrap.img-oscura{background:#0b0b0b;}
+/* En celular el badge largo de Halloween va abajo para no tapar la etiqueta de categoría */
+@media(max-width:600px){
+  body.halloween .best-seller-badge[data-halloween-text]{top:auto;bottom:0.5rem;}
+}
+body.halloween .prod-name{color:#fff;}
+body.halloween .prod-desc{color:var(--hw-texto-2);}
+body.halloween .prod-price{color:var(--hw-rojo-texto);}
+body.halloween .prod-cat-tag{background:var(--hw-rojo);}
+body.halloween .prod-card.agotado .prod-price{color:#9a9a9a;}
+body.halloween .agotado-tag{background:#3a3a3a;}
+body.halloween .gallery-arrow{border-color:#bbb;}
+
+/* CÓMO COMPRAR */
+body.halloween .paso-num{background:var(--hw-rojo);box-shadow:0 0 16px rgba(225,6,0,0.5);}
+body.halloween .paso-title{color:#fff;}
+body.halloween .paso-desc{color:var(--hw-texto-2);}
+
+/* ALQUILER Y CTA */
+body.halloween .alquiler-banner,
+body.halloween .cta-sec{
+  background:linear-gradient(135deg,#1a0000 0%,var(--hw-rojo-oscuro) 55%,#2a0000 100%);
+}
+body.halloween .bubble-img{border-color:var(--hw-rojo);}
+
+/* FAQ */
+body.halloween .faq-item{border-bottom-color:var(--hw-borde);}
+body.halloween .faq-q-text{color:#fff;}
+body.halloween .faq-icon{border-color:#444;color:var(--hw-rojo-texto);}
+body.halloween .faq-item.open .faq-icon{background:var(--hw-rojo);border-color:var(--hw-rojo);color:#fff;}
+body.halloween .faq-a{color:var(--hw-texto-2);}
+
+/* RESEÑAS Y FOOTER */
+body.halloween .resena-card{background:var(--hw-card);border-color:var(--hw-borde);}
+body.halloween .resena-card:hover{border-color:var(--hw-rojo);box-shadow:0 8px 30px rgba(225,6,0,0.22);}
+body.halloween .resena-text{color:#d6d6d6;}
+body.halloween .resena-verified{color:#a8a8a8;}
+body.halloween footer{background:#000;border-top:1px solid rgba(225,6,0,0.45);}
+body.halloween .footer-copy{color:#9a9a9a;}
+body.halloween .footer-ig{color:#bdbdbd;}
+
+/* PÁGINAS DE PRODUCTO (las carga templates/producto.html) */
+body.halloween .prod-name a:hover{color:var(--hw-rojo-texto);}
+body.halloween .migas,
+body.halloween .migas a{color:var(--hw-texto-2);}
+body.halloween .migas a:hover{color:var(--hw-rojo-texto);}
+body.halloween .migas [aria-current]{color:#fff;}
+body.halloween .ficha-cat{color:var(--hw-rojo-texto);}
+body.halloween .ficha-titulo{color:#fff;text-shadow:var(--hw-glow);}
+body.halloween .ficha .price-block{background:var(--hw-card);border:1px solid var(--hw-borde);}
+body.halloween .ficha .price-num{color:var(--hw-rojo-texto);}
+body.halloween .ficha .price-note{color:var(--hw-texto-2);}
+body.halloween .ficha-resumen,
+body.halloween .ficha-bloque p{color:var(--hw-texto-2);}
+body.halloween .ficha-bloque h2{color:#fff;}
+body.halloween .ficha-bloque .feat-list li{color:var(--hw-texto);}
+body.halloween .ficha-bloque .feat-list li::before{background-color:var(--hw-rojo);}
+body.halloween .ficha-tabla th,
+body.halloween .ficha-tabla td{border-bottom-color:var(--hw-borde);}
+body.halloween .ficha-tabla th{color:var(--hw-texto-2);}
+body.halloween .ficha-tabla td{color:#fff;}
+body.halloween .galeria-pie{color:var(--hw-texto-2);}
+body.halloween .ficha-envio{background:var(--hw-card);border-color:var(--hw-borde);}
+body.halloween .galeria-principal{background:#f4f4f4;border-color:var(--hw-borde);}
+body.halloween .galeria-oscura .galeria-principal{background:#0b0b0b;}
+body.halloween .galeria-miniaturas button{background:#f4f4f4;border-color:var(--hw-borde);}
+body.halloween .galeria-miniaturas button[aria-current="true"]{border-color:var(--hw-rojo);box-shadow:0 0 10px rgba(225,6,0,0.5);}
+body.halloween .relacionados{border-top:1px solid rgba(225,6,0,0.35);}
+
+/* ============ DECORACIÓN (la inserta js/halloween.js) ============ */
+.hw-deco{position:absolute;pointer-events:none;z-index:1;user-select:none;}
+body.halloween .catalogo-inner,
+body.halloween .pasos-inner,
+body.halloween .faq-inner{position:relative;z-index:2;}
+
+/* Telas de araña */
+.hw-web{width:150px;height:150px;opacity:0.55;color:#e8e8e8;}
+.hw-web--tl{top:0;left:0;}
+.hw-web--tr{top:0;right:0;transform:scaleX(-1);}
+.hero .hw-web{z-index:3;opacity:0.4;width:120px;height:120px;}
+
+/* Fantasmas */
+.hw-ghost{width:64px;height:80px;opacity:0.85;filter:drop-shadow(0 0 10px rgba(225,6,0,0.55));animation:hwFlotar 6s ease-in-out infinite;}
+.hw-ghost--1{top:2.5rem;left:6%;}
+.hw-ghost--2{top:4.5rem;right:7%;width:50px;height:62px;animation-delay:-2s;animation-duration:7.5s;}
+.hw-ghost--3{top:3rem;left:5%;width:56px;height:70px;animation-delay:-4s;}
+@keyframes hwFlotar{
+  0%,100%{transform:translate3d(0,0,0) rotate(-3deg);}
+  50%{transform:translate3d(6px,-14px,0) rotate(3deg);}
+}
+
+/* Murciélagos */
+.hw-bat{width:54px;height:28px;color:#000;filter:drop-shadow(0 0 6px rgba(225,6,0,0.8));animation:hwVolar 9s ease-in-out infinite;}
+.hw-bat svg{animation:hwAletear 0.35s ease-in-out infinite alternate;transform-origin:50% 40%;}
+.hw-bat--1{top:2rem;right:9%;}
+@keyframes hwVolar{
+  0%,100%{transform:translate3d(0,0,0);}
+  50%{transform:translate3d(-30px,12px,0);}
+}
+@keyframes hwAletear{
+  from{transform:scaleY(1);}
+  to{transform:scaleY(0.55);}
+}
+
+/* En celular y tablet: sin fantasmas ni murciélagos, telas más chicas */
+@media(max-width:900px){
+  .hw-ghost,.hw-bat{display:none;}
+  .hw-web{width:80px;height:80px;opacity:0.4;}
+  .hero .hw-web{width:60px;height:60px;}
+}
+
+/* Sin animaciones si el usuario lo pide */
+@media(prefers-reduced-motion:reduce){
+  body.halloween::before,
+  body.halloween::after,
+  .hw-ghost,.hw-bat,.hw-bat svg,
+  body.halloween .hero-wa-mobile,
+  body.halloween .best-seller-badge,
+  body.halloween .wa-float{animation:none;}
+  body.halloween .prod-card,
+  body.halloween .prod-card:hover{transition:none;transform:none;}
+}

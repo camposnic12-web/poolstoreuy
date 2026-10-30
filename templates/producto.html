@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!-- GENERADO por scripts/build-productos.mjs — no editar a mano. Datos: data/products.json · Plantilla: templates/producto.html -->
+<!--
+  Plantilla de las páginas de producto. Los campos entre llaves dobles los completa scripts/build-productos.mjs.
+  TEMA HALLOWEEN 2026 (temporal): son 3 líneas marcadas con "HALLOWEEN" (el link a /css/halloween.css,
+  class="halloween" en el body y el script /js/halloween.js). Para quitarlo, borrarlas y correr
+  node scripts/build-productos.mjs
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MVP1MXJ89Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MVP1MXJ89Z');
+</script>
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{url}}">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta property="og:title" content="{{ogTitle}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:type" content="product">
+<meta property="og:url" content="{{url}}">
+<meta property="og:image" content="{{ogImage}}">
+<meta property="og:image:width" content="{{ogImageW}}">
+<meta property="og:image:height" content="{{ogImageH}}">
+<meta property="og:image:alt" content="{{ogImageAlt}}">
+<meta property="og:locale" content="es_UY">
+<meta property="og:site_name" content="Pool Store Uruguay">
+{{ogPrecio}}<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ogTitle}}">
+<meta name="twitter:description" content="{{description}}">
+<meta name="twitter:image" content="{{ogImage}}">
+<script type="application/ld+json">
+{{jsonldProducto}}
+</script>
+<script type="application/ld+json">
+{{jsonldMigas}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/producto.css">
+<link rel="stylesheet" href="/css/cart.css">
+<link rel="stylesheet" href="/css/halloween.css"><!-- HALLOWEEN -->
+</head>
+<body class="halloween"><!-- HALLOWEEN -->
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="/" class="navbar-logo">
+      <picture><source srcset="/images/logo-pool-store.webp" type="image/webp"><img src="/images/logo-pool-store.png" alt="Pool Store Logo" width="192" height="192"></picture>
+      <span><span style="color:var(--rojo-vivo)">Pool</span>Store</span>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="/#catalogo">Catálogo</a></li>
+      <li><a href="/#faq">Preguntas</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <button type="button" class="navbar-cart" id="cartToggle" aria-label="Abrir carrito" aria-controls="cartDrawer" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="navbar-cart-count" id="cartCount" hidden>0</span>
+      </button>
+      <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="navbar-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">{{waPath}}</svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  🚚 Envíos a todo Uruguay
+  <span class="sep">|</span>
+  ✅ +300 Mesas Entregadas
+  <span class="sep">|</span>
+  📦 Accesorios incluidos
+  <span class="sep">|</span>
+  🏆 Medidas profesionales
+</div>
+
+<main>
+<nav class="migas" aria-label="Migas de pan">
+  <ol>
+{{migas}}
+  </ol>
+</nav>
+
+<article class="ficha">
+{{galeria}}
+
+  <div class="ficha-info">
+{{info}}
+  </div>
+</article>
+
+<!-- PRODUCTOS RELACIONADOS -->
+<section class="catalogo-sec relacionados">
+  <div class="catalogo-inner">
+    <div class="sec-head">
+      <span class="sec-label">También te puede interesar</span>
+      <h2 class="sec-title">Productos <span class="red">relacionados</span></h2>
+    </div>
+    <div class="productos-grid">
+{{relacionados}}
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- LIGHTBOX (lo maneja /js/galeria.js) -->
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden>
+  <div class="lightbox-escena"><img class="lightbox-img" src="data:," alt=""></div>
+  <button type="button" class="lightbox-btn lightbox-cerrar" aria-label="Cerrar">×</button>
+  <button type="button" class="lightbox-btn lightbox-ant" aria-label="Foto anterior">‹</button>
+  <button type="button" class="lightbox-btn lightbox-sig" aria-label="Foto siguiente">›</button>
+  <p class="lightbox-pie"></p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" class="footer-logo">
+    <picture><source srcset="/images/logo-pool-store.webp" type="image/webp"><img src="/images/logo-pool-store.png" alt="Pool Store Logo" width="192" height="192" loading="lazy"></picture>
+    <span class="footer-brand"><span style="color:var(--rojo-vivo)">Pool</span>Store</span>
+  </a>
+  <a href="https://instagram.com/poolstoreuy" target="_blank" class="footer-ig">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    @poolstoreuy
+  </a>
+  <span class="footer-copy">© <span id="footerYear">2026</span> Pool Store Uruguay</span>
+</footer>
+
+<!-- WA FLOTANTE -->
+<a href="{{waUrl}}" target="_blank" class="wa-float" title="Consultar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">{{waPath}}</svg>
+</a>
+
+<script>document.getElementById('footerYear').textContent=new Date().getFullYear();</script>
+<script src="/js/galeria.js" defer></script>
+<script src="/js/cart.js" defer></script>
+<script src="/js/halloween.js" defer></script><!-- HALLOWEEN -->
+
+</body>
+</html>

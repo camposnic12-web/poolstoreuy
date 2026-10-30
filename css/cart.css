@@ -1,6 +1,9 @@
 /* =========================================================
    CARRITO + CHECKOUT — Pool Store UY
-   Usa las variables de color definidas en index.html (:root)
+   Usa las variables de color de /css/site.css (:root). Lo cargan la home
+   (index.html) y las fichas (templates/producto.html). Con o sin el tema
+   Halloween: el drawer fija sus propios colores; los retoques del tema
+   para la barra están en /css/halloween.css.
    ========================================================= */
 
 /* NAVBAR: botón carrito */
@@ -29,10 +32,27 @@
 }
 .btn-cart-card:hover{background:var(--rojo-oscuro);}
 .btn-cart-card.added{background:var(--negro);}
+.btn-cart-card[hidden],.btn-comprar-grande[hidden]{display:none;}
 .btn-cart-text{white-space:nowrap;}
 @media(max-width:480px){
   .btn-cart-long{display:none;} /* en celular: "Agregar" para que entre en una línea */
 }
+
+/* FICHA DE PRODUCTO: "Comprar" junto a "Consultar por WhatsApp".
+   Lado a lado si entran en una línea; si no (celular), uno debajo del otro. */
+.ficha-acciones{display:flex;flex-wrap:wrap;gap:0.75rem;}
+.ficha-acciones > *{flex:1 1 auto;}
+.ficha-acciones .btn-wa-grande{white-space:nowrap;}
+.btn-comprar-grande{
+  flex-basis:180px;
+  display:flex;align-items:center;justify-content:center;gap:0.7rem;
+  background:var(--rojo);color:#fff;border:none;cursor:pointer;
+  padding:1.05rem 1.5rem;border-radius:4px;min-height:56px;
+  font-family:inherit;font-size:1rem;font-weight:700;letter-spacing:0.02em;
+  box-shadow:0 6px 20px rgba(204,31,31,0.3);
+  transition:background 0.2s,transform 0.2s;
+}
+.btn-comprar-grande:hover{background:var(--rojo-oscuro);transform:translateY(-1px);}
 
 /* OVERLAY + DRAWER */
 .cart-overlay{
@@ -42,12 +62,14 @@
 .cart-overlay.show{opacity:1;pointer-events:auto;}
 .cart-drawer{
   position:fixed;top:0;right:0;bottom:0;z-index:401;
-  width:100%;max-width:430px;background:#fff;
+  width:100%;max-width:430px;background:#fff;color:var(--negro);
   display:flex;flex-direction:column;
-  transform:translateX(100%);transition:transform 0.3s ease;
+  transform:translateX(100%);
+  /* Cerrado: oculto del todo (si no, la sombra asoma en el borde y sus botones reciben foco con Tab) */
+  visibility:hidden;transition:transform 0.3s ease,visibility 0s linear 0.3s;
   box-shadow:-8px 0 30px rgba(0,0,0,0.2);
 }
-.cart-drawer.show{transform:translateX(0);}
+.cart-drawer.show{transform:translateX(0);visibility:visible;transition:transform 0.3s ease;}
 body.cart-open{overflow:hidden;}
 
 .cart-head{

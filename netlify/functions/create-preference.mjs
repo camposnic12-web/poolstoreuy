@@ -1,9 +1,10 @@
 // POST /api/create-preference
 // Recibe { items: [{id, cantidad}], comprador: {...} }, valida todo contra
-// products.json, calcula el total y crea la preferencia de Checkout Pro.
+// data/products.json, calcula el total y crea la preferencia de Checkout Pro.
 import { randomInt } from 'node:crypto';
 import { MercadoPagoConfig, Preference } from 'mercadopago';
 import { MONEDA, validarItems, validarComprador } from './lib/catalogo.mjs';
+import { costoEnvio } from './lib/envio.mjs';
 import { log, json, env, faltantes, urlBase } from './lib/util.mjs';
 
 const FN = 'create-preference';
@@ -69,6 +70,16 @@ export default async (req) => {
     return json(400, { error: 'Revisá los datos marcados en el formulario.', fields: errores });
   }
 
+  // --- Envío (hoy siempre 0: ver lib/envio.mjs) ---
+  const envio = costoEnvio(comprador);
+  if (envio > 0) {
+    carrito.lineas.push({
+      id: 'envio', nombre: `Envío a ${comprador.departamento}`, imagen: null,
+      cantidad: 1, precio_unitario: envio, subtotal: envio,
+    });
+    carrito.total += envio;
+  }
+
   // --- Armar la preferencia ---
   const pedido = nuevoPedido();
   const base = urlBase(req);
@@ -82,7 +93,7 @@ export default async (req) => {
       quantity: l.cantidad,
       unit_price: l.precio_unitario,
       currency_id: MONEDA,
-      picture_url: `${base}/${l.imagen}`,
+      ...(l.imagen && { picture_url: `${base}/${l.imagen}` }),
     })),
     payer: {
       name,
@@ -111,6 +122,7 @@ export default async (req) => {
     metadata: {
       pedido,
       total: carrito.total,
+      envio,
       moneda: MONEDA,
       creado_en: new Date().toISOString(),
       items: carrito.lineas.map((l) => ({
