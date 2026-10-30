@@ -1,0 +1,449 @@
+{
+  "currency": "UYU",
+  "site": "https://poolstore.uy",
+  "whatsapp": "59897197654",
+  "categorias": {
+    "mesas": "Mesas",
+    "tacos": "Tacos",
+    "lamparas": "Lámparas",
+    "accesorios": "Accesorios"
+  },
+  "envio": {
+    "mesas": "Envíos a todo Uruguay: coordinamos el flete con vos para que llegue a tu puerta o a una sucursal cercana. También podés retirarla en nuestro punto de retiro, sin costo de envío. El armado está incluido en el precio: la instalamos y quedás jugando desde el primer día.",
+    "default": "Envíos a todo Uruguay: coordinamos el flete con vos para que llegue a tu puerta o a una sucursal cercana. También podés retirarlo en nuestro punto de retiro, sin costo de envío."
+  },
+  "TODO": [
+    "Confirmar con el cliente el costo del envío y si el armado incluido aplica en todo el país.",
+    "Confirmar que las fotos de clientes (mesa instalada) de las mesas verde y azul son del mismo modelo."
+  ],
+  "products": [
+    {
+      "id": "mesa-pool-verde",
+      "slug": "mesa-pool-pano-verde",
+      "sku": "mesa-pool-verde",
+      "nombre": "Mesa Pool Profesional — Paño Verde",
+      "nombrePagina": "Mesa de Pool Profesional Paño Verde",
+      "categoria": "mesas",
+      "etiqueta": "Mesa",
+      "precio": 22000,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "🔥 Más vendido",
+      "imagen": "images/mesa-pool-profesional-pano-verde.jpg",
+      "fotos": [
+        { "src": "/images/mesa-pool-profesional-pano-verde.jpg", "w": 446, "h": 596, "alt": "Mesa Pool Profesional Paño Verde" },
+        { "src": "/images/mesa-instalada-en-quincho-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un quincho", "pie": "Instalada por Pool Store en un quincho" },
+        { "src": "/images/mesa-instalada-en-local-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un local", "pie": "Instalada por Pool Store en un local" },
+        { "src": "/images/mesa-instalada-con-bar-pano-verde.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store junto a un bar", "pie": "Instalada por Pool Store junto a un bar" }
+      ],
+      "descripcionCorta": "Mide 2,15 x 1,20 mt. Medidas reglamentarias. Accesorios incluidos. Te la armamos en casa.",
+      "descripcion": "Mesa de pool profesional con paño verde, de 2,15 x 1,20 m y medidas reglamentarias, iguales a las que se usan en clubes, bares y torneos. Viene con todos los accesorios para empezar a jugar y te la armamos en tu casa.",
+      "caracteristicas": [
+        { "nombre": "Medidas", "valor": "2,15 x 1,20 m" },
+        { "nombre": "Paño", "valor": "Verde" },
+        { "nombre": "Uso", "valor": "Medidas reglamentarias" }
+      ],
+      "incluye": ["Tacos", "Juego de bolas completo", "Triángulo", "Tizas"],
+      "whatsappMensaje": "Hola, quiero consultar por la mesa de pool profesional con paño verde de $22.000.",
+      "botonTexto": "Consultar por esta mesa",
+      "TODO": ["Completar materiales, altura y peso", "Confirmar la lista de accesorios incluidos", "Confirmar que las fotos de clientes son de este modelo"]
+    },
+    {
+      "id": "mesa-pool-azul",
+      "slug": "mesa-pool-pano-azul",
+      "sku": "mesa-pool-azul",
+      "nombre": "Mesa Pool Profesional — Paño Azul",
+      "nombrePagina": "Mesa de Pool Profesional Paño Azul",
+      "categoria": "mesas",
+      "etiqueta": "Mesa",
+      "precio": 22000,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "🔥 Más vendido",
+      "imagen": "images/mesa-pool-profesional-pano-azul.jpg",
+      "fotos": [
+        { "src": "/images/mesa-pool-profesional-pano-azul.jpg", "w": 444, "h": 601, "alt": "Mesa Pool Profesional Paño Azul" },
+        { "src": "/images/mesa-instalada-en-hogar-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un hogar", "pie": "Instalada por Pool Store en un hogar" },
+        { "src": "/images/mesa-instalada-en-barberia-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en una barbería", "pie": "Instalada por Pool Store en una barbería" },
+        { "src": "/images/mesa-instalada-en-restaurant-pano-azul.jpg", "w": 400, "h": 400, "alt": "Instalada por Pool Store en un restaurant", "pie": "Instalada por Pool Store en un restaurant" }
+      ],
+      "descripcionCorta": "Mide 2,15 x 1,20 mt. Medidas reglamentarias. Accesorios incluidos. Envíos a todo Uruguay.",
+      "descripcion": "Mesa de pool profesional con paño azul, de 2,15 x 1,20 m y medidas reglamentarias, iguales a las que se usan en clubes, bares y torneos. Viene con todos los accesorios para empezar a jugar y la enviamos a todo Uruguay.",
+      "caracteristicas": [
+        { "nombre": "Medidas", "valor": "2,15 x 1,20 m" },
+        { "nombre": "Paño", "valor": "Azul" },
+        { "nombre": "Uso", "valor": "Medidas reglamentarias" }
+      ],
+      "incluye": ["Tacos", "Juego de bolas completo", "Triángulo", "Tizas"],
+      "whatsappMensaje": "Hola, quiero consultar por la mesa de pool profesional con paño azul de $22.000.",
+      "botonTexto": "Consultar por esta mesa",
+      "TODO": ["Completar materiales, altura y peso", "Confirmar la lista de accesorios incluidos", "Confirmar que las fotos de clientes son de este modelo"]
+    },
+    {
+      "id": "mesa-plegable-ping-pong",
+      "slug": "mesa-pool-plegable-ping-pong",
+      "sku": "mesa-plegable-ping-pong",
+      "nombre": "Mesa Pool Plegable + Ping Pong",
+      "nombrePagina": "Mesa de Pool Plegable + Ping Pong",
+      "categoria": "mesas",
+      "etiqueta": "Mesa",
+      "precio": 20000,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "",
+      "imagen": "images/mesa-pool-plegable-ping-pong.jpg",
+      "fotos": [
+        { "src": "/images/mesa-pool-plegable-ping-pong.jpg", "w": 600, "h": 514, "alt": "Mesa Pool Plegable Ping Pong" }
+      ],
+      "descripcionCorta": "Plegable con ruedas. Incluye accesorios pool y ping pong. 182 × 99 × 79 cm.",
+      "descripcion": "Mesa de pool plegable con ruedas, que también se usa como mesa de ping pong. Mide 182 × 99 × 79 cm y trae los accesorios de pool y de ping pong. Ideal para espacios donde la mesa no puede quedar armada todo el tiempo.",
+      "caracteristicas": [
+        { "nombre": "Medidas", "valor": "182 × 99 × 79 cm" },
+        { "nombre": "Tipo", "valor": "Plegable, con ruedas" },
+        { "nombre": "Juegos", "valor": "Pool y ping pong" }
+      ],
+      "incluye": ["Accesorios de pool", "Accesorios de ping pong"],
+      "whatsappMensaje": "Hola, quiero consultar por la mesa plegable pool + ping pong de $20.000.",
+      "botonTexto": "Consultar por esta mesa",
+      "TODO": ["Detallar los accesorios de pool y de ping pong", "Más fotos (plegada y en modo ping pong)", "Confirmar si necesita armado"]
+    },
+    {
+      "id": "mesa-3-en-1",
+      "slug": "mesa-3-en-1-pool-ping-pong-comedor",
+      "sku": "mesa-3-en-1",
+      "nombre": "Mesa 3 en 1 — Pool + Ping Pong + Comedor",
+      "nombrePagina": "Mesa 3 en 1: Pool, Ping Pong y Comedor",
+      "categoria": "mesas",
+      "etiqueta": "Mesa",
+      "precio": 27000,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "",
+      "tarjetaGaleria": true,
+      "imagen": "images/pingpool.jpg",
+      "fotos": [
+        { "src": "/images/pingpool.jpg", "w": 1149, "h": 1134, "alt": "Mesa 3 en 1 en modo pool, paño azul" },
+        { "src": "/images/pingpool1.jpg", "w": 1170, "h": 1112, "alt": "Mesa 3 en 1 en modo ping pong" },
+        { "src": "/images/pingpool2.jpg", "w": 1072, "h": 1133, "alt": "Mesa 3 en 1 en modo mesa de comedor" },
+        { "src": "/images/pingpool3.jpg", "w": 1170, "h": 1130, "alt": "Mesa 3 en 1 en modo ping pong, otra vista" }
+      ],
+      "descripcionCorta": "Pool, ping pong y mesa de comedor en un solo mueble. Medidas reglamentarias, paño azul, con accesorios de pool y ping pong incluidos.",
+      "descripcion": "Un solo mueble con tres usos: mesa de pool con paño azul y medidas reglamentarias, mesa de ping pong y mesa de comedor. Trae los accesorios de pool y de ping pong.",
+      "caracteristicas": [
+        { "nombre": "Usos", "valor": "Pool, ping pong y comedor" },
+        { "nombre": "Paño", "valor": "Azul" },
+        { "nombre": "Medidas", "valor": "Reglamentarias" }
+      ],
+      "incluye": ["Accesorios de pool", "Accesorios de ping pong"],
+      "whatsappMensaje": "Hola, quiero consultar por la mesa 3 en 1 (pool, ping pong y comedor) de $27.000.",
+      "botonTexto": "Consultar por esta mesa",
+      "TODO": ["Completar medidas exactas (largo, ancho y alto)", "Detallar los accesorios incluidos"]
+    },
+    {
+      "id": "mesa-pool-rojo",
+      "slug": "mesa-pool-pano-rojo",
+      "sku": "mesa-pool-rojo",
+      "nombre": "Mesa de Pool — Paño Rojo",
+      "nombrePagina": "Mesa de Pool Paño Rojo",
+      "categoria": "mesas",
+      "etiqueta": "Mesa",
+      "precio": 23000,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "🔥 Nuevo",
+      "badgeHalloween": "🎃 Promo Halloween",
+      "fondoOscuro": true,
+      "imagen": "images/mesa-pool-pano-rojo.jpg",
+      "fotos": [
+        { "src": "/images/mesa-pool-pano-rojo.jpg", "w": 800, "h": 463, "alt": "Mesa de Pool Paño Rojo con accesorios incluidos" }
+      ],
+      "descripcionCorta": "Medidas reglamentarias. Paño rojo. Todos los accesorios incluidos. Envíos a todo Uruguay.",
+      "descripcion": "Mesa de pool con paño rojo y medidas reglamentarias. Viene con todos los accesorios para empezar a jugar y la enviamos a todo Uruguay. Stock limitado.",
+      "caracteristicas": [
+        { "nombre": "Paño", "valor": "Rojo" },
+        { "nombre": "Medidas", "valor": "Reglamentarias" }
+      ],
+      "incluye": ["Tacos", "Juego de bolas completo", "Triángulo", "Tizas"],
+      "whatsappMensaje": "Hola, quiero consultar por la mesa de pool con paño rojo de $23.000.",
+      "botonTexto": "Consultar por esta mesa",
+      "TODO": ["Completar medidas exactas", "Confirmar la lista de accesorios incluidos", "Más fotos (detalle del paño, troneras, patas)"]
+    },
+    {
+      "id": "mesa-pool-con-tapa",
+      "slug": "mesa-pool-profesional-con-tapa",
+      "sku": "mesa-pool-con-tapa",
+      "nombre": "Mesa de Pool Profesional con Tapa",
+      "nombrePagina": "Mesa de Pool Profesional con Tapa",
+      "categoria": "mesas",
+      "etiqueta": "Mesa",
+      "precio": 26000,
+      "precioSufijo": "",
+      "estado": "agotado",
+      "badge": "",
+      "imagen": "images/tapapool.jpg",
+      "fotos": [
+        { "src": "/images/tapapool.jpg", "w": 675, "h": 1200, "alt": "Mesa de Pool Profesional con Tapa" }
+      ],
+      "descripcionCorta": "Incluye los mismos accesorios que las demás mesas: tacos, bolas, triángulo, tizas y cepillo.",
+      "descripcion": "Mesa de pool profesional con tapa, para usarla también como mesa cuando no se juega. Incluye los mismos accesorios que las demás mesas: tacos, bolas, triángulo, tizas y cepillo.",
+      "caracteristicas": [
+        { "nombre": "Tapa", "valor": "Sí" },
+        { "nombre": "Medidas", "valor": "" }
+      ],
+      "incluye": ["Tacos", "Bolas", "Triángulo", "Tizas", "Cepillo"],
+      "whatsappMensaje": "Hola, quiero consultar por la mesa de pool profesional con tapa de $26.000.",
+      "botonTexto": "Consultar por esta mesa",
+      "TODO": ["Completar medidas y color de paño", "Más fotos (con y sin tapa)"]
+    },
+    {
+      "id": "futbolito",
+      "slug": "futbolito",
+      "sku": "futbolito",
+      "nombre": "Futbolito",
+      "nombrePagina": "Futbolito de Madera",
+      "categoria": "mesas",
+      "etiqueta": "Futbolito",
+      "precio": 7500,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "",
+      "imagen": "images/futbolito.jpg",
+      "fotos": [
+        { "src": "/images/futbolito.jpg", "w": 778, "h": 1200, "alt": "Futbolito Metegol" }
+      ],
+      "descripcionCorta": "Metegol de madera, con patas robustas. Ideal para casa, local o quincho.",
+      "descripcion": "Futbolito (metegol) de madera con patas robustas. Ideal para casa, local o quincho.",
+      "caracteristicas": [
+        { "nombre": "Material", "valor": "Madera" },
+        { "nombre": "Patas", "valor": "Robustas" },
+        { "nombre": "Medidas", "valor": "" }
+      ],
+      "incluye": [],
+      "envio": "Envíos a todo Uruguay: coordinamos el flete con vos para que llegue a tu puerta o a una sucursal cercana. También podés retirarlo en nuestro punto de retiro, sin costo de envío.",
+      "whatsappMensaje": "Hola, quiero consultar por el futbolito de $7.500.",
+      "botonTexto": "Consultar por el futbolito",
+      "TODO": ["Completar medidas", "Qué incluye (pelotas, contadores)", "Confirmar si se entrega armado"]
+    },
+    {
+      "id": "promo-mesa-futbolito",
+      "slug": "combo-mesa-pool-futbolito",
+      "sku": "promo-mesa-futbolito",
+      "nombre": "Mesa de Pool + Futbolito",
+      "nombrePagina": "Combo Mesa de Pool + Futbolito",
+      "categoria": "mesas",
+      "etiqueta": "Combo",
+      "precio": 28500,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "🔥 Más vendido",
+      "imagen": "images/nuevapromo.jpg",
+      "fotos": [
+        { "src": "/images/nuevapromo.jpg", "w": 675, "h": 1200, "alt": "Promo Mesa de Pool + Futbolito" }
+      ],
+      "descripcionCorta": "Promo combo: mesa de pool profesional y futbolito, las dos juntas con accesorios incluidos.",
+      "descripcion": "Promo combo: una mesa de pool profesional y un futbolito de madera, las dos juntas y con accesorios incluidos.",
+      "caracteristicas": [
+        { "nombre": "Incluye", "valor": "Mesa de pool profesional + futbolito" }
+      ],
+      "incluye": ["Mesa de pool profesional", "Futbolito", "Accesorios de pool"],
+      "whatsappMensaje": "Hola, quiero consultar por la promo mesa de pool + futbolito de $28.500.",
+      "botonTexto": "Consultar por la promo",
+      "TODO": ["Aclarar qué modelo y color de mesa entra en el combo"]
+    },
+    {
+      "id": "tejo-electronico",
+      "slug": "tejo-electronico",
+      "sku": "tejo-electronico",
+      "nombre": "Tejo Electrónico",
+      "nombrePagina": "Tejo Electrónico",
+      "categoria": "mesas",
+      "etiqueta": "Tejo",
+      "precio": 22000,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "",
+      "imagen": "images/tejo.jpg",
+      "fotos": [
+        { "src": "/images/tejo.jpg", "w": 1200, "h": 960, "alt": "Tejo Electrónico con 2 discos y 2 comandos" }
+      ],
+      "descripcionCorta": "Medidas 214 x 122 cm. Incluye 2 discos y 2 comandos.",
+      "descripcion": "Mesa de tejo electrónico (air hockey) de 214 x 122 cm. Incluye 2 discos y 2 comandos.",
+      "caracteristicas": [
+        { "nombre": "Medidas", "valor": "214 x 122 cm" }
+      ],
+      "incluye": ["2 discos", "2 comandos"],
+      "envio": "Envíos a todo Uruguay: coordinamos el flete con vos para que llegue a tu puerta o a una sucursal cercana. También podés retirarlo en nuestro punto de retiro, sin costo de envío.",
+      "whatsappMensaje": "Hola, quiero consultar por el tejo electrónico de $22.000.",
+      "botonTexto": "Consultar por el tejo",
+      "TODO": ["Alimentación (220 V), marcador electrónico y altura", "Confirmar si se entrega armado"]
+    },
+    {
+      "id": "tacos-basicos",
+      "slug": "par-de-tacos-basicos",
+      "sku": "tacos-basicos",
+      "nombre": "Par de Tacos — Modelo Básico",
+      "nombrePagina": "Par de Tacos de Pool Modelo Básico",
+      "categoria": "tacos",
+      "etiqueta": "Tacos",
+      "precio": 2500,
+      "precioSufijo": " el par",
+      "estado": "disponible",
+      "badge": "🔥 Más vendido",
+      "imagen": "images/par-de-tacos-basicos.jpg",
+      "fotos": [
+        { "src": "/images/par-de-tacos-basicos.jpg", "w": 480, "h": 600, "alt": "Par de Tacos Básicos" }
+      ],
+      "descripcionCorta": "Par de tacos de madera. Ideales para uso diario y principiantes.",
+      "descripcion": "Par de tacos de pool de madera, ideales para uso diario y para quienes están empezando. El precio es por el par.",
+      "caracteristicas": [
+        { "nombre": "Material", "valor": "Madera" },
+        { "nombre": "Unidades", "valor": "2 (el par)" },
+        { "nombre": "Largo", "valor": "" }
+      ],
+      "incluye": ["2 tacos"],
+      "whatsappMensaje": "Hola, quiero consultar por el par de tacos básicos de $2.500.",
+      "botonTexto": "Consultar stock",
+      "TODO": ["Completar largo, peso y diámetro de suela"]
+    },
+    {
+      "id": "tacos-premium",
+      "slug": "par-de-tacos-premium",
+      "sku": "tacos-premium",
+      "nombre": "Par de Tacos — Modelo Premium",
+      "nombrePagina": "Par de Tacos de Pool Modelo Premium",
+      "categoria": "tacos",
+      "etiqueta": "Tacos",
+      "precio": 2500,
+      "precioSufijo": " el par",
+      "estado": "disponible",
+      "badge": "🔥 Más vendido",
+      "imagen": "images/par-de-tacos-premium.jpg",
+      "fotos": [
+        { "src": "/images/par-de-tacos-premium.jpg", "w": 480, "h": 600, "alt": "Par de Tacos Premium" }
+      ],
+      "descripcionCorta": "Par de tacos con diseño profesional. Distintos colores disponibles.",
+      "descripcion": "Par de tacos de pool con diseño profesional, en distintos colores. El precio es por el par.",
+      "caracteristicas": [
+        { "nombre": "Diseño", "valor": "Profesional" },
+        { "nombre": "Colores", "valor": "Varios (consultá disponibilidad)" },
+        { "nombre": "Unidades", "valor": "2 (el par)" }
+      ],
+      "incluye": ["2 tacos"],
+      "whatsappMensaje": "Hola, quiero consultar por el par de tacos premium de $2.500.",
+      "botonTexto": "Consultar stock",
+      "TODO": ["Completar material, largo y peso", "Listar los colores disponibles"]
+    },
+    {
+      "id": "lampara-3-pantallas",
+      "slug": "lampara-pool-3-pantallas",
+      "sku": "lampara-3-pantallas",
+      "nombre": "Lámpara Pool — 3 Pantallas",
+      "nombrePagina": "Lámpara de Pool de 3 Pantallas",
+      "categoria": "lamparas",
+      "etiqueta": "Lámpara",
+      "precio": 6500,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "",
+      "imagen": "images/lampara-pool-3-pantallas.jpg",
+      "fotos": [
+        { "src": "/images/lampara-pool-3-pantallas.jpg", "w": 300, "h": 300, "alt": "Lámpara Pool 3 Pantallas" }
+      ],
+      "descripcionCorta": "Verde con terminaciones doradas. Para colgar sobre la mesa. Estética clásica.",
+      "descripcion": "Lámpara de pool de 3 pantallas, verde con terminaciones doradas, para colgar sobre la mesa. Estética clásica de sala de pool.",
+      "caracteristicas": [
+        { "nombre": "Pantallas", "valor": "3" },
+        { "nombre": "Color", "valor": "Verde con terminaciones doradas" },
+        { "nombre": "Instalación", "valor": "Colgante" }
+      ],
+      "incluye": [],
+      "whatsappMensaje": "Hola, quiero consultar por la lámpara de pool de 3 pantallas a $6.500.",
+      "botonTexto": "Consultar stock",
+      "TODO": ["Completar largo, tipo de lámpara/rosca y si incluye lámparas", "Foto más grande (la actual es de 300 px)"]
+    },
+    {
+      "id": "lampara-2-pantallas",
+      "slug": "lampara-pool-2-pantallas",
+      "sku": "lampara-2-pantallas",
+      "nombre": "Lámpara Pool — 2 Pantallas",
+      "nombrePagina": "Lámpara de Pool de 2 Pantallas",
+      "categoria": "lamparas",
+      "etiqueta": "Lámpara",
+      "precio": 4500,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "",
+      "imagen": "images/lampara-pool-2-pantallas.jpg",
+      "fotos": [
+        { "src": "/images/lampara-pool-2-pantallas.jpg", "w": 300, "h": 300, "alt": "Lámpara Pool 2 Pantallas" }
+      ],
+      "descripcionCorta": "Verde con terminaciones doradas. Modelo compacto. Fácil instalación.",
+      "descripcion": "Lámpara de pool de 2 pantallas, verde con terminaciones doradas. Modelo compacto y de fácil instalación.",
+      "caracteristicas": [
+        { "nombre": "Pantallas", "valor": "2" },
+        { "nombre": "Color", "valor": "Verde con terminaciones doradas" },
+        { "nombre": "Instalación", "valor": "Colgante, fácil instalación" }
+      ],
+      "incluye": [],
+      "whatsappMensaje": "Hola, quiero consultar por la lámpara de pool de 2 pantallas a $4.500.",
+      "botonTexto": "Consultar stock",
+      "TODO": ["Completar largo, tipo de lámpara/rosca y si incluye lámparas", "Foto más grande (la actual es de 300 px)"]
+    },
+    {
+      "id": "taquera-pared",
+      "slug": "taquera-de-pared",
+      "sku": "taquera-pared",
+      "nombre": "Taquera de Pared",
+      "nombrePagina": "Taquera de Pared",
+      "categoria": "accesorios",
+      "etiqueta": "Accesorio",
+      "precio": 700,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "",
+      "imagen": "images/taquera-de-pared.jpg",
+      "fotos": [
+        { "src": "/images/taquera-de-pared.jpg", "w": 480, "h": 600, "alt": "Taquera de Pared" }
+      ],
+      "descripcionCorta": "Porta-tacos de madera para colgar. Organizá tus tacos con estilo.",
+      "descripcion": "Porta-tacos de madera para colgar en la pared. Mantiene los tacos ordenados y derechos.",
+      "caracteristicas": [
+        { "nombre": "Material", "valor": "Madera" },
+        { "nombre": "Instalación", "valor": "De pared" },
+        { "nombre": "Capacidad", "valor": "" }
+      ],
+      "incluye": [],
+      "whatsappMensaje": "Hola, quiero consultar por la taquera de pared a $700.",
+      "botonTexto": "Consultar stock",
+      "TODO": ["Completar cuántos tacos entran y medidas"]
+    },
+    {
+      "id": "funda-cobertor",
+      "slug": "funda-cobertor-mesa-de-pool",
+      "sku": "funda-cobertor",
+      "nombre": "Funda Cobertor para Mesa de Pool",
+      "nombrePagina": "Funda Cobertor para Mesa de Pool",
+      "categoria": "accesorios",
+      "etiqueta": "Accesorio",
+      "precio": 999,
+      "precioSufijo": "",
+      "estado": "disponible",
+      "badge": "",
+      "imagen": "images/funda-cobertor-mesa-de-pool.jpg",
+      "fotos": [
+        { "src": "/images/funda-cobertor-mesa-de-pool.jpg", "w": 512, "h": 512, "alt": "Funda Cobertor Mesa de Pool" }
+      ],
+      "descripcionCorta": "240×137 cm. Protege el paño del polvo y la humedad. Color negro. Para mesas estándar.",
+      "descripcion": "Funda cobertor negra de 240 × 137 cm para mesas de pool estándar. Protege el paño del polvo y la humedad.",
+      "caracteristicas": [
+        { "nombre": "Medidas", "valor": "240 × 137 cm" },
+        { "nombre": "Color", "valor": "Negro" },
+        { "nombre": "Compatible con", "valor": "Mesas estándar" }
+      ],
+      "incluye": [],
+      "whatsappMensaje": "Hola, quiero consultar disponibilidad de la funda cobertor para mesa de pool.",
+      "botonTexto": "Consultar stock",
+      "TODO": ["Completar material"]
+    }
+  ]
+}

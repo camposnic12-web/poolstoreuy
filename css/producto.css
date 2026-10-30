@@ -1,0 +1,136 @@
+/* Páginas de producto (/productos/<slug>/). Se suma a css/site.css. */
+
+/* MIGAS DE PAN */
+.migas{max-width:1200px;margin:0 auto;padding:1.2rem 2rem 0;}
+.migas ol{list-style:none;display:flex;flex-wrap:wrap;gap:0.4rem;font-size:0.78rem;color:var(--gris-texto);}
+.migas li+li::before{content:'›';margin-right:0.4rem;opacity:0.6;}
+.migas a{color:var(--gris-texto);text-decoration:none;}
+.migas a:hover{color:var(--rojo);text-decoration:underline;}
+.migas [aria-current]{color:var(--negro);font-weight:600;}
+
+/* FICHA: galería + info */
+.ficha{
+  max-width:1200px;margin:0 auto;padding:1.5rem 2rem 4.5rem;
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:3.5rem;align-items:start;
+}
+
+/* GALERÍA */
+.galeria{position:sticky;top:84px;}
+.galeria-principal{
+  display:block;width:100%;aspect-ratio:1/1;padding:0;
+  background:var(--gris-claro);border:1px solid var(--gris);border-radius:6px;
+  overflow:hidden;cursor:zoom-in;position:relative;
+}
+.galeria-oscura .galeria-principal{background:#0b0b0b;}
+.galeria-principal picture{display:contents;}
+.galeria-principal img{
+  width:100%;height:100%;object-fit:scale-down;display:block; /* scale-down: las fotos chicas no se agrandan */
+  transform-origin:var(--zx,50%) var(--zy,50%);transition:transform 0.12s ease-out;
+}
+.galeria-principal.zoom img{transform:scale(var(--zs,1));}
+.galeria-lupa{
+  position:absolute;right:0.7rem;bottom:0.7rem;
+  background:rgba(0,0,0,0.65);color:#fff;
+  font-size:0.7rem;font-weight:600;padding:0.35rem 0.65rem;border-radius:999px;
+  pointer-events:none;display:flex;align-items:center;gap:0.35rem;
+}
+.galeria-principal.zoom .galeria-lupa{opacity:0;}
+.galeria-pie{min-height:1.2em;margin-top:0.55rem;font-size:0.8rem;color:var(--gris-texto);font-style:italic;}
+.galeria-pie:empty{display:none;}
+.galeria-miniaturas{list-style:none;display:flex;gap:0.6rem;margin-top:0.8rem;overflow-x:auto;padding-bottom:0.2rem;}
+.galeria-miniaturas button{
+  display:block;width:76px;height:76px;padding:0;cursor:pointer;
+  background:var(--gris-claro);border:2px solid var(--gris);border-radius:4px;overflow:hidden;
+}
+.galeria-miniaturas button[aria-current="true"]{border-color:var(--rojo);}
+.galeria-miniaturas picture{display:contents;}
+.galeria-miniaturas img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* INFO */
+.ficha-cat{
+  display:block;font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--rojo);font-weight:700;margin-bottom:0.5rem;
+}
+.ficha-titulo{
+  font-family:'Oswald',sans-serif;font-size:clamp(1.8rem,3.2vw,2.5rem);font-weight:700;
+  color:var(--negro);line-height:1.08;margin-bottom:0.8rem;
+}
+.ficha-estado{
+  display:inline-flex;align-items:center;gap:0.45rem;margin-bottom:1.1rem;
+  font-size:0.74rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.3rem 0.75rem;border-radius:999px;color:#fff;
+}
+.ficha-estado::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;opacity:0.9;}
+.estado-disponible{background:#1a7f3c;}
+.estado-agotado{background:#555;}
+.estado-proximamente{background:var(--rojo);}
+.ficha .price-block{margin-bottom:1.2rem;}
+.ficha-resumen{font-size:0.92rem;color:var(--gris-texto);line-height:1.6;margin-bottom:1.4rem;}
+.btn-wa-grande{
+  display:flex;align-items:center;justify-content:center;gap:0.7rem;
+  background:#25D366;color:#fff;text-decoration:none;
+  padding:1.05rem 1.5rem;border-radius:4px;min-height:56px;
+  font-size:1rem;font-weight:700;letter-spacing:0.02em;
+  box-shadow:0 6px 20px rgba(37,211,102,0.35);
+  transition:background 0.2s,transform 0.2s;
+}
+.btn-wa-grande:hover{background:#1fbc58;transform:translateY(-1px);}
+.ficha-bloque{margin-top:2rem;}
+.ficha-bloque h2{
+  font-family:'Oswald',sans-serif;font-size:1.15rem;font-weight:600;
+  color:var(--negro);margin-bottom:0.8rem;letter-spacing:0.02em;
+}
+.ficha-bloque p{font-size:0.88rem;color:var(--gris-texto);line-height:1.65;}
+.ficha-bloque .feat-list{margin-bottom:0;}
+.ficha-tabla{width:100%;border-collapse:collapse;font-size:0.86rem;}
+.ficha-tabla th,.ficha-tabla td{text-align:left;padding:0.65rem 0;border-bottom:1px solid var(--gris);vertical-align:top;}
+.ficha-tabla th{width:38%;font-weight:600;color:var(--gris-texto);padding-right:1rem;}
+.ficha-tabla td{color:var(--negro);}
+.ficha-envio{background:var(--gris-claro);border:1px solid var(--gris);border-radius:6px;padding:1.2rem 1.3rem;}
+
+/* LIGHTBOX (fotos a pantalla completa con zoom) */
+.lightbox{
+  position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.94);
+  display:flex;align-items:center;justify-content:center;
+  touch-action:none;overscroll-behavior:contain;
+}
+.lightbox[hidden]{display:none;}
+.lightbox-escena{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.lightbox-img{
+  max-width:100%;max-height:100%;object-fit:contain;
+  user-select:none;-webkit-user-select:none;-webkit-user-drag:none;
+  will-change:transform;cursor:zoom-in;
+}
+.lightbox.zoomed .lightbox-img{cursor:grab;}
+.lightbox.sin-zoom .lightbox-img{cursor:default;}
+.lightbox.arrastrando .lightbox-img{cursor:grabbing;}
+.lightbox-btn{
+  position:absolute;z-index:2;width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;
+  font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.lightbox-btn:hover{background:rgba(255,255,255,0.25);}
+.lightbox-cerrar{top:1rem;right:1rem;}
+.lightbox-ant{left:1rem;top:50%;transform:translateY(-50%);}
+.lightbox-sig{right:1rem;top:50%;transform:translateY(-50%);}
+.lightbox-pie{
+  position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);z-index:2;
+  color:rgba(255,255,255,0.75);font-size:0.75rem;text-align:center;white-space:nowrap;pointer-events:none;
+}
+body.lightbox-abierto{overflow:hidden;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .ficha{grid-template-columns:1fr;gap:1.8rem;}
+  .galeria{position:static;}
+}
+@media(max-width:600px){
+  .migas{padding:0.9rem 1rem 0;}
+  .ficha{padding:1rem 1rem 3rem;}
+  .galeria-miniaturas button{width:62px;height:62px;}
+  .ficha .price-num{font-size:2.3rem;}
+  .lightbox-ant,.lightbox-sig{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  .galeria-principal img{transition:none;}
+}

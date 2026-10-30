@@ -163,6 +163,34 @@ body.halloween footer{background:#000;border-top:1px solid rgba(225,6,0,0.45);}
 body.halloween .footer-copy{color:#9a9a9a;}
 body.halloween .footer-ig{color:#bdbdbd;}
 
+/* PÁGINAS DE PRODUCTO (las carga templates/producto.html) */
+body.halloween .prod-name a:hover{color:var(--hw-rojo-texto);}
+body.halloween .migas,
+body.halloween .migas a{color:var(--hw-texto-2);}
+body.halloween .migas a:hover{color:var(--hw-rojo-texto);}
+body.halloween .migas [aria-current]{color:#fff;}
+body.halloween .ficha-cat{color:var(--hw-rojo-texto);}
+body.halloween .ficha-titulo{color:#fff;text-shadow:var(--hw-glow);}
+body.halloween .ficha .price-block{background:var(--hw-card);border:1px solid var(--hw-borde);}
+body.halloween .ficha .price-num{color:var(--hw-rojo-texto);}
+body.halloween .ficha .price-note{color:var(--hw-texto-2);}
+body.halloween .ficha-resumen,
+body.halloween .ficha-bloque p{color:var(--hw-texto-2);}
+body.halloween .ficha-bloque h2{color:#fff;}
+body.halloween .ficha-bloque .feat-list li{color:var(--hw-texto);}
+body.halloween .ficha-bloque .feat-list li::before{background-color:var(--hw-rojo);}
+body.halloween .ficha-tabla th,
+body.halloween .ficha-tabla td{border-bottom-color:var(--hw-borde);}
+body.halloween .ficha-tabla th{color:var(--hw-texto-2);}
+body.halloween .ficha-tabla td{color:#fff;}
+body.halloween .galeria-pie{color:var(--hw-texto-2);}
+body.halloween .ficha-envio{background:var(--hw-card);border-color:var(--hw-borde);}
+body.halloween .galeria-principal{background:#f4f4f4;border-color:var(--hw-borde);}
+body.halloween .galeria-oscura .galeria-principal{background:#0b0b0b;}
+body.halloween .galeria-miniaturas button{background:#f4f4f4;border-color:var(--hw-borde);}
+body.halloween .galeria-miniaturas button[aria-current="true"]{border-color:var(--hw-rojo);box-shadow:0 0 10px rgba(225,6,0,0.5);}
+body.halloween .relacionados{border-top:1px solid rgba(225,6,0,0.35);}
+
 /* ============ DECORACIÓN (la inserta js/halloween.js) ============ */
 .hw-deco{position:absolute;pointer-events:none;z-index:1;user-select:none;}
 body.halloween .catalogo-inner,
