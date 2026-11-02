@@ -1,4 +1,4 @@
-// Prueba headless del carrito y el checkout (Chrome a 1440 y 390 px), con y sin el tema Halloween:
+// Prueba headless del carrito y el checkout (Chrome a 1440 y 390 px):
 // agregar desde la home y desde una ficha, cantidades, aviso de envío (data/checkout.json),
 // formulario del checkout y lo que se manda a /api/create-preference, agotado sin botón de compra.
 //
@@ -34,7 +34,7 @@ function contraste(a, b) {
   return (x + 0.05) / (y + 0.05);
 }
 
-async function nuevaPagina(vp, { halloween }) {
+async function nuevaPagina(vp) {
   const context = await browser.createBrowserContext(); // localStorage limpio
   const page = await context.newPage();
   await page.setViewport(VIEWPORTS[vp]);
@@ -54,7 +54,6 @@ async function nuevaPagina(vp, { halloween }) {
     }
     r.continue();
   });
-  if (!halloween) await page.evaluateOnNewDocument(() => document.addEventListener('DOMContentLoaded', () => document.body.classList.remove('halloween'), { once: true }));
   return { page, errores, pedidos, cerrar: () => context.close() };
 }
 
@@ -66,16 +65,14 @@ const cerrarCarrito = async page => {
 };
 const badge = page => page.$eval('#cartCount', e => (e.hidden ? 0 : Number(e.textContent)));
 
-for (const halloween of [true, false]) {
+{
   for (const vp of Object.keys(VIEWPORTS)) {
-    const tema = halloween ? 'halloween' : 'normal';
-    console.log(`\n${vp} px · tema ${tema}`);
-    const { page, errores, pedidos, cerrar } = await nuevaPagina(vp, { halloween });
-    const cap = n => page.screenshot({ path: path.join(CAPS, `${vp}-${tema}-${n}.png`) });
+    console.log(`\n${vp} px`);
+    const { page, errores, pedidos, cerrar } = await nuevaPagina(vp);
+    const cap = n => page.screenshot({ path: path.join(CAPS, `${vp}-${n}.png`) });
 
     // ---- 1. Home: agregar la mesa verde desde la tarjeta ----
     await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
-    check(await page.evaluate(() => document.body.classList.contains('halloween')) === halloween, `home con tema ${tema}`);
     const home = await page.evaluate(() => ({
       botones: [...document.querySelectorAll('.prod-card [data-add-to-cart]')].filter(b => !b.hidden && b.getClientRects().length).map(b => b.dataset.addToCart),
       agotado: [...document.querySelectorAll('.prod-card')].filter(c => c.querySelector('.stock-badge.agotado')).map(c => ({ cart: !!c.querySelector('[data-add-to-cart]'), wa: c.querySelector('.btn-wa-card').textContent.trim() })),
@@ -101,7 +98,7 @@ for (const halloween of [true, false]) {
     check(c1.aviso.includes(checkoutCfg.avisoEnvio), 'aviso de envío del carrito sale de data/checkout.json');
     check(await badge(page) === 1, 'contador del carrito = 1');
 
-    // Legibilidad del drawer (con Halloween el body tiene texto claro)
+    // Legibilidad del drawer
     const col = await page.evaluate(() => {
       const d = getComputedStyle(document.querySelector('#cartDrawer')).backgroundColor;
       return ['.cart-item-name', '.cart-item-unit', '.cart-total span', '.qty span'].map(s => [s, getComputedStyle(document.querySelector(s)).color, d]);
@@ -180,7 +177,7 @@ for (const halloween of [true, false]) {
 // ---- 5. Si el catálogo no carga, no se ofrece comprar ----
 console.log('\nCatálogo caído');
 {
-  const { page, cerrar } = await nuevaPagina('1440', { halloween: true });
+  const { page, cerrar } = await nuevaPagina('1440');
   page.removeAllListeners('request');
   page.on('request', r => (r.url().endsWith('/data/products.json') ? r.respond({ status: 500, body: '' }) : /googletagmanager|google-analytics|facebook/.test(r.url()) ? r.abort() : r.continue()));
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });

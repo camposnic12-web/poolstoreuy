@@ -68,7 +68,6 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--negro);overflow-
 }
 .hero-banner-link{display:block;line-height:0;}
 .hero-banner-img{width:100%;height:auto;display:block;}
-.hero-wa-mobile{display:none;} /* lo muestra css/halloween.css en celular */
 .sr-only{
   position:absolute;width:1px;height:1px;
   padding:0;margin:-1px;overflow:hidden;

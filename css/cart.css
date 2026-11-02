@@ -1,9 +1,8 @@
 /* =========================================================
    CARRITO + CHECKOUT — Pool Store UY
    Usa las variables de color de /css/site.css (:root). Lo cargan la home
-   (index.html) y las fichas (templates/producto.html). Con o sin el tema
-   Halloween: el drawer fija sus propios colores; los retoques del tema
-   para la barra están en /css/halloween.css.
+   (index.html) y las fichas (templates/producto.html). El drawer fija sus
+   propios colores, así no depende del tema de la página.
    ========================================================= */
 
 /* NAVBAR: botón carrito */

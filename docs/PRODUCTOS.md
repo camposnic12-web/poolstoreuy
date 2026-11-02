@@ -67,7 +67,7 @@ Para volver a ponerlas, una vez confirmadas:
    ```
    Tienen que ir **después** de la foto del producto: la primera de la lista es la principal, y el script no deja que una foto de cliente sea la principal.
 3. Si el cliente confirma solo algunas, pegá solo esas. Si alguna resulta ser de otro modelo, no la uses en ninguna de las dos mesas.
-4. Borrá de la lista `"TODO"` (la general y la de cada mesa) el aviso de fotos de clientes, regenerá con `node scripts/build-productos.mjs` y commiteá.
+4. Borrá de `docs/PENDIENTES.md` el aviso de fotos de clientes (el general y el de cada mesa), regenerá con `node scripts/build-productos.mjs` y commiteá.
 
 ## Agregar un producto nuevo
 
@@ -78,13 +78,13 @@ Copiá un producto parecido dentro de `"products"` y cambiá:
 
 Regenerá. La página, la tarjeta, los productos relacionados y el sitemap se actualizan solos.
 
-Las `caracteristicas` con `"valor": ""` no se muestran. Sirven como recordatorio de datos que faltan, junto con la lista `"TODO"` de cada producto.
+Las `caracteristicas` con `"valor": ""` no se muestran. Sirven como recordatorio de datos que faltan, junto con `docs/PENDIENTES.md`.
 
-Los pendientes van **solo** en la lista `"TODO"`, que nunca se publica. Si un texto que se muestra (nombre, descripción, característica, alt, etc.) contiene "TODO", el script avisa y no genera nada.
+Los pendientes y notas internas van en **`docs/PENDIENTES.md`**, nunca en `data/products.json`: ese archivo es público (cualquiera puede abrir poolstore.uy/data/products.json; lo usa el carrito). Si el JSON tiene un campo `"TODO"`, o un texto que se muestra (nombre, descripción, característica, alt, etc.) contiene "TODO", el script avisa y no genera nada.
 
-## Tema de temporada (Halloween)
+## Tema de temporada
 
-En las páginas de producto depende solo de `templates/producto.html`: son 3 líneas marcadas `HALLOWEEN`. Para quitarlo, borrá esas líneas y regenerá. Los pasos de la home están en el comentario al principio de `index.html`.
+El tema Halloween 2026 se sacó el 2026-11-02 (rama `fin-halloween`). Si se quiere reusar para otra temporada, el PR de esa rama muestra todo lo que tocaba: `css/halloween.css`, `js/halloween.js`, el hero y las meta og/twitter de `index.html` y 3 líneas de `templates/producto.html`. Las imágenes `images/mesa-pool-roja-promo-halloween*` quedaron en el repo.
 
 ## Pruebas
 
