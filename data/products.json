@@ -12,10 +12,6 @@
     "mesas": "Envíos a todo Uruguay: coordinamos el flete con vos para que llegue a tu puerta o a una sucursal cercana. También podés retirarla en nuestro punto de retiro, sin costo de envío. El armado está incluido en el precio: la instalamos y quedás jugando desde el primer día.",
     "default": "Envíos a todo Uruguay: coordinamos el flete con vos para que llegue a tu puerta o a una sucursal cercana. También podés retirarlo en nuestro punto de retiro, sin costo de envío."
   },
-  "TODO": [
-    "Confirmar con el cliente el costo del envío y si el armado incluido aplica en todo el país.",
-    "Confirmar que las fotos de clientes (mesa instalada) son del mismo modelo que las mesas verde y azul. Mientras tanto están fuera de la galería: ver docs/PRODUCTOS.md, \"Fotos de clientes pendientes\"."
-  ],
   "products": [
     {
       "id": "mesa-pool-verde",
@@ -42,8 +38,7 @@
       ],
       "incluye": ["Tacos", "Juego de bolas completo", "Triángulo", "Tizas"],
       "whatsappMensaje": "Hola, quiero consultar por la mesa de pool profesional con paño verde de $22.000.",
-      "botonTexto": "Consultar por esta mesa",
-      "TODO": ["Completar materiales, altura y peso", "Confirmar la lista de accesorios incluidos", "Fotos de clientes fuera de la galería hasta que el cliente confirme el modelo (ver docs/PRODUCTOS.md)"]
+      "botonTexto": "Consultar por esta mesa"
     },
     {
       "id": "mesa-pool-azul",
@@ -70,8 +65,7 @@
       ],
       "incluye": ["Tacos", "Juego de bolas completo", "Triángulo", "Tizas"],
       "whatsappMensaje": "Hola, quiero consultar por la mesa de pool profesional con paño azul de $22.000.",
-      "botonTexto": "Consultar por esta mesa",
-      "TODO": ["Completar materiales, altura y peso", "Confirmar la lista de accesorios incluidos", "Fotos de clientes fuera de la galería hasta que el cliente confirme el modelo (ver docs/PRODUCTOS.md)"]
+      "botonTexto": "Consultar por esta mesa"
     },
     {
       "id": "mesa-plegable-ping-pong",
@@ -98,8 +92,7 @@
       ],
       "incluye": ["Accesorios de pool", "Accesorios de ping pong"],
       "whatsappMensaje": "Hola, quiero consultar por la mesa plegable pool + ping pong de $20.000.",
-      "botonTexto": "Consultar por esta mesa",
-      "TODO": ["Detallar los accesorios de pool y de ping pong", "Más fotos (plegada y en modo ping pong)", "Confirmar si necesita armado"]
+      "botonTexto": "Consultar por esta mesa"
     },
     {
       "id": "mesa-3-en-1",
@@ -130,8 +123,7 @@
       ],
       "incluye": ["Accesorios de pool", "Accesorios de ping pong"],
       "whatsappMensaje": "Hola, quiero consultar por la mesa 3 en 1 (pool, ping pong y comedor) de $27.000.",
-      "botonTexto": "Consultar por esta mesa",
-      "TODO": ["Completar medidas exactas (largo, ancho y alto)", "Detallar los accesorios incluidos"]
+      "botonTexto": "Consultar por esta mesa"
     },
     {
       "id": "mesa-pool-rojo",
@@ -145,7 +137,6 @@
       "precioSufijo": "",
       "estado": "disponible",
       "badge": "🔥 Nuevo",
-      "badgeHalloween": "🎃 Promo Halloween",
       "fondoOscuro": true,
       "imagen": "images/mesa-pool-pano-rojo.jpg",
       "fotos": [
@@ -159,8 +150,7 @@
       ],
       "incluye": ["Tacos", "Juego de bolas completo", "Triángulo", "Tizas"],
       "whatsappMensaje": "Hola, quiero consultar por la mesa de pool con paño rojo de $23.000.",
-      "botonTexto": "Consultar por esta mesa",
-      "TODO": ["Completar medidas exactas", "Confirmar la lista de accesorios incluidos", "Más fotos (detalle del paño, troneras, patas)"]
+      "botonTexto": "Consultar por esta mesa"
     },
     {
       "id": "mesa-pool-con-tapa",
@@ -186,8 +176,7 @@
       ],
       "incluye": ["Tacos", "Bolas", "Triángulo", "Tizas", "Cepillo"],
       "whatsappMensaje": "Hola, quiero consultar por la mesa de pool profesional con tapa de $26.000.",
-      "botonTexto": "Consultar por esta mesa",
-      "TODO": ["Completar medidas y color de paño", "Más fotos (con y sin tapa)"]
+      "botonTexto": "Consultar por esta mesa"
     },
     {
       "id": "futbolito",
@@ -215,8 +204,7 @@
       "incluye": [],
       "envio": "Envíos a todo Uruguay: coordinamos el flete con vos para que llegue a tu puerta o a una sucursal cercana. También podés retirarlo en nuestro punto de retiro, sin costo de envío.",
       "whatsappMensaje": "Hola, quiero consultar por el futbolito de $7.500.",
-      "botonTexto": "Consultar por el futbolito",
-      "TODO": ["Completar medidas", "Qué incluye (pelotas, contadores)", "Confirmar si se entrega armado"]
+      "botonTexto": "Consultar por el futbolito"
     },
     {
       "id": "promo-mesa-futbolito",
@@ -241,8 +229,7 @@
       ],
       "incluye": ["Mesa de pool profesional", "Futbolito", "Accesorios de pool"],
       "whatsappMensaje": "Hola, quiero consultar por la promo mesa de pool + futbolito de $28.500.",
-      "botonTexto": "Consultar por la promo",
-      "TODO": ["Aclarar qué modelo y color de mesa entra en el combo"]
+      "botonTexto": "Consultar por la promo"
     },
     {
       "id": "tejo-electronico",
@@ -268,8 +255,7 @@
       "incluye": ["2 discos", "2 comandos"],
       "envio": "Envíos a todo Uruguay: coordinamos el flete con vos para que llegue a tu puerta o a una sucursal cercana. También podés retirarlo en nuestro punto de retiro, sin costo de envío.",
       "whatsappMensaje": "Hola, quiero consultar por el tejo electrónico de $22.000.",
-      "botonTexto": "Consultar por el tejo",
-      "TODO": ["Alimentación (220 V), marcador electrónico y altura", "Confirmar si se entrega armado"]
+      "botonTexto": "Consultar por el tejo"
     },
     {
       "id": "tacos-basicos",
@@ -296,8 +282,7 @@
       ],
       "incluye": ["2 tacos"],
       "whatsappMensaje": "Hola, quiero consultar por el par de tacos básicos de $2.500.",
-      "botonTexto": "Consultar stock",
-      "TODO": ["Completar largo, peso y diámetro de suela"]
+      "botonTexto": "Consultar stock"
     },
     {
       "id": "tacos-premium",
@@ -324,8 +309,7 @@
       ],
       "incluye": ["2 tacos"],
       "whatsappMensaje": "Hola, quiero consultar por el par de tacos premium de $2.500.",
-      "botonTexto": "Consultar stock",
-      "TODO": ["Completar material, largo y peso", "Listar los colores disponibles"]
+      "botonTexto": "Consultar stock"
     },
     {
       "id": "lampara-3-pantallas",
@@ -352,8 +336,7 @@
       ],
       "incluye": [],
       "whatsappMensaje": "Hola, quiero consultar por la lámpara de pool de 3 pantallas a $6.500.",
-      "botonTexto": "Consultar stock",
-      "TODO": ["Completar largo, tipo de lámpara/rosca y si incluye lámparas", "Foto más grande (la actual es de 300 px)"]
+      "botonTexto": "Consultar stock"
     },
     {
       "id": "lampara-2-pantallas",
@@ -380,8 +363,7 @@
       ],
       "incluye": [],
       "whatsappMensaje": "Hola, quiero consultar por la lámpara de pool de 2 pantallas a $4.500.",
-      "botonTexto": "Consultar stock",
-      "TODO": ["Completar largo, tipo de lámpara/rosca y si incluye lámparas", "Foto más grande (la actual es de 300 px)"]
+      "botonTexto": "Consultar stock"
     },
     {
       "id": "taquera-pared",
@@ -408,8 +390,7 @@
       ],
       "incluye": [],
       "whatsappMensaje": "Hola, quiero consultar por la taquera de pared a $700.",
-      "botonTexto": "Consultar stock",
-      "TODO": ["Completar cuántos tacos entran y medidas"]
+      "botonTexto": "Consultar stock"
     },
     {
       "id": "funda-cobertor",
@@ -436,8 +417,7 @@
       ],
       "incluye": [],
       "whatsappMensaje": "Hola, quiero consultar disponibilidad de la funda cobertor para mesa de pool.",
-      "botonTexto": "Consultar stock",
-      "TODO": ["Completar material"]
+      "botonTexto": "Consultar stock"
     }
   ]
 }

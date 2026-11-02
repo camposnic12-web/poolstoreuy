@@ -36,6 +36,8 @@ const ESTADO_TEXTO = { disponible: 'Disponible', agotado: 'Agotado', proximament
 // ---------- VALIDACIÓN ----------
 const errores = [];
 const slugs = new Set();
+// data/products.json es público (lo lee el carrito): las notas internas van en docs/PENDIENTES.md
+if ('TODO' in data) errores.push('hay una lista "TODO" general: data/products.json es público, pasala a docs/PENDIENTES.md');
 for (const p of productos) {
   const q = `"${p.id || '?'}"`;
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.slug || '')) errores.push(`${q}: slug inválido "${p.slug}" (solo minúsculas sin tildes, números y guiones)`);
@@ -51,10 +53,11 @@ for (const p of productos) {
     if (!f.alt) errores.push(`${q}: falta el alt de ${f.src}`);
     if (!f.w || !f.h) errores.push(`${q}: faltan w/h de ${f.src}`);
   }
-  // Los TODO van solo en la lista "TODO" del producto: nunca en un texto que se publica
+  if ('TODO' in p) errores.push(`${q}: tiene una lista "TODO": data/products.json es público, pasala a docs/PENDIENTES.md`);
+  // Los pendientes van en docs/PENDIENTES.md: nunca en un texto que se publica
   const visibles = [p.nombre, p.nombrePagina, p.descripcionCorta, p.descripcion, p.badge, p.envio, p.whatsappMensaje, p.botonTexto,
     ...(p.caracteristicas || []).flatMap(c => [c.nombre, c.valor]), ...(p.incluye || []), ...(p.fotos || []).flatMap(f => [f.alt, f.pie])];
-  if (visibles.some(x => /\bTODO\b/.test(x || ''))) errores.push(`${q}: hay un "TODO" en un texto que se publica (pasalo a la lista "TODO")`);
+  if (visibles.some(x => /\bTODO\b/.test(x || ''))) errores.push(`${q}: hay un "TODO" en un texto que se publica (anotalo en docs/PENDIENTES.md)`);
   if (p.fotos?.[0] && (p.fotos[0].pie || /mesa-instalada/.test(p.fotos[0].src))) errores.push(`${q}: la foto principal tiene que ser la del producto, no una foto de cliente/instalada`);
 }
 if (errores.length) {
@@ -99,7 +102,7 @@ function tarjeta(p, ind = '      ') {
   l.push(`  <div class="${wrap}">`);
   l.push(`    <span class="prod-cat-tag">${esc(p.etiqueta)}</span>`);
   if (sinStock) l.push(`    <span class="stock-badge ${p.estado}">${ESTADO_TEXTO[p.estado]}</span>`);
-  else if (p.badge) l.push(`    <span class="best-seller-badge"${p.badgeHalloween ? ` data-halloween-text="${esc(p.badgeHalloween)}"` : ''}>${esc(p.badge)}</span>`);
+  else if (p.badge) l.push(`    <span class="best-seller-badge">${esc(p.badge)}</span>`);
   if (p.tarjetaGaleria && p.fotos.length > 1) {
     l.push(`    <div class="prod-gallery">`);
     p.fotos.forEach((f, i) => {

@@ -1,20 +1,5 @@
 <!DOCTYPE html>
 <!--
-  TEMA HALLOWEEN 2026 (temporal)
-  Para volver al diseño normal:
-    1. Quitar class="halloween" del body.
-    2. Borrar el link a /css/halloween.css en el head y el script /js/halloween.js al final de este archivo.
-    3. HERO: reemplazar el bloque "HERO HALLOWEEN" (el <a> con el <picture> y el botón hero-wa-mobile) por el
-       bloque "HERO ORIGINAL" que está comentado justo debajo (images/hero.jpg).
-    4. En og:image y twitter:image volver a https://poolstore.uy/images/hero.jpg
-       (y borrar las 2 líneas og:image:width / og:image:height).
-    5. PÁGINAS DE PRODUCTO: en templates/producto.html borrar las 3 líneas marcadas "HALLOWEEN"
-       (link al CSS, class del body y script) y regenerar: node scripts/build-productos.mjs
-    6. Recién entonces borrar css/halloween.css y js/halloween.js.
-  Opcional: borrar "badgeHalloween" de la mesa roja en data/products.json (sin el JS no hace nada) y
-  los atributos data-halloween-text de este archivo; después regenerar.
-  Lo permanente (no depende del tema): logo nuevo, sin popup, Mesa Paño Rojo disponible.
-
   CATÁLOGO: las tarjetas entre PRODUCTOS:INICIO/FIN y el JSON-LD entre JSONLD-PRODUCTOS:INICIO/FIN
   se generan desde data/products.json con node scripts/build-productos.mjs. No editarlos a mano.
 -->
@@ -43,15 +28,13 @@
 <meta property="og:description" content="Mesas de pool con accesorios incluidos. Envíos a todo Uruguay.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://poolstore.uy/">
-<meta property="og:image" content="https://poolstore.uy/images/mesa-pool-roja-promo-halloween-og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://poolstore.uy/images/hero.jpg">
 <meta property="og:locale" content="es_UY">
 <meta property="og:site_name" content="Pool Store Uruguay">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pool Store UY — Mesas de Pool Profesionales">
 <meta name="twitter:description" content="Mesas de pool con accesorios incluidos. Envíos a todo Uruguay.">
-<meta name="twitter:image" content="https://poolstore.uy/images/mesa-pool-roja-promo-halloween-og.jpg">
+<meta name="twitter:image" content="https://poolstore.uy/images/hero.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -412,9 +395,8 @@ fbq('track', 'PageView');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/site.css">
-<link rel="stylesheet" href="/css/halloween.css">
 </head>
-<body class="halloween">
+<body>
 
 
 <!-- NAVBAR -->
@@ -448,25 +430,9 @@ fbq('track', 'PageView');
 
 <!-- HERO -->
 <section class="hero">
-  <!-- HERO HALLOWEEN (temporal): ver el comentario al principio del archivo para volver al original -->
-  <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20la%20mesa%20de%20pool%20pa%C3%B1o%20rojo%20de%20%2423.000." target="_blank" class="hero-banner-link" aria-label="Consultar por WhatsApp - Mesa de pool paño rojo $23.000">
-    <picture>
-      <source media="(max-width:600px)" type="image/webp" srcset="/images/mesa-pool-roja-promo-halloween-mobile-640.webp 640w, /images/mesa-pool-roja-promo-halloween-mobile.webp 960w" sizes="100vw" width="960" height="1200">
-      <source media="(max-width:600px)" srcset="/images/mesa-pool-roja-promo-halloween-mobile.jpg" width="960" height="1200">
-      <source type="image/webp" srcset="/images/mesa-pool-roja-promo-halloween-1280.webp 1280w, /images/mesa-pool-roja-promo-halloween.webp 2146w" sizes="100vw" width="2146" height="733">
-      <img class="hero-banner-img" src="/images/mesa-pool-roja-promo-halloween.jpg" alt="Mesa de pool con paño rojo, lista para jugar, a $23.000. Stock limitado, todos los accesorios incluidos y medidas profesionales. Consultá por WhatsApp." width="2146" height="733" loading="eager" fetchpriority="high">
-    </picture>
-  </a>
-  <!-- Botón de WhatsApp debajo del banner: solo en celular (el recorte 4:5 no muestra el botón del banner) -->
-  <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20la%20mesa%20de%20pool%20pa%C3%B1o%20rojo%20de%20%2423.000." target="_blank" class="hero-wa-mobile">
-    <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-    Consultá por WhatsApp
-  </a>
-  <!-- HERO ORIGINAL (restaurar después de Halloween):
   <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="hero-banner-link" aria-label="Consultar por WhatsApp - Mesas de pool desde $22.000">
-    <img class="hero-banner-img" src="/images/hero.jpg" alt="Mesas de pool profesionales desde $22.000, con accesorios incluidos. Envíos a todo Uruguay o retiro disponible." width="2172" height="724">
+    <img class="hero-banner-img" src="/images/hero.jpg" alt="Mesas de pool profesionales desde $22.000, con accesorios incluidos. Envíos a todo Uruguay o retiro disponible." width="2172" height="724" loading="eager" fetchpriority="high">
   </a>
-  -->
   <h1 class="sr-only">Mesas de Pool Profesionales desde $22.000 — Pool Store Uruguay</h1>
 </section>
 
@@ -474,7 +440,7 @@ fbq('track', 'PageView');
 <section class="catalogo-sec" id="catalogo">
   <div class="catalogo-inner">
     <div class="sec-head">
-      <span class="sec-label" data-halloween-text="🎃 Ofertas de terror">Catálogo completo</span>
+      <span class="sec-label">Catálogo completo</span>
       <h2 class="sec-title">Todos nuestros <span class="red">productos</span></h2>
       <p class="sec-desc">Mesas, tacos, lámparas y accesorios. Todo en un solo lugar.</p>
     </div>
@@ -580,7 +546,7 @@ fbq('track', 'PageView');
       <div class="prod-card" data-cat="mesas">
         <div class="prod-img-wrap img-oscura">
           <span class="prod-cat-tag">Mesa</span>
-          <span class="best-seller-badge" data-halloween-text="🎃 Promo Halloween">🔥 Nuevo</span>
+          <span class="best-seller-badge">🔥 Nuevo</span>
           <picture><source type="image/webp" srcset="/images/productos/mesa-pool-pano-rojo-480.webp 480w, /images/productos/mesa-pool-pano-rojo.webp 800w" sizes="(max-width:600px) 50vw, 280px"><img src="/images/mesa-pool-pano-rojo.jpg" alt="Mesa de Pool Paño Rojo con accesorios incluidos" loading="lazy" width="800" height="463"></picture>
           <a class="prod-img-link" href="/productos/mesa-pool-pano-rojo/" tabindex="-1" aria-hidden="true"></a>
         </div>
@@ -788,7 +754,7 @@ fbq('track', 'PageView');
 <section class="pasos-sec">
   <div class="pasos-inner">
     <div class="sec-head">
-      <span class="sec-label" data-halloween-text="👻 Precios que asustan · comprar es facilísimo">Es facilísimo</span>
+      <span class="sec-label">Es facilísimo</span>
       <h2 class="sec-title">Cómo <span class="red">comprar</span></h2>
     </div>
     <div class="pasos-grid">
@@ -1081,7 +1047,6 @@ function galleryNav(btn,dir){
   dots[idx].classList.add('active');
 }
 </script>
-<script src="/js/halloween.js" defer></script>
 
 </body>
 </html>

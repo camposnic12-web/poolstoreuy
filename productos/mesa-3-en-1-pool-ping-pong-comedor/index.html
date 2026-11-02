@@ -2,9 +2,6 @@
 <!-- GENERADO por scripts/build-productos.mjs — no editar a mano. Datos: data/products.json · Plantilla: templates/producto.html -->
 <!--
   Plantilla de las páginas de producto. Los campos entre llaves dobles los completa scripts/build-productos.mjs.
-  TEMA HALLOWEEN 2026 (temporal): son 3 líneas marcadas con "HALLOWEEN" (el link a /css/halloween.css,
-  class="halloween" en el body y el script /js/halloween.js). Para quitarlo, borrarlas y correr
-  node scripts/build-productos.mjs
 -->
 <html lang="es">
 <head>
@@ -105,9 +102,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="stylesheet" href="/css/producto.css">
-<link rel="stylesheet" href="/css/halloween.css"><!-- HALLOWEEN -->
 </head>
-<body class="halloween"><!-- HALLOWEEN -->
+<body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -269,7 +265,7 @@
       <div class="prod-card" data-cat="mesas">
         <div class="prod-img-wrap img-oscura">
           <span class="prod-cat-tag">Mesa</span>
-          <span class="best-seller-badge" data-halloween-text="🎃 Promo Halloween">🔥 Nuevo</span>
+          <span class="best-seller-badge">🔥 Nuevo</span>
           <picture><source type="image/webp" srcset="/images/productos/mesa-pool-pano-rojo-480.webp 480w, /images/productos/mesa-pool-pano-rojo.webp 800w" sizes="(max-width:600px) 50vw, 280px"><img src="/images/mesa-pool-pano-rojo.jpg" alt="Mesa de Pool Paño Rojo con accesorios incluidos" loading="lazy" width="800" height="463"></picture>
           <a class="prod-img-link" href="/productos/mesa-pool-pano-rojo/" tabindex="-1" aria-hidden="true"></a>
         </div>
@@ -317,7 +313,6 @@
 
 <script>document.getElementById('footerYear').textContent=new Date().getFullYear();</script>
 <script src="/js/galeria.js" defer></script>
-<script src="/js/halloween.js" defer></script><!-- HALLOWEEN -->
 
 </body>
 </html>
