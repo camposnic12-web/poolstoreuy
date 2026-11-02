@@ -71,6 +71,11 @@ const mensajeAvisame = p => p.whatsappAvisame ||
   `Hola, quiero que me avisen cuando vuelva a haber stock de: ${p.nombre}${p.precio ? ` (${precioTexto(p.precio)})` : ''}.`;
 const jsonld = obj => JSON.stringify(obj, null, 2).replace(/</g, '\\u003c');
 const textoPrecio = p => p.precio === null ? 'Consultar precio' : precioTexto(p.precio) + (p.precioSufijo || '');
+// Se puede comprar online (carrito de Mercado Pago) solo si está disponible y tiene precio.
+// Es la misma regla que productoComprable() en netlify/functions/lib/catalogo.mjs, que rechaza el resto.
+const comprable = p => p.estado === 'disponible' && Number.isInteger(p.precio) && p.precio > 0;
+const CART_SVG = '<svg width="{t}" height="{t}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
+const cartSvg = t => CART_SVG.replace(/\{t\}/g, t);
 
 // WebP generadas en /images/productos/<nombre>.webp (y <nombre>-480.webp si la foto es grande).
 // Si no existen se usa solo la foto original.
@@ -95,7 +100,7 @@ function tarjeta(p, ind = '      ') {
   const sizes = '(max-width:600px) 50vw, 280px';
   const l = [];
   l.push(`<!-- ${p.nombre} -->`);
-  l.push(`<div class="prod-card" data-cat="${p.categoria}">`);
+  l.push(`<div class="prod-card" data-cat="${p.categoria}" data-product-id="${esc(p.id)}">`);
   l.push(`  <div class="${wrap}">`);
   l.push(`    <span class="prod-cat-tag">${esc(p.etiqueta)}</span>`);
   if (sinStock) l.push(`    <span class="stock-badge ${p.estado}">${ESTADO_TEXTO[p.estado]}</span>`);
@@ -123,6 +128,12 @@ function tarjeta(p, ind = '      ') {
   l.push(`    <div class="prod-name"><a href="${url}">${esc(p.nombre)}</a></div>`);
   l.push(`    <div class="prod-desc">${esc(p.descripcionCorta)}</div>`);
   l.push(`    <div class="prod-price">${esc(textoPrecio(p))}</div>`);
+  // Botón del carrito (lo maneja /js/cart.js)
+  if (comprable(p)) {
+    l.push(`    <button type="button" class="btn-cart-card" data-add-to-cart="${esc(p.id)}" aria-label="Agregar ${esc(p.nombre)} al carrito">`);
+    l.push(`      ${cartSvg(14)}<span class="btn-cart-text">Agregar<span class="btn-cart-long"> al carrito</span></span>`);
+    l.push(`    </button>`);
+  }
   const [msg, texto] = p.estado === 'agotado' ? [mensajeAvisame(p), 'Avisame cuando vuelva'] : [p.whatsappMensaje, p.botonTexto];
   l.push(`    <a href="${esc(waUrl(msg))}" target="_blank" class="btn-wa-card">`);
   l.push(`      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">${WA_PATH}</svg>`);
@@ -229,10 +240,18 @@ function pagina(p) {
   i.push(`    </div>`);
   i.push(`    <p class="ficha-resumen">${esc(p.descripcionCorta)}</p>`);
   const [msg, texto] = agotado ? [mensajeAvisame(p), 'Avisame cuando vuelva'] : [p.whatsappMensaje, 'Consultar por WhatsApp'];
-  i.push(`    <a href="${esc(waUrl(msg))}" target="_blank" class="btn-wa-grande">`);
-  i.push(`      <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">${WA_PATH}</svg>`);
-  i.push(`      ${texto}`);
-  i.push(`    </a>`);
+  i.push(`    <div class="ficha-acciones">`);
+  if (comprable(p)) {
+    i.push(`      <button type="button" class="btn-comprar-grande" data-add-to-cart="${esc(p.id)}" aria-label="Comprar ${esc(p.nombrePagina)}: agregar al carrito">`);
+    i.push(`        ${cartSvg(22)}`);
+    i.push(`        Comprar`);
+    i.push(`      </button>`);
+  }
+  i.push(`      <a href="${esc(waUrl(msg))}" target="_blank" class="btn-wa-grande">`);
+  i.push(`        <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">${WA_PATH}</svg>`);
+  i.push(`        ${texto}`);
+  i.push(`      </a>`);
+  i.push(`    </div>`);
   if (p.descripcion?.trim()) {
     i.push(`    <section class="ficha-bloque">`);
     i.push(`      <h2>Descripción</h2>`);

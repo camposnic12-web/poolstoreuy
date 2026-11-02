@@ -1,21 +1,86 @@
-# example netlify.toml
 [build]
   command = "# no build command"
+  publish = "."
   functions = "netlify/functions"
-  publish = ""
 
-  ## Uncomment to use this redirect for Single Page Applications like create-react-app.
-  ## Not needed for static site generators.
-  #[[redirects]]
-  #  from = "/*"
-  #  to = "/index.html"
-  #  status = 200
+# Las rutas /api/create-preference y /api/webhook se declaran en cada función
+# (export const config = { path: ... }), no hace falta redirect.
 
-  ## (optional) Settings for Netlify Dev
-  ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
-  #[dev]
-  #  command = "yarn start" # Command to start your dev server
-  #  port = 3000 # Port that the dev server will be listening on
-  #  publish = "dist" # Folder with the static content for _redirect file
+# El catálogo (precios) entra en el bundle de las funciones: lib/catalogo.mjs lo importa y,
+# por las dudas, también se declara acá. Si cambia un precio, el próximo deploy lo toma.
+[functions]
+  included_files = ["data/products.json"]
 
-  ## more info on configuring this file: https://ntl.fyi/file-based-build-config
+# El sitio se publica desde la raíz del repo: estos archivos no deben ser públicos.
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/node_modules/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/scripts/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/templates/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/docs/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tests/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package-lock.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README_PAGOS.md"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.env.example"
+  to = "/404"
+  status = 404
+  force = true
+
+# Las páginas de resultado de pago no se indexan ni se cachean.
+[[headers]]
+  for = "/pago/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"

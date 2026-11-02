@@ -1,6 +1,13 @@
-# Local Netlify folder
 .netlify
 .DS_Store
 
 # Dependencias de npm
 node_modules/
+
+# Variables de entorno locales (nunca se commitean)
+.env
+.env.*
+!.env.example
+
+# Generado por netlify dev
+deno.lock

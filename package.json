@@ -1,0 +1,13 @@
+{
+  "name": "poolstoreuy",
+  "private": true,
+  "type": "module",
+  "description": "Pool Store UY — sitio estático + funciones de pago (Netlify Functions)",
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node tests/pagos.test.mjs" },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.2",
+    "mercadopago": "^3.6.1",
+    "resend": "^6.31.0"
+  }
+}
