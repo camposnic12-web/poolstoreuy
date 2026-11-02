@@ -99,7 +99,7 @@ function tarjeta(p, ind = '      ') {
   l.push(`  <div class="${wrap}">`);
   l.push(`    <span class="prod-cat-tag">${esc(p.etiqueta)}</span>`);
   if (sinStock) l.push(`    <span class="stock-badge ${p.estado}">${ESTADO_TEXTO[p.estado]}</span>`);
-  else if (p.badge) l.push(`    <span class="best-seller-badge"${p.badgeHalloween ? ` data-halloween-text="${esc(p.badgeHalloween)}"` : ''}>${esc(p.badge)}</span>`);
+  else if (p.badge) l.push(`    <span class="best-seller-badge">${esc(p.badge)}</span>`);
   if (p.tarjetaGaleria && p.fotos.length > 1) {
     l.push(`    <div class="prod-gallery">`);
     p.fotos.forEach((f, i) => {

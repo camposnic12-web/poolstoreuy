@@ -80,9 +80,9 @@ Las `caracteristicas` con `"valor": ""` no se muestran. Sirven como recordatorio
 
 Los pendientes van **solo** en la lista `"TODO"`, que nunca se publica. Si un texto que se muestra (nombre, descripción, característica, alt, etc.) contiene "TODO", el script avisa y no genera nada.
 
-## Tema de temporada (Halloween)
+## Tema de temporada
 
-En las páginas de producto depende solo de `templates/producto.html`: son 3 líneas marcadas `HALLOWEEN`. Para quitarlo, borrá esas líneas y regenerá. Los pasos de la home están en el comentario al principio de `index.html`.
+El tema Halloween 2026 se sacó el 2026-11-02 (rama `fin-halloween`). Si se quiere reusar para otra temporada, el PR de esa rama muestra todo lo que tocaba: `css/halloween.css`, `js/halloween.js`, el hero y las meta og/twitter de `index.html` y 3 líneas de `templates/producto.html`. Las imágenes `images/mesa-pool-roja-promo-halloween*` quedaron en el repo.
 
 ## Pruebas
 
