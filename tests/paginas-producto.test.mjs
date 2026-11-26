@@ -329,7 +329,7 @@ console.log('\n6. Refresh: sin Halloween, barra de celular, movimiento reducido,
   await rm.page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
   const anim = await rm.page.evaluate(() => [...document.querySelectorAll('*')].flatMap(e => [e, ...['::before', '::after'].map(p => [e, p])]).filter(x => {
     const cs = Array.isArray(x) ? getComputedStyle(x[0], x[1]) : getComputedStyle(x);
-    return cs.animationName !== 'none';
+    return cs.animationName && cs.animationName !== 'none'; // <source> y otros sin render dan ''
   }).length);
   anim === 0 ? ok('prefers-reduced-motion: ninguna animación activa') : mal(`prefers-reduced-motion: ${anim} elementos animados`);
   await rm.page.close();
@@ -339,6 +339,23 @@ console.log('\n6. Refresh: sin Halloween, barra de celular, movimiento reducido,
     const { page } = await abrir('/', vp);
     const lcp = await page.evaluate(() => new Promise(r => new PerformanceObserver(l => { const e = l.getEntries().at(-1); r(e.element ? e.element.className || e.element.tagName : e.url); }).observe({ type: 'largest-contentful-paint', buffered: true })));
     lcp === 'hero-titulo' ? ok(`${vp}: el LCP de la home es el H1 del hero`) : mal(`${vp}: LCP de la home = ${lcp}`);
+    await page.close();
+  }
+
+  // Video del hero: nada se baja antes del load; al verse arranca solo, muteado, inline y en loop
+  for (const vp of Object.keys(VIEWPORTS)) {
+    const page = await browser.newPage();
+    await page.setViewport(VIEWPORTS[vp]);
+    let cargado = false, antes = 0;
+    page.on('load', () => { cargado = true; });
+    page.on('request', r => { if (/\/videos\//.test(r.url()) && !cargado) antes++; });
+    await page.goto(BASE + '/', { waitUntil: 'load' });
+    await page.evaluate(() => document.querySelector('.phone').scrollIntoView({ block: 'center' }));
+    await page.waitForFunction(() => { const v = document.querySelector('.phone video'); return v && !v.paused && v.currentTime > 0.3; }, { timeout: 15000 }).catch(() => {});
+    const v = await page.evaluate(() => { const v = document.querySelector('.phone video'); return v && { muted: v.muted, loop: v.loop, inline: v.hasAttribute('playsinline'), controles: v.controls, sigue: !v.paused }; });
+    v && v.muted && v.loop && v.inline && !v.controles && v.sigue && antes === 0
+      ? ok(`${vp}: video del hero arranca solo, muteado, inline y en loop (0 pedidos antes del load)`)
+      : mal(`${vp}: video del hero ${JSON.stringify(v)}, pedidos antes del load: ${antes}`);
     await page.close();
   }
 

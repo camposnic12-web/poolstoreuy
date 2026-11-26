@@ -11,12 +11,13 @@ Cuando algo se resuelve, borralo de esta lista.
 
 ## Video del hero ("Entrega real")
 
-- [ ] **Falta el video.** `~/Downloads/video-entrega.mov` no estaba en la Mac el 2026-11-25. Mientras tanto, el marco de celular del hero muestra una foto real de entrega (`images/entregas/entrega-quincho-*.webp`, mesa verde recién instalada en un quincho; misma serie que las fotos de "Nuestras mesas en acción").
-  Para poner el video:
-  1. `FFMPEG=$(npx -y -p ffmpeg-static node -p "require('ffmpeg-static')") scripts/video-entrega.sh ~/Downloads/video-entrega.mov entrega` → `videos/entrega.mp4`, `.webm` y el poster. Revisá que el MP4 pese ≤ 1,5 MB.
-  2. En `index.html`, al `<div class="phone">` del hero sumale `data-video="/videos/entrega"` y cambiá la foto de adentro por `videos/entrega-poster.webp` (+ `.jpg`), con `width="540" height="960"`.
-  3. `js/video.js` ya hace el resto: no baja el video hasta que la página cargó y el marco está en pantalla, autoplay muteado en loop, y con ahorro de datos o movimiento reducido deja el poster con un botón de play.
-  4. Correr las pruebas: la home tiene que seguir dando el H1 como LCP.
+Puesto el 2026-11-25: `videos/entrega.mp4` (H.264, 404×720, 30 fps, sin audio, 18,8 s, 1.260 KB), generado con
+`FFMPEG=… scripts/video-entrega.sh ~/Downloads/video-entrega.mov entrega`. La foto del quincho
+(`images/entregas/entrega-quincho-*`) es el poster y el respaldo si el video no carga. Sin WebM: al mismo peso salía peor que el MP4
+(SSIM 0,914 vs 0,944); se puede volver a probar con `WEBM=1` y `data-video-formatos="webm mp4"`.
+Para cambiar el video: correr el script con el nuevo archivo (mismo nombre) y las pruebas (el H1 tiene que seguir siendo el LCP).
+
+- [ ] Probar en un iPhone y un Android reales (en la Mac se probó con WebKit emulando iPhone y con Chrome emulando Android). En iPhone con "Modo de bajo consumo" Safari no deja autoplay: queda el poster con los controles del video.
 - [ ] Si llegan más videos de entregas (`video-entrega-2…`): sección "Entregas reales" con 2–3 videos en fila (en celular, carrusel horizontal), cada uno con `data-video` (el mismo script los carga recién cuando entran en pantalla).
 
 ## Por producto

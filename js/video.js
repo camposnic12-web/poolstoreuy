@@ -2,7 +2,8 @@
   Videos livianos (hero "Entrega real" y, si se suma, la sección "Entregas reales").
 
   Marcado: un contenedor con data-video="/videos/<nombre>" y adentro la foto/poster (<picture><img>).
-  Este script busca /videos/<nombre>.webm y /videos/<nombre>.mp4.
+  Este script carga /videos/<nombre>.mp4 (con data-video-formatos="webm mp4", también el .webm primero).
+  Si el video no carga, queda la foto.
 
   - No baja nada hasta que el contenedor entra en pantalla y la página terminó de cargar:
     el video nunca compite con el texto del hero (LCP).
@@ -22,18 +23,16 @@
     var base = c.getAttribute('data-video');
     var img = c.querySelector('img');
     var v = document.createElement('video');
-    v.muted = true; v.loop = true; v.playsInline = true;
+    v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; // iOS: autoplay solo si está muteado e inline
     v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('loop', '');
     v.preload = 'auto';
     if (conControles) v.controls = true;
-    if (img) {
-      v.poster = img.currentSrc || img.src;
-      v.width = img.width; v.height = img.height;
-    }
+    // Poster = la foto que ya bajó el navegador (si todavía no bajó, no se pide otra: la foto sigue visible hasta que el video arranca)
+    if (img && img.complete && img.currentSrc) v.poster = img.currentSrc;
     v.setAttribute('aria-label', c.getAttribute('data-video-label') || (img && img.alt) || 'Video');
-    [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (t) {
+    (c.getAttribute('data-video-formatos') || 'mp4').split(/\s+/).forEach(function (ext) {
       var s = document.createElement('source');
-      s.src = base + '.' + t[0]; s.type = t[1];
+      s.src = base + '.' + ext; s.type = 'video/' + ext;
       v.appendChild(s);
     });
     return v;
@@ -51,8 +50,15 @@
       if (pic && pic.parentNode) pic.parentNode.removeChild(pic);
     };
     v.addEventListener('playing', listo, { once: true });
+    // Si el video no carga (red, formato), se saca y queda la foto
+    var fallo = function () { if (v.parentNode && !v.currentTime) { v.parentNode.removeChild(v); var b = c.querySelector('.phone-play'); if (b) b.hidden = true; } };
+    var ultimo = v.querySelector('source:last-child');
+    if (ultimo) ultimo.addEventListener('error', fallo);
+    v.addEventListener('error', fallo);
     var p = v.play();
-    if (p && p.catch) p.catch(function () { listo(); v.controls = true; }); // si el navegador no deja autoplay, quedan los controles
+    if (p && p.catch) p.catch(function (e) {
+      if (e && e.name === 'NotAllowedError') { listo(); v.controls = true; } // el navegador no deja autoplay: quedan los controles
+    });
   }
 
   function botonPlay(c) {
@@ -82,6 +88,13 @@
     });
     conts.forEach(function (c) { pausa.observe(c); });
   }
+
+  // Si se activa "reducir movimiento" con la página abierta: se pausa y queda con controles
+  var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq && mq.addEventListener) mq.addEventListener('change', function (e) {
+    if (!e.matches) return;
+    document.querySelectorAll('[data-video] video').forEach(function (v) { v.pause(); v.controls = true; });
+  });
 
   if (document.readyState === 'complete') iniciar();
   else window.addEventListener('load', iniciar, { once: true });

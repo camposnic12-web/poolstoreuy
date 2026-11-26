@@ -11,5 +11,15 @@ http.createServer((req,res)=>{
     f = path.join(f,'index.html');
   }
   if (!fs.existsSync(f)) { res.writeHead(404); return res.end('404'); }
-  res.writeHead(200,{'Content-Type':T[path.extname(f)]||'application/octet-stream'}); fs.createReadStream(f).pipe(res);
+  const tipo=T[path.extname(f)]||'application/octet-stream', size=fs.statSync(f).size;
+  // Rangos de bytes (como Netlify): Safari no reproduce un video si el servidor no responde 206 a "Range"
+  const m=/^bytes=(\d*)-(\d*)$/.exec(req.headers.range||'');
+  if (m) {
+    let a=m[1]===''?size-+m[2]:+m[1], b=m[1]!==''&&m[2]!==''?+m[2]:size-1;
+    if (a>b||a>=size) { res.writeHead(416,{'Content-Range':`bytes */${size}`}); return res.end(); }
+    b=Math.min(b,size-1);
+    res.writeHead(206,{'Content-Type':tipo,'Accept-Ranges':'bytes','Content-Range':`bytes ${a}-${b}/${size}`,'Content-Length':b-a+1});
+    return fs.createReadStream(f,{start:a,end:b}).pipe(res);
+  }
+  res.writeHead(200,{'Content-Type':tipo,'Accept-Ranges':'bytes','Content-Length':size}); fs.createReadStream(f).pipe(res);
 }).listen(PORT,()=>console.log('http://localhost:'+PORT));

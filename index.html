@@ -473,8 +473,8 @@ fbq('track', 'PageView');
     <div class="hero-media">
       <div class="phone-wrap">
         <span class="phone-tag">Entrega real</span>
-        <!-- Para el video: data-video="/videos/entrega" (busca entrega.webm, entrega.mp4) — ver docs/PENDIENTES.md -->
-        <div class="phone">
+        <!-- Video de una entrega real (js/video.js lo carga después del load). La foto es el poster y el respaldo si el video no carga -->
+        <div class="phone" data-video="/videos/entrega" data-video-label="Video de una entrega real: mesa de pool de paño verde con sus accesorios">
           <picture><source type="image/webp" srcset="/images/entregas/entrega-quincho-360.webp 360w, /images/entregas/entrega-quincho-540.webp 540w" sizes="(max-width:900px) 250px, 300px"><img src="/images/entregas/entrega-quincho-540.jpg" alt="Mesa de pool de paño verde recién entregada e instalada en un quincho" width="540" height="960" loading="lazy" decoding="async"></picture>
         </div>
       </div>
@@ -1095,7 +1095,9 @@ function toggleFaq(btn){
   const barra=document.getElementById('barraMovil'), ancla=document.getElementById('heroBotones');
   if(!barra||!ancla)return;
   if(!('IntersectionObserver' in window)){barra.classList.remove('oculta');return;}
-  new IntersectionObserver(([e])=>barra.classList.toggle('oculta',e.isIntersecting||e.boundingClientRect.top>0)).observe(ancla);
+  // rootMargin: los botones tapados por la navbar fija cuentan como fuera de pantalla
+  const nav=document.querySelector('.navbar');
+  new IntersectionObserver(([e])=>barra.classList.toggle('oculta',e.isIntersecting||e.boundingClientRect.top>0),{rootMargin:`-${nav?nav.offsetHeight:0}px 0px 0px 0px`}).observe(ancla);
 })();
 document.getElementById('footerYear').textContent=new Date().getFullYear();
 function galleryNav(btn,dir){
