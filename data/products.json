@@ -137,10 +137,9 @@
       "precioSufijo": "",
       "estado": "disponible",
       "badge": "🔥 Nuevo",
-      "fondoOscuro": true,
       "imagen": "images/mesa-pool-pano-rojo.jpg",
       "fotos": [
-        { "src": "/images/mesa-pool-pano-rojo.jpg", "w": 800, "h": 463, "alt": "Mesa de Pool Paño Rojo con accesorios incluidos" }
+        { "src": "/images/mesa-pool-pano-rojo.jpg", "w": 1115, "h": 640, "alt": "Mesa de Pool Paño Rojo con tacos, bolas y triángulo" }
       ],
       "descripcionCorta": "Medidas reglamentarias. Paño rojo. Todos los accesorios incluidos. Envíos a todo Uruguay.",
       "descripcion": "Mesa de pool con paño rojo y medidas reglamentarias. Viene con todos los accesorios para empezar a jugar y la enviamos a todo Uruguay. Stock limitado.",

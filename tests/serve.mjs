@@ -1,7 +1,7 @@
 // Servidor estático mínimo: sirve ROOT como Netlify (index.html en carpetas, 404 si no existe).
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path';
 const ROOT = path.resolve(process.argv[2] || '.'); const PORT = +process.argv[3] || 8787;
-const T = {'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp','.ico':'image/x-icon','.xml':'application/xml','.txt':'text/plain'};
+const T = {'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp','.ico':'image/x-icon','.xml':'application/xml','.txt':'text/plain','.mp4':'video/mp4','.webm':'video/webm','.svg':'image/svg+xml'};
 http.createServer((req,res)=>{
   let p = decodeURIComponent(new URL(req.url,'http://x').pathname);
   let f = path.join(ROOT,p);

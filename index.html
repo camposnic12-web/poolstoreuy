@@ -28,20 +28,24 @@
 <meta property="og:description" content="Mesas de pool con accesorios incluidos. Envíos a todo Uruguay.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://poolstore.uy/">
-<meta property="og:image" content="https://poolstore.uy/images/hero.jpg">
+<meta property="og:image" content="https://poolstore.uy/images/og-poolstore.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pool Store: mesas de pool desde $22.000, armadas en tu casa. Envíos a todo Uruguay.">
 <meta property="og:locale" content="es_UY">
 <meta property="og:site_name" content="Pool Store Uruguay">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pool Store UY — Mesas de Pool Profesionales">
 <meta name="twitter:description" content="Mesas de pool con accesorios incluidos. Envíos a todo Uruguay.">
-<meta name="twitter:image" content="https://poolstore.uy/images/hero.jpg">
+<meta name="twitter:image" content="https://poolstore.uy/images/og-poolstore.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Store",
   "name": "Pool Store Uruguay",
   "url": "https://poolstore.uy/",
-  "image": "https://poolstore.uy/images/hero.jpg",
+  "image": "https://poolstore.uy/images/og-poolstore.jpg",
+  "logo": "https://poolstore.uy/icon-512.png",
   "telephone": "+59897197654",
   "priceRange": "$$",
   "areaServed": "UY",
@@ -82,7 +86,7 @@
       "name": "¿Qué accesorios incluye la mesa?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Viene con paño (verde o azul a elegir), tacos, juego de bolas completo, triángulo y tizas. Todo para empezar a jugar."
+        "text": "Viene con paño (verde, azul o rojo a elegir), tacos, juego de bolas completo, triángulo y tizas. Todo para empezar a jugar."
       }
     },
     {
@@ -393,47 +397,89 @@ fbq('track', 'PageView');
 </script>
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/site.css">
 </head>
-<body>
+<body class="tiene-barra-movil">
 
+<!-- BARRA SUPERIOR (texto que corre; la segunda lista es la copia para el loop) -->
+<div class="topbar">
+  <div class="topbar-track">
+    <ul class="topbar-list">
+      <li>Envíos a todo Uruguay</li>
+      <li>Armado incluido</li>
+      <li>+300 mesas entregadas</li>
+      <li>Accesorios incluidos</li>
+      <li class="dup" aria-hidden="true">Envíos a todo Uruguay</li>
+      <li class="dup" aria-hidden="true">Armado incluido</li>
+      <li class="dup" aria-hidden="true">+300 mesas entregadas</li>
+      <li class="dup" aria-hidden="true">Accesorios incluidos</li>
+    </ul>
+    <ul class="topbar-list" aria-hidden="true">
+      <li>Envíos a todo Uruguay</li>
+      <li>Armado incluido</li>
+      <li>+300 mesas entregadas</li>
+      <li>Accesorios incluidos</li>
+      <li>Envíos a todo Uruguay</li>
+      <li>Armado incluido</li>
+      <li>+300 mesas entregadas</li>
+      <li>Accesorios incluidos</li>
+    </ul>
+  </div>
+</div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="/" class="navbar-logo">
-      <picture><source srcset="/images/logo-pool-store.webp" type="image/webp"><img src="/images/logo-pool-store.png" alt="Pool Store Logo" width="192" height="192"></picture>
-      <span><span style="color:var(--rojo-vivo)">Pool</span>Store</span>
+      <img src="/images/logo-pool-store-128.png" srcset="/images/logo-pool-store-128.png 1x, /images/logo-pool-store-192.png 3x" alt="Pool Store" width="60" height="60">
     </a>
     <ul class="navbar-links">
       <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#como-comprar">Cómo comprar</a></li>
       <li><a href="#faq">Preguntas</a></li>
     </ul>
-    <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="navbar-cta">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-      WhatsApp
-    </a>
+    <div class="navbar-actions">
+      <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="navbar-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+    </div>
   </div>
 </nav>
 
-<!-- PROMO STRIP -->
-<div class="promo-strip">
-  🚚 Envíos a todo Uruguay
-  <span class="sep">|</span>
-  ✅ +300 Mesas Entregadas
-  <span class="sep">|</span>
-  📦 Accesorios incluidos
-  <span class="sep">|</span>
-  🏆 Medidas profesionales
-</div>
-
-<!-- HERO -->
+<!-- HERO: el texto pinta primero (es el LCP); el video/foto de la derecha no compite -->
 <section class="hero">
-  <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="hero-banner-link" aria-label="Consultar por WhatsApp - Mesas de pool desde $22.000">
-    <img class="hero-banner-img" src="/images/hero.jpg" alt="Mesas de pool profesionales desde $22.000, con accesorios incluidos. Envíos a todo Uruguay o retiro disponible." width="2172" height="724" loading="eager" fetchpriority="high">
-  </a>
-  <h1 class="sr-only">Mesas de Pool Profesionales desde $22.000 — Pool Store Uruguay</h1>
+  <div class="hero-rayos" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-texto">
+      <p class="hero-kicker">Mesas de pool en Uruguay</p>
+      <h1 class="hero-titulo">Tu mesa de pool profesional, <span class="resaltado">armada en tu casa</span></h1>
+      <p class="hero-precio"><span class="hero-precio-desde">Desde</span> <span class="hero-precio-num">$22.000</span></p>
+      <div class="hero-botones" id="heroBotones">
+        <a href="#catalogo" class="btn btn-rojo btn-grande btn-brillo">Ver mesas</a>
+        <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web.%20Quiero%20consultar%20por%20las%20mesas%20de%20pool." target="_blank" class="btn btn-wa btn-grande">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <ul class="hero-checks">
+        <li>Accesorios incluidos</li>
+        <li>Armado incluido</li>
+        <li>Envíos a todo Uruguay</li>
+      </ul>
+    </div>
+    <div class="hero-media">
+      <div class="phone-wrap">
+        <span class="phone-tag">Entrega real</span>
+        <!-- Para el video: data-video="/videos/entrega" (busca entrega.webm, entrega.mp4) — ver docs/PENDIENTES.md -->
+        <div class="phone">
+          <picture><source type="image/webp" srcset="/images/entregas/entrega-quincho-360.webp 360w, /images/entregas/entrega-quincho-540.webp 540w" sizes="(max-width:900px) 250px, 300px"><img src="/images/entregas/entrega-quincho-540.jpg" alt="Mesa de pool de paño verde recién entregada e instalada en un quincho" width="540" height="960" loading="lazy" decoding="async"></picture>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- CATÁLOGO -->
@@ -544,10 +590,10 @@ fbq('track', 'PageView');
 
       <!-- Mesa de Pool — Paño Rojo -->
       <div class="prod-card" data-cat="mesas">
-        <div class="prod-img-wrap img-oscura">
+        <div class="prod-img-wrap">
           <span class="prod-cat-tag">Mesa</span>
           <span class="best-seller-badge">🔥 Nuevo</span>
-          <picture><source type="image/webp" srcset="/images/productos/mesa-pool-pano-rojo-480.webp 480w, /images/productos/mesa-pool-pano-rojo.webp 800w" sizes="(max-width:600px) 50vw, 280px"><img src="/images/mesa-pool-pano-rojo.jpg" alt="Mesa de Pool Paño Rojo con accesorios incluidos" loading="lazy" width="800" height="463"></picture>
+          <picture><source type="image/webp" srcset="/images/productos/mesa-pool-pano-rojo-480.webp 480w, /images/productos/mesa-pool-pano-rojo.webp 1115w" sizes="(max-width:600px) 50vw, 280px"><img src="/images/mesa-pool-pano-rojo.jpg" alt="Mesa de Pool Paño Rojo con tacos, bolas y triángulo" loading="lazy" width="1115" height="640"></picture>
           <a class="prod-img-link" href="/productos/mesa-pool-pano-rojo/" tabindex="-1" aria-hidden="true"></a>
         </div>
         <div class="prod-body">
@@ -750,8 +796,8 @@ fbq('track', 'PageView');
   </div>
 </section>
 
-<!-- COMO COMPRAR -->
-<section class="pasos-sec">
+<!-- CÓMO COMPRAR -->
+<section class="pasos-sec sec-oscura" id="como-comprar">
   <div class="pasos-inner">
     <div class="sec-head">
       <span class="sec-label">Es facilísimo</span>
@@ -777,16 +823,15 @@ fbq('track', 'PageView');
   </div>
 </section>
 
-<!-- CLIENTES CAROUSEL -->
+<!-- MESAS EN ACCIÓN (la segunda mitad es la copia para el loop) -->
 <section class="clientes-sec">
   <div class="clientes-inner">
-    <div class="clientes-head">
-      <span class="sec-label" style="color:rgba(255,255,255,0.5);">Mesas en todo Uruguay</span>
-      <h3 class="clientes-title">Nuestras mesas <span>en acción</span></h3>
+    <div class="sec-head">
+      <span class="sec-label">Mesas en todo Uruguay</span>
+      <h2 class="sec-title">Nuestras mesas <span class="red">en acción</span></h2>
     </div>
     <div class="bubbles-track-wrap">
       <div class="bubbles-track" id="bubblesTrack">
-        
         <div class="bubble-item">
           <div class="bubble-img">
             <img src="/images/mesa-instalada-en-hogar-pano-azul.jpg" alt="Mesa instalada en hogar — paño azul" loading="lazy" width="400" height="400">
@@ -823,40 +868,39 @@ fbq('track', 'PageView');
           </div>
           <p class="bubble-label">+300 entregadas</p>
         </div>
-        
-        <div class="bubble-item">
+        <div class="bubble-item" aria-hidden="true">
           <div class="bubble-img">
-            <img src="/images/mesa-instalada-en-hogar-pano-azul.jpg" alt="Mesa instalada en hogar — paño azul" loading="lazy" width="400" height="400">
+            <img src="/images/mesa-instalada-en-hogar-pano-azul.jpg" alt="" loading="lazy" width="400" height="400">
           </div>
           <p class="bubble-label">+300 entregadas</p>
         </div>
-        <div class="bubble-item">
+        <div class="bubble-item" aria-hidden="true">
           <div class="bubble-img">
-            <img src="/images/mesa-instalada-en-quincho-pano-verde.jpg" alt="Mesa instalada en quincho — paño verde" loading="lazy" width="400" height="400">
+            <img src="/images/mesa-instalada-en-quincho-pano-verde.jpg" alt="" loading="lazy" width="400" height="400">
           </div>
           <p class="bubble-label">+300 entregadas</p>
         </div>
-        <div class="bubble-item">
+        <div class="bubble-item" aria-hidden="true">
           <div class="bubble-img">
-            <img src="/images/mesa-instalada-en-local-pano-verde.jpg" alt="Mesa instalada en local — paño verde" loading="lazy" width="400" height="400">
+            <img src="/images/mesa-instalada-en-local-pano-verde.jpg" alt="" loading="lazy" width="400" height="400">
           </div>
           <p class="bubble-label">+300 entregadas</p>
         </div>
-        <div class="bubble-item">
+        <div class="bubble-item" aria-hidden="true">
           <div class="bubble-img">
-            <img src="/images/mesa-instalada-en-barberia-pano-azul.jpg" alt="Mesa instalada en barbería — paño azul" loading="lazy" width="400" height="400">
+            <img src="/images/mesa-instalada-en-barberia-pano-azul.jpg" alt="" loading="lazy" width="400" height="400">
           </div>
           <p class="bubble-label">+300 entregadas</p>
         </div>
-        <div class="bubble-item">
+        <div class="bubble-item" aria-hidden="true">
           <div class="bubble-img">
-            <img src="/images/mesa-instalada-en-restaurant-pano-azul.jpg" alt="Mesa instalada en restaurant — paño azul" loading="lazy" width="400" height="400">
+            <img src="/images/mesa-instalada-en-restaurant-pano-azul.jpg" alt="" loading="lazy" width="400" height="400">
           </div>
           <p class="bubble-label">+300 entregadas</p>
         </div>
-        <div class="bubble-item">
+        <div class="bubble-item" aria-hidden="true">
           <div class="bubble-img">
-            <img src="/images/mesa-instalada-con-bar-pano-verde.jpg" alt="Mesa instalada con bar — paño verde" loading="lazy" width="400" height="400">
+            <img src="/images/mesa-instalada-con-bar-pano-verde.jpg" alt="" loading="lazy" width="400" height="400">
           </div>
           <p class="bubble-label">+300 entregadas</p>
         </div>
@@ -865,18 +909,65 @@ fbq('track', 'PageView');
   </div>
 </section>
 
+<!-- RESEÑAS -->
+<section class="resenas-sec sec-oscura">
+  <div class="resenas-inner">
+    <div class="sec-head">
+      <span class="sec-label">Lo que dicen nuestros clientes</span>
+      <h2 class="sec-title">Reseñas <span class="red">reales</span></h2>
+    </div>
+    <div class="resenas-grid">
+      <div class="resena-card">
+        <div class="resena-quote" aria-hidden="true">"</div>
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-text">"Compré una mesa para mi barbería y quedó flama. Recomendables 100%."</p>
+        <div class="resena-author">
+          <div class="resena-avatar">M</div>
+          <div>
+            <div class="resena-name">Martín</div>
+            <div class="resena-verified">✓ Compra verificada</div>
+          </div>
+        </div>
+      </div>
+      <div class="resena-card">
+        <div class="resena-quote" aria-hidden="true">"</div>
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-text">"Quedé muy conforme con el servicio. La dejaron en casa y armada. 10 puntos la verdad."</p>
+        <div class="resena-author">
+          <div class="resena-avatar">D</div>
+          <div>
+            <div class="resena-name">Diego</div>
+            <div class="resena-verified">✓ Compra verificada</div>
+          </div>
+        </div>
+      </div>
+      <div class="resena-card">
+        <div class="resena-quote" aria-hidden="true">"</div>
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-text">"Les sigo comprando artículos para mi club donde tengo varias mesas. Siempre cumplen."</p>
+        <div class="resena-author">
+          <div class="resena-avatar">S</div>
+          <div>
+            <div class="resena-name">Seba</div>
+            <div class="resena-verified">✓ Compra verificada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ALQUILER BANNER -->
+<!-- ALQUILER -->
 <section class="alquiler-banner">
   <div class="alquiler-inner">
     <div class="alquiler-left">
       <span class="alquiler-tag">Servicio disponible</span>
-      <h3 class="alquiler-title">¿Querés una mesa<br>por el día o el fin de semana?</h3>
+      <h2 class="alquiler-title">¿Querés una mesa<br>por el día o el fin de semana?</h2>
       <p class="alquiler-desc">Alquilamos mesas de pool profesionales para eventos, reuniones, cumpleaños o simplemente para disfrutar en casa.</p>
     </div>
     <div class="alquiler-right">
-      <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20el%20alquiler%20de%20mesa%20de%20pool%20por%20d%C3%ADa%20o%20fin%20de%20semana." target="_blank" class="btn-alquiler">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      <a href="https://wa.me/59897197654?text=Hola%2C%20quiero%20consultar%20por%20el%20alquiler%20de%20mesa%20de%20pool%20por%20d%C3%ADa%20o%20fin%20de%20semana." target="_blank" class="btn btn-wa btn-grande">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         Consultar por alquiler
       </a>
       <div class="alquiler-badges">
@@ -895,46 +986,46 @@ fbq('track', 'PageView');
       <span class="sec-label">Preguntas frecuentes</span>
       <h2 class="sec-title">Dudas que <span class="red">resolvemos</span></h2>
     </div>
-    <div style="margin-top:1.5rem;">
+    <div class="faq-lista">
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
           <span class="faq-q-text">¿Hacen envíos a todo Uruguay?</span>
-          <span class="faq-icon">+</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-a">Sí, enviamos a todo el país. Coordinamos el flete directamente con vos para que llegue a tu puerta o a sucursal cercana.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
           <span class="faq-q-text">¿Se puede retirar en persona?</span>
-          <span class="faq-icon">+</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-a">Sí, hay punto de retiro disponible. Coordinás por WhatsApp el día y horario y lo retirás sin costo de envío.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
           <span class="faq-q-text">¿La mesa viene armada o hay que armarla?</span>
-          <span class="faq-icon">+</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-a">La armamos nosotros en tu casa, incluido en el precio. Llegamos, instalamos y quedás jugando desde el primer día.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
           <span class="faq-q-text">¿Qué accesorios incluye la mesa?</span>
-          <span class="faq-icon">+</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a">Viene con paño (verde o azul a elegir), tacos, juego de bolas completo, triángulo y tizas. Todo para empezar a jugar.</div>
+        <div class="faq-a">Viene con paño (verde, azul o rojo a elegir), tacos, juego de bolas completo, triángulo y tizas. Todo para empezar a jugar.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
           <span class="faq-q-text">¿Las medidas son profesionales?</span>
-          <span class="faq-icon">+</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-a">Sí. Mesas con medidas reglamentarias, iguales a las usadas en clubes, bares y torneos profesionales.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
           <span class="faq-q-text">¿Puedo comprar solo accesorios sin la mesa?</span>
-          <span class="faq-icon">+</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-a">Sí, vendemos tacos, lámparas, taqueras y más por separado. Consultá disponibilidad y precios por WhatsApp.</div>
       </div>
@@ -942,71 +1033,27 @@ fbq('track', 'PageView');
   </div>
 </section>
 
-
-<!-- RESEÑAS -->
-<section class="resenas-sec">
-  <div class="resenas-inner">
-    <div class="sec-head">
-      <span class="sec-label" style="color:rgba(255,255,255,0.45);">Lo que dicen nuestros clientes</span>
-      <h2 class="sec-title" style="color:#fff;">Reseñas <span class="red">reales</span></h2>
-    </div>
-    <div class="resenas-grid">
-      
-      <div class="resena-card">
-        <div class="resena-quote">"</div>
-        <div class="resena-stars">★★★★★</div>
-        <p class="resena-text">"Compré una mesa para mi barbería y quedó flama. Recomendables 100%."</p>
-        <div class="resena-author">
-          <div class="resena-avatar">M</div>
-          <div>
-            <div class="resena-name">Martín</div>
-            <div class="resena-verified">✓ Compra verificada</div>
-          </div>
-        </div>
-      </div>
-      <div class="resena-card">
-        <div class="resena-quote">"</div>
-        <div class="resena-stars">★★★★★</div>
-        <p class="resena-text">"Quedé muy conforme con el servicio. La dejaron en casa y armada. 10 puntos la verdad."</p>
-        <div class="resena-author">
-          <div class="resena-avatar">D</div>
-          <div>
-            <div class="resena-name">Diego</div>
-            <div class="resena-verified">✓ Compra verificada</div>
-          </div>
-        </div>
-      </div>
-      <div class="resena-card">
-        <div class="resena-quote">"</div>
-        <div class="resena-stars">★★★★★</div>
-        <p class="resena-text">"Les sigo comprando artículos para mi club donde tengo varias mesas. Siempre cumplen."</p>
-        <div class="resena-author">
-          <div class="resena-avatar">S</div>
-          <div>
-            <div class="resena-name">Seba</div>
-            <div class="resena-verified">✓ Compra verificada</div>
-          </div>
-        </div>
-      </div>
+<!-- CIERRE -->
+<section class="cta-sec">
+  <div class="hero-rayos" aria-hidden="true"></div>
+  <div class="cta-inner">
+    <span class="sec-label">Envíos a todo Uruguay · Armado incluido</span>
+    <h2>Armá tu sala de pool <span class="red">con todo incluido</span></h2>
+    <p>Mesa, accesorios, tacos y lámparas en un solo lugar. Consultá disponibilidad hoy.</p>
+    <div class="cta-botones">
+      <a href="#catalogo" class="btn btn-rojo btn-grande btn-brillo">Ver mesas</a>
+      <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web%20de%20Pool%20Store.%20Quiero%20consultar%20disponibilidad." target="_blank" class="btn btn-wa btn-grande">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Hablar con Pool Store
+      </a>
     </div>
   </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="cta-sec">
-  <h2>Armá tu sala de pool con todo<br>lo necesario en Pool Store</h2>
-  <p>Mesa, accesorios, tacos y lámparas. Todo en un solo lugar. Consultá disponibilidad hoy.</p>
-  <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web%20de%20Pool%20Store.%20Quiero%20consultar%20disponibilidad." target="_blank" class="btn-cta-blanco">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-    Hablar con Pool Store
-  </a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <a href="/" class="footer-logo">
-    <picture><source srcset="/images/logo-pool-store.webp" type="image/webp"><img src="/images/logo-pool-store.png" alt="Pool Store Logo" width="192" height="192" loading="lazy"></picture>
-    <span class="footer-brand"><span style="color:var(--rojo-vivo)">Pool</span>Store</span>
+    <img src="/images/logo-pool-store-128.png" srcset="/images/logo-pool-store-128.png 1x, /images/logo-pool-store-192.png 3x" alt="Pool Store" width="76" height="76" loading="lazy">
   </a>
   <a href="https://instagram.com/poolstoreuy" target="_blank" class="footer-ig">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1015,10 +1062,19 @@ fbq('track', 'PageView');
   <span class="footer-copy">© <span id="footerYear">2026</span> Pool Store Uruguay</span>
 </footer>
 
-<!-- WA FLOTANTE -->
-<a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web%20de%20Pool%20Store." target="_blank" class="wa-float" title="Consultar por WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+<!-- WHATSAPP FLOTANTE (escritorio; en celular lo reemplaza la barra de abajo) -->
+<a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web%20de%20Pool%20Store." target="_blank" class="wa-float" title="Consultar por WhatsApp" aria-label="Consultar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
+
+<!-- BARRA FIJA EN CELULAR: aparece cuando los botones del hero salen de pantalla -->
+<div class="barra-movil oculta" id="barraMovil">
+  <span class="barra-movil-precio">Desde <strong>$22.000</strong></span>
+  <a href="#catalogo" class="btn btn-rojo btn-brillo">Ver mesas</a>
+  <a href="https://wa.me/59897197654?text=Hola%2C%20vengo%20de%20la%20web%20de%20Pool%20Store." target="_blank" class="barra-movil-wa" aria-label="Consultar por WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.147 1.534 5.893L.054 23.25a.75.75 0 0 0 .916.917l5.412-1.482A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.98 0-3.83-.575-5.385-1.568l-.385-.234-3.994 1.094 1.083-3.908-.254-.405A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  </a>
+</div>
 
 <script>
 function filtrar(cat,btn){
@@ -1031,9 +1087,16 @@ function filtrar(cat,btn){
 function toggleFaq(btn){
   const item=btn.parentElement;
   const open=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!open)item.classList.add('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false');});
+  if(!open){item.classList.add('open');btn.setAttribute('aria-expanded','true');}
 }
+// Barra fija de celular: se muestra cuando los botones del hero ya no se ven
+(function(){
+  const barra=document.getElementById('barraMovil'), ancla=document.getElementById('heroBotones');
+  if(!barra||!ancla)return;
+  if(!('IntersectionObserver' in window)){barra.classList.remove('oculta');return;}
+  new IntersectionObserver(([e])=>barra.classList.toggle('oculta',e.isIntersecting||e.boundingClientRect.top>0)).observe(ancla);
+})();
 document.getElementById('footerYear').textContent=new Date().getFullYear();
 function galleryNav(btn,dir){
   const wrap=btn.closest('.prod-gallery');
@@ -1047,6 +1110,7 @@ function galleryNav(btn,dir){
   dots[idx].classList.add('active');
 }
 </script>
+<script src="/js/video.js" defer></script>
 
 </body>
 </html>
