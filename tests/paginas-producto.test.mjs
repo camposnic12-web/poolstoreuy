@@ -159,7 +159,8 @@ const escalaDe = (page, sel) => page.$eval(sel, el => { const m = getComputedSty
   await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.4);
   await new Promise(r => setTimeout(r, 300));
   const s = await escalaDe(page, '.galeria-principal img');
-  const tope = await page.$eval('.galeria-principal', el => { const r = el.getBoundingClientRect(); return 1 / Math.min(1, r.width / 800, r.height / 463); });
+  const roja = data.products.find(p => p.slug === 'mesa-pool-pano-rojo').fotos[0];
+  const tope = await page.$eval('.galeria-principal', (el, w, h) => { const r = el.getBoundingClientRect(); return 1 / Math.min(1, r.width / w, r.height / h); }, roja.w, roja.h);
   s > 1.05 && s <= Math.min(2.5, tope) + 0.01 ? ok(`hover mesa roja: zoom ${s.toFixed(2)}x (tope tamaño real ${tope.toFixed(2)}x)`) : mal(`hover mesa roja: escala ${s}, tope ${tope}`);
   await page.mouse.move(5, 5); await new Promise(r => setTimeout(r, 300));
   (await escalaDe(page, '.galeria-principal img')) === 1 ? ok('al salir el mouse vuelve a 1x') : mal('no vuelve a 1x');
@@ -297,12 +298,82 @@ console.log('\n5. Home → fichas');
   await page.close();
 }
 
-// ---------- 6. Capturas ----------
-console.log('\n6. Capturas');
+// ---------- 6. Estilo nuevo (refresh 2026) ----------
+console.log('\n6. Refresh: sin Halloween, barra de celular, movimiento reducido, lugar para "Comprar"');
+{
+  const html = paginas.map(u => fs.readFileSync(path.join(REPO, u === '/' ? 'index.html' : u.slice(1) + 'index.html'), 'utf8')).join('\n');
+  /halloween|logo-pool-store\.(png|webp)|images\/logo\.png/i.test(html) ? mal('quedan referencias a Halloween o al logo viejo') : ok('ninguna página referencia Halloween ni el logo rojo viejo');
+  const faq = fs.readFileSync(path.join(REPO, 'index.html'), 'utf8').match(/paño \(verde, azul o rojo a elegir\)/g) || [];
+  faq.length === 2 ? ok('FAQ de accesorios con paño rojo (HTML y JSON-LD)') : mal('FAQ paño rojo: ' + faq.length);
+
+  // Celular: el botón flotante de WhatsApp no se muestra (lo reemplaza la barra); la barra aparece al bajar
+  const { page } = await abrir('/', 'celular');
+  const antes = await page.evaluate(() => ({ float: getComputedStyle(document.querySelector('.wa-float')).display, oculta: document.getElementById('barraMovil').classList.contains('oculta') }));
+  await page.evaluate(() => document.getElementById('catalogo').scrollIntoView());
+  await new Promise(r => setTimeout(r, 500));
+  const despues = await page.evaluate(() => {
+    const b = document.getElementById('barraMovil').getBoundingClientRect();
+    return { oculta: document.getElementById('barraMovil').classList.contains('oculta'), abajo: Math.round(b.bottom) === innerHeight, wa: !!document.querySelector('.barra-movil-wa[href*="wa.me"]'), ver: document.querySelector('.barra-movil .btn')?.getAttribute('href') };
+  });
+  antes.float === 'none' && antes.oculta && !despues.oculta && despues.abajo && despues.wa && despues.ver === '#catalogo'
+    ? ok('celular: sin botón flotante; la barra "Desde $22.000 · Ver mesas" + WhatsApp aparece al pasar el hero')
+    : mal('barra celular ' + JSON.stringify({ antes, despues }));
+  await page.close();
+  const esc = await abrir('/', 'escritorio');
+  const d = await esc.page.evaluate(() => ({ float: getComputedStyle(document.querySelector('.wa-float')).display, barra: getComputedStyle(document.getElementById('barraMovil')).display }));
+  d.float !== 'none' && d.barra === 'none' ? ok('escritorio: botón flotante de WhatsApp, sin barra de celular') : mal('escritorio barra/flotante ' + JSON.stringify(d));
+  await esc.page.close();
+
+  // prefers-reduced-motion: nada animado
+  const rm = await abrir('/', 'escritorio');
+  await rm.page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+  const anim = await rm.page.evaluate(() => [...document.querySelectorAll('*')].flatMap(e => [e, ...['::before', '::after'].map(p => [e, p])]).filter(x => {
+    const cs = Array.isArray(x) ? getComputedStyle(x[0], x[1]) : getComputedStyle(x);
+    return cs.animationName && cs.animationName !== 'none'; // <source> y otros sin render dan ''
+  }).length);
+  anim === 0 ? ok('prefers-reduced-motion: ninguna animación activa') : mal(`prefers-reduced-motion: ${anim} elementos animados`);
+  await rm.page.close();
+
+  // LCP de la home = el H1 del hero (el video/foto del marco no compite)
+  for (const vp of Object.keys(VIEWPORTS)) {
+    const { page } = await abrir('/', vp);
+    const lcp = await page.evaluate(() => new Promise(r => new PerformanceObserver(l => { const e = l.getEntries().at(-1); r(e.element ? e.element.className || e.element.tagName : e.url); }).observe({ type: 'largest-contentful-paint', buffered: true })));
+    lcp === 'hero-titulo' ? ok(`${vp}: el LCP de la home es el H1 del hero`) : mal(`${vp}: LCP de la home = ${lcp}`);
+    await page.close();
+  }
+
+  // Video del hero: nada se baja antes del load; al verse arranca solo, muteado, inline y en loop
+  for (const vp of Object.keys(VIEWPORTS)) {
+    const page = await browser.newPage();
+    await page.setViewport(VIEWPORTS[vp]);
+    let cargado = false, antes = 0;
+    page.on('load', () => { cargado = true; });
+    page.on('request', r => { if (/\/videos\//.test(r.url()) && !cargado) antes++; });
+    await page.goto(BASE + '/', { waitUntil: 'load' });
+    await page.evaluate(() => document.querySelector('.phone').scrollIntoView({ block: 'center' }));
+    await page.waitForFunction(() => { const v = document.querySelector('.phone video'); return v && !v.paused && v.currentTime > 0.3; }, { timeout: 15000 }).catch(() => {});
+    const v = await page.evaluate(() => { const v = document.querySelector('.phone video'); return v && { muted: v.muted, loop: v.loop, inline: v.hasAttribute('playsinline'), controles: v.controls, sigue: !v.paused }; });
+    v && v.muted && v.loop && v.inline && !v.controles && v.sigue && antes === 0
+      ? ok(`${vp}: video del hero arranca solo, muteado, inline y en loop (0 pedidos antes del load)`)
+      : mal(`${vp}: video del hero ${JSON.stringify(v)}, pedidos antes del load: ${antes}`);
+    await page.close();
+  }
+
+  // Fichas: los botones van en .ficha-acciones (ahí entra "Comprar" de Mercado Pago)
+  const f = await abrir('/productos/mesa-pool-pano-verde/', 'escritorio');
+  (await f.page.$('.ficha-acciones > .btn-wa-grande')) ? ok('ficha: .ficha-acciones con el botón de WhatsApp (lugar para "Comprar")') : mal('falta .ficha-acciones');
+  await f.page.close();
+}
+
+// ---------- 7. Capturas ----------
+console.log('\n7. Capturas');
 for (const [url, nombre] of [['/', 'home'], ['/productos/mesa-pool-pano-rojo/', 'mesa-pool-pano-rojo'], ['/productos/mesa-pool-pano-verde/', 'mesa-pool-pano-verde'], ['/productos/mesa-3-en-1-pool-ping-pong-comedor/', 'mesa-3-en-1'], ['/productos/mesa-pool-profesional-con-tapa/', 'mesa-con-tapa-agotada']]) {
   for (const [vp, w] of [['escritorio', 1440], ['celular', 390]]) {
     const { page } = await abrir(url, vp);
     await page.evaluate(async () => { for (const i of document.images) i.loading = 'eager'; await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))); await document.fonts.ready; });
+    // Chrome no captura más de ~16.000 px de alto: si la página a 2x se pasa, la captura va a 1x
+    const alto = await page.evaluate(() => document.documentElement.scrollHeight);
+    if (alto * (VIEWPORTS[vp].deviceScaleFactor || 1) > 16000) await page.setViewport({ ...VIEWPORTS[vp], deviceScaleFactor: 1 });
     await page.screenshot({ path: path.join(CAPS, `${nombre}-${w}.png`), fullPage: true });
     await page.close();
   }

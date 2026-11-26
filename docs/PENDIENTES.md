@@ -9,6 +9,17 @@ Cuando algo se resuelve, borralo de esta lista.
 - [ ] Confirmar con el cliente el costo del envío y si el armado incluido aplica en todo el país.
 - [ ] Confirmar que las fotos de clientes (mesa instalada) son del mismo modelo que las mesas verde y azul. Mientras tanto están fuera de la galería: ver docs/PRODUCTOS.md, "Fotos de clientes pendientes".
 
+## Video del hero ("Entrega real")
+
+Puesto el 2026-11-25: `videos/entrega.mp4` (H.264, 404×720, 30 fps, sin audio, 18,8 s, 1.260 KB), generado con
+`FFMPEG=… scripts/video-entrega.sh ~/Downloads/video-entrega.mov entrega`. La foto del quincho
+(`images/entregas/entrega-quincho-*`) es el poster y el respaldo si el video no carga. Sin WebM: al mismo peso salía peor que el MP4
+(SSIM 0,914 vs 0,944); se puede volver a probar con `WEBM=1` y `data-video-formatos="webm mp4"`.
+Para cambiar el video: correr el script con el nuevo archivo (mismo nombre) y las pruebas (el H1 tiene que seguir siendo el LCP).
+
+- [ ] Probar en un iPhone y un Android reales (en la Mac se probó con WebKit emulando iPhone y con Chrome emulando Android). En iPhone con "Modo de bajo consumo" Safari no deja autoplay: queda el poster con los controles del video.
+- [ ] Si llegan más videos de entregas (`video-entrega-2…`): sección "Entregas reales" con 2–3 videos en fila (en celular, carrusel horizontal), cada uno con `data-video` (el mismo script los carga recién cuando entran en pantalla).
+
 ## Por producto
 
 ### Mesa Pool Profesional — Paño Verde (`mesa-pool-pano-verde`)
@@ -39,6 +50,7 @@ Cuando algo se resuelve, borralo de esta lista.
 - [ ] Completar medidas exactas
 - [ ] Confirmar la lista de accesorios incluidos
 - [ ] Más fotos (detalle del paño, troneras, patas)
+- [ ] **Pedirle al cliente una foto mejor de la mesa roja** (en un interior o con fondo limpio). La actual (2026-11-25) es un recorte de `PLS_mesa-roja_exterior_horizontal-2.jpg` (CHULA_FABRICA): se ve algo del piso de un estacionamiento. La foto anterior era un recorte del banner de Halloween y se sacó.
 
 ### Mesa de Pool Profesional con Tapa (`mesa-pool-profesional-con-tapa`)
 

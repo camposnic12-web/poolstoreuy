@@ -232,10 +232,14 @@ function pagina(p) {
   i.push(`    </div>`);
   i.push(`    <p class="ficha-resumen">${esc(p.descripcionCorta)}</p>`);
   const [msg, texto] = agotado ? [mensajeAvisame(p), 'Avisame cuando vuelva'] : [p.whatsappMensaje, 'Consultar por WhatsApp'];
-  i.push(`    <a href="${esc(waUrl(msg))}" target="_blank" class="btn-wa-grande">`);
-  i.push(`      <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">${WA_PATH}</svg>`);
-  i.push(`      ${texto}`);
-  i.push(`    </a>`);
+  // Lugar del botón "Comprar" de Mercado Pago (rama pagos-mercadopago): va dentro de .ficha-acciones,
+  // antes del de WhatsApp. El estilo de la fila ya está en css/producto.css.
+  i.push(`    <div class="ficha-acciones">`);
+  i.push(`      <a href="${esc(waUrl(msg))}" target="_blank" class="btn-wa-grande">`);
+  i.push(`        <svg width="22" height="22" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">${WA_PATH}</svg>`);
+  i.push(`        ${texto}`);
+  i.push(`      </a>`);
+  i.push(`    </div>`);
   if (p.descripcion?.trim()) {
     i.push(`    <section class="ficha-bloque">`);
     i.push(`      <h2>Descripción</h2>`);
