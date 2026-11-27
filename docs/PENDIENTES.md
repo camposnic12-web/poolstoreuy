@@ -9,6 +9,15 @@ Cuando algo se resuelve, borralo de esta lista.
 - [ ] Confirmar con el cliente el costo del envío y si el armado incluido aplica en todo el país.
 - [ ] Confirmar que las fotos de clientes (mesa instalada) son del mismo modelo que las mesas verde y azul. Mientras tanto están fuera de la galería: ver docs/PRODUCTOS.md, "Fotos de clientes pendientes".
 
+## Asesor (chatbot)
+
+Ver docs/CHATBOT.md.
+
+- [ ] Cargar `OPENAI_API_KEY` en Netlify y probar en la Deploy Preview con la clave real: compra, alquiler, "¿qué mesa me entra?", un agotado y una pregunta fuera de tema.
+- [ ] Completar el **largo de los tacos** (`par-de-tacos-basicos` → Largo): con ese dato el asesor puede decir si se juega cómodo en un ambiente. Hoy solo dice si la mesa entra y deriva a WhatsApp.
+- [ ] Completar medidas numéricas de la mesa roja, la 3 en 1 y la de tapa (ej. "2,15 x 1,20 m"): sin eso el asesor no las puede evaluar por espacio.
+- [ ] Revisar a las 2–3 semanas las conversaciones que terminan en WhatsApp para ajustar instrucciones.
+
 ## Video del hero ("Entrega real")
 
 Puesto el 2026-11-25: `videos/entrega.mp4` (H.264, 404×720, 30 fps, sin audio, 18,8 s, 1.260 KB), generado con
