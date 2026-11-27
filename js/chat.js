@@ -37,12 +37,18 @@
     (hijos || []).forEach(function (h) { if (h) n.appendChild(h); });
     return n;
   }
-  var ICONO_CHAT = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/><circle cx="9" cy="12" r=".6" fill="currentColor"/><circle cx="12.5" cy="12" r=".6" fill="currentColor"/><circle cx="16" cy="12" r=".6" fill="currentColor"/></svg>';
+  // Mascota del asesor (bola 8 de Pool Store, diseño propio; copia en images/asesor-bola8.svg)
+  var MASCOTA = '<svg viewBox="0 0 120 120" aria-hidden="true" focusable="false"><ellipse cx="58" cy="112" rx="34" ry="5" fill="#000" opacity=".18"/> <g transform="rotate(-38 60 60)"> <rect x="56" y="-6" width="7" height="128" rx="3.5" fill="#E51820" stroke="#141414" stroke-width="3"/> <rect x="56" y="84" width="7" height="34" rx="3" fill="#141414"/> <rect x="56" y="-6" width="7" height="9" rx="3" fill="#2F7FD8" stroke="#141414" stroke-width="3"/> <rect x="56" y="78" width="7" height="4" fill="#fff"/> </g> <circle cx="58" cy="64" r="43" fill="#141414" stroke="#141414" stroke-width="3"/> <ellipse cx="40" cy="40" rx="15" ry="9" fill="#fff" opacity=".22" transform="rotate(-35 40 40)"/> <circle cx="74" cy="40" r="15" fill="#fff"/> <text x="74" y="47.5" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="21" fill="#141414">8</text> <ellipse cx="40" cy="64" rx="7" ry="9" fill="#fff"/> <ellipse cx="60" cy="64" rx="7" ry="9" fill="#fff"/> <circle cx="42" cy="66" r="3.6" fill="#141414"/> <circle cx="62" cy="66" r="3.6" fill="#141414"/> <circle cx="43.2" cy="64.6" r="1.2" fill="#fff"/> <circle cx="63.2" cy="64.6" r="1.2" fill="#fff"/> <path d="M38 81 Q50 93 63 81" fill="#E51820" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/> <ellipse cx="31" cy="76" rx="4.5" ry="2.6" fill="#E51820" opacity=".55"/> <ellipse cx="70" cy="76" rx="4.5" ry="2.6" fill="#E51820" opacity=".55"/> <g class="ps-mano"> <path d="M97 70 Q107 62 109 50" fill="none" stroke="#141414" stroke-width="5" stroke-linecap="round"/> <circle cx="109" cy="46" r="8.5" fill="#fff" stroke="#141414" stroke-width="3"/> <path d="M102 42 Q99 38 102 35" fill="none" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/> </g></svg>';
   var ICONO_WA = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.9 2c0 1.2.9 2.4 1 2.5.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.3z"/></svg>';
 
   // ---------- Botón flotante y panel ----------
   var lanzador = el('button', { type: 'button', class: 'ps-chat-lanzador', 'aria-label': 'Abrir asesor de Pool Store', 'aria-expanded': 'false', 'aria-controls': 'psChatPanel' });
-  lanzador.innerHTML = ICONO_CHAT + '<span class="ps-chat-lanzador-txt">Asesor</span>';
+  lanzador.innerHTML = '<span class="ps-chat-mascota">' + MASCOTA + '</span><span class="ps-chat-lanzador-txt">Asesor</span>';
+  // Globito de saludo: aparece una vez por visita, unos segundos después de cargar
+  var globo = el('button', { type: 'button', class: 'ps-chat-globo', hidden: '', 'aria-label': 'Abrir asesor: ¿Te ayudo a elegir tu mesa?' }, [
+    el('strong', { text: '¡Hola! 🎱' }),
+    el('span', { text: '¿Te ayudo a elegir tu mesa?' }),
+  ]);
 
   var lista = el('div', { class: 'ps-chat-lista', role: 'log', 'aria-live': 'polite', 'aria-relevant': 'additions' });
   var campo = el('textarea', { class: 'ps-chat-campo', rows: '1', maxlength: String(MAX), placeholder: 'Escribí tu consulta…', 'aria-label': 'Tu consulta' });
@@ -51,7 +57,10 @@
   var form = el('form', { class: 'ps-chat-form' }, [campo, enviar]);
   var cerrar = el('button', { type: 'button', class: 'ps-chat-cerrar', 'aria-label': 'Cerrar asesor' });
   cerrar.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  var avatar = el('span', { class: 'ps-chat-avatar' });
+  avatar.innerHTML = MASCOTA;
   var cabecera = el('div', { class: 'ps-chat-cabecera' }, [
+    avatar,
     el('div', { class: 'ps-chat-titulo' }, [
       el('strong', { text: 'Asesor Pool Store' }),
       el('span', { text: 'Compra y alquiler de mesas' }),
@@ -61,6 +70,7 @@
   var aviso = el('p', { class: 'ps-chat-aviso', text: 'Respuestas automáticas con IA. Precio, stock, flete y alquiler se confirman por WhatsApp.' });
   var panel = el('div', { class: 'ps-chat-panel', id: 'psChatPanel', role: 'dialog', 'aria-modal': 'false', 'aria-label': 'Asesor de Pool Store', hidden: '' }, [cabecera, lista, form, aviso]);
   document.body.appendChild(panel);
+  document.body.appendChild(globo);
   document.body.appendChild(lanzador);
 
   // ---------- Mensajes ----------
@@ -161,6 +171,7 @@
 
   // ---------- Abrir / cerrar ----------
   function abrir() {
+    ocultarGlobo();
     estado.abierto = true;
     panel.hidden = false;
     document.documentElement.classList.add('ps-chat-abierto');
@@ -177,6 +188,19 @@
     lanzador.focus({ preventScroll: true });
   }
   lanzador.addEventListener('click', function () { estado.abierto ? cerrarPanel() : abrir(); });
+  globo.addEventListener('click', abrir);
+
+  function ocultarGlobo() { globo.hidden = true; }
+  var yaSaludo = false;
+  try { yaSaludo = sessionStorage.getItem(CLAVE + '-saludo') === '1'; } catch (e) { }
+  if (!yaSaludo && !estado.mensajes.length) {
+    setTimeout(function () {
+      if (estado.abierto) return;
+      globo.hidden = false;
+      try { sessionStorage.setItem(CLAVE + '-saludo', '1'); } catch (e) { }
+      setTimeout(ocultarGlobo, 9000);
+    }, 3500);
+  }
   cerrar.addEventListener('click', cerrarPanel);
   panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrarPanel(); });
 
