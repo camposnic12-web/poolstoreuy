@@ -84,6 +84,10 @@ Los pendientes y notas internas van en **`docs/PENDIENTES.md`**, nunca en `data/
 
 El tema Halloween 2026 se sacó el 2026-11-02 (rama `fin-halloween`). Si se quiere reusar para otra temporada, el PR de esa rama muestra todo lo que tocaba: `css/halloween.css`, `js/halloween.js`, el hero y las meta og/twitter de `index.html` y 3 líneas de `templates/producto.html`. Las imágenes `images/mesa-pool-roja-promo-halloween*` quedaron en el repo.
 
+## Asesor (chatbot)
+
+Usa este mismo `data/products.json`: precios, estado, medidas y "qué incluye" se reflejan en el asesor con el próximo deploy. Detalle en docs/CHATBOT.md.
+
 ## Pruebas
 
 `tests/paginas-producto.test.mjs` revisa con Chrome headless, a 1440 y 390 px:
