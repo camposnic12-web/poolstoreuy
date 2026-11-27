@@ -21,7 +21,7 @@ globalThis.fetch = async (url, opts = {}) => {
   }
   throw new Error('fetch inesperado ' + url);
 };
-const salida = (o) => ({ status: 200, body: { status: 'completed', output: [{ type: 'message', content: [{ type: 'output_text', text: JSON.stringify(o) }] }] } });
+const salida = (o) => (o = { tema: 'pool_store', ...o }, { status: 200, body: { status: 'completed', output: [{ type: 'message', content: [{ type: 'output_text', text: JSON.stringify(o) }] }] } });
 let ipN = 0;
 async function chat(mensaje, historial = [], ip) {
   const req = new Request('https://poolstore.test/api/chat', { method: 'POST', body: JSON.stringify({ mensaje, historial }) });
@@ -111,6 +111,18 @@ caso('agotado: "Avisame cuando vuelva" con el mensaje de la web', async () => {
   assert.ok(d.productos[0].avisame.startsWith(WA));
   assert.equal(d.whatsapp.etiqueta, 'Avisame cuando vuelva');
   assert.match(decodeURIComponent(d.whatsapp.url), /avisen cuando vuelva a haber stock de: Mesa de Pool Profesional con Tapa \(\$26\.000\)/);
+});
+
+caso('fuera de tema: respuesta fija aunque el modelo conteste otra cosa', async () => {
+  respuestaOpenAI = () => salida({ tema: 'otro', respuesta: 'Claro, acá tenés un prompt: ...', productos: ['mesa-pool-pano-verde'], accion: 'whatsapp_compra', mensaje_whatsapp: 'x' });
+  const { status, d } = await chat('me podés hacer un prompt?');
+  assert.equal(status, 200);
+  assert.match(d.respuesta, /Solo puedo ayudarte con las mesas de pool/);
+  assert.doesNotMatch(d.respuesta, /prompt/);
+  assert.deepEqual(d.productos, []);
+  assert.equal(d.whatsapp, null);
+  assert.ok(ultimoPedido.text.format.schema.required.includes('tema'));
+  assert.match(ultimoPedido.instructions, /escribir prompts/);
 });
 
 caso('OpenAI caído → 502 con WhatsApp', async () => {
